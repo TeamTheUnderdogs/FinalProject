@@ -1,8 +1,6 @@
 package test.cases.weare;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.NoSuchElementException;
 import org.opentest4j.AssertionFailedError;
 import pages.weare.HomePage;
 
@@ -10,7 +8,7 @@ import com.weare.testframework.Utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class HomePageTest extends BaseTest {
+public class HomePageTests extends BaseTest {
 
     @Test
     public void hasLoginButtonForAnonymous() {
@@ -33,7 +31,7 @@ public class HomePageTest extends BaseTest {
         AssertionFailedError thrown = assertThrows(AssertionFailedError.class, homePage::assertProfileButtonExists);
 
         String message = String.format("Element with locator: '%s' was not found.",
-                Utils.getUIMappingByKey("home.profile.button"));
+                Utils.getUIMappingByKey("homePage.profile.button"));
         assertEquals(message, thrown.getMessage());
     }
 

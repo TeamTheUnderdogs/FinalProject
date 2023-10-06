@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
-public class LoginPage extends BaseLandingPage {
+public class LoginPage extends WEareBasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver, "social.app.loginPage");
