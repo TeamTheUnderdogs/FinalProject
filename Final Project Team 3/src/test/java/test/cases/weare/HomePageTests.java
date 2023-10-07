@@ -12,14 +12,12 @@ public class HomePageTests extends BaseTest {
 
     @Test
     public void hasLoginButtonForAnonymous() {
-        // TODO: ensure logged out
         HomePage homePage = new HomePage(actions.getDriver());
         homePage.assertLoginButtonExists();
     }
 
     @Test
     public void hasRegisterButtonForAnonymous() {
-        // TODO: ensure logged out
         HomePage homePage = new HomePage(actions.getDriver());
         homePage.assertRegisterButtonExists();
     }
