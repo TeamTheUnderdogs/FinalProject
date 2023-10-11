@@ -1,5 +1,6 @@
 package test.cases.weare.api;
 
+import com.weare.testframework.api.PostsAPI;
 import com.weare.testframework.api.WeAreAPI;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PostTests {
-    private final WeAreAPI api = new WeAreAPI();
+    private final PostsAPI api = new PostsAPI();
 
     public void authenticate() {
         if (!api.hasAuthenticateCookies()) {
@@ -56,6 +57,19 @@ public class PostTests {
         Constants.POST_ID = bodyJsonPath.get("postId");
 
         System.out.printf("Post with id %d was created%n%n", Constants.POST_ID);
+    }
+
+    @Test
+    @Order(2)
+    public void getPostsTest() {
+        Response response = api.getPosts();
+
+        int statusCode = response.getStatusCode();
+        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+
+        JsonPath bodyJsonPath = response.getBody().jsonPath();
+        ArrayList posts = bodyJsonPath.get();
+        assertTrue(posts.size() > 0);
     }
 
     @Test
@@ -114,7 +128,7 @@ public class PostTests {
 
     @Test
     @Order(3)
-    public void deleteTestPost() {
+    public void deletePostTest() {
         // Requires authentication
         authenticate();
 
@@ -122,5 +136,6 @@ public class PostTests {
 
         int statusCode = response.getStatusCode();
         assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        Constants.POST_ID = -1;
     }
 }

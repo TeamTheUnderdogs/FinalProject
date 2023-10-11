@@ -8,16 +8,19 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.http.Cookies;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class WeAreAPI {
-    private Cookies authenticateCookies;
+    private static Cookies authenticateCookies;
 
-    public boolean hasAuthenticateCookies() {
+    public static boolean hasAuthenticateCookies() {
         return authenticateCookies != null;
     }
 
-    private RequestSpecification getRestAssured() {
+    protected RequestSpecification getRestAssured() {
         String baseUrl = getConfigPropertyByKey("social.api.apiUrl");
         RequestSpecification requestSpecification = RestAssured
                 .given()
@@ -31,9 +34,10 @@ public class WeAreAPI {
         return requestSpecification;
     }
 
-    public void authenticateAndFetchCookies() {
+    public static void authenticateAndFetchCookies() {
         // Remove current cookies
         authenticateCookies = null;
+        //Constants.USER_ID = -1;
 
         // Authorize to get cookies
         RestAssured.baseURI = getConfigPropertyByKey("social.api.baseUrl");
@@ -54,67 +58,16 @@ public class WeAreAPI {
         }
         int statusCodeAuthentication = response.getStatusCode();
         System.out.println("The status code is:" + statusCodeAuthentication);
-    }
 
-    // API: Get posts
-    public Response getPosts(){
-        return getRestAssured()
-                .queryParam("sorted", true)
-                .get("/posts");
-    }
-
-    // API: Create a post
-    public Response createPost(String content, String picture, boolean isPublic){
-        String body = String.format(JSONRequests.POST_CREATE_UPDATE, content, picture, isPublic);
-        return getRestAssured()
-                .body(body)
-                .when()
-                .post("/post/auth/creator")
-                .then()
-                .extract()
-                .response();
-    }
-
-    // API: Update a post
-    public Response updatePost(String content, String picture, boolean isPublic){
-        String body = String.format(JSONRequests.POST_CREATE_UPDATE, content, picture, isPublic);
-        return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
-                .queryParam("name", getConfigPropertyByKey("username"))
-                .body(body)
-                .when()
-                .put("/post/auth/editor")
-                .then()
-                .extract()
-                .response();
-    }
-
-    // API: Like or Unlike a post
-    public Response likePost(){
-        return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
-                .when()
-                .post("/post/auth/likesUp")
-                .then()
-                .extract()
-                .response();
-    }
-
-    // API: Get comments for a post {{baseURL}}/api/post/Comments?postId={{postId}}
-    public Response getCommentsForPost(){
-        return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
-                .get("/post/Comments");
-    }
-
-    // API: Delete a post
-    public Response deletePost(){
-        return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
-                .when()
-                .delete("/post/auth/manager")
-                .then()
-                .extract()
-                .response();
+        // Extract user id from the authenticate html response
+//        String pattern = "/auth/users/(\\d+)/profile";
+//        Pattern regex = Pattern.compile(pattern);
+//        Matcher matcher = regex.matcher(response.getBody().toString());
+//        boolean userIdFound = matcher.find();
+//
+//        if (userIdFound) {
+//            Constants.USER_ID = Integer.parseInt(matcher.group(1));
+//        }
+//        System.out.println("The user id is:" + Constants.USER_ID);
     }
 }
