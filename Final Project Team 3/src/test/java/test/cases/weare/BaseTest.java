@@ -20,8 +20,5 @@ public class BaseTest {
         UserActions.quitDriver();
     }
 
-    public static void login() {
-        LoginPage loginPage = new LoginPage(new UserActions().getDriver());
-        loginPage.loginUser();
-    }
+
 }

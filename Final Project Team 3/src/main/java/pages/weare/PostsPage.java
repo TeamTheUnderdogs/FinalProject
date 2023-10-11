@@ -3,11 +3,14 @@ package pages.weare;
 import org.openqa.selenium.WebDriver;
 
 public class PostsPage extends WEareBasePage {
-    public PostsPage(WebDriver driver, String pageUrlKey) {
-        super(driver, pageUrlKey);
+    public PostsPage(WebDriver driver) {
+        super(driver, "social.app.postsPage");
     }
 
     public void browsePublicPosts() {
-        // TODO: browse public posts
+       navigateToPage();
+       assertPageNavigated();
+
+
     }
 }
