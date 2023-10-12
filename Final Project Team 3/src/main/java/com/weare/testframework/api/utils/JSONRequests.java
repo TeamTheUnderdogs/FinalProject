@@ -6,8 +6,8 @@ public class JSONRequests {
             "    \"ROLE_USER\"\n" +
             "  ],\n" +
             "  \"category\": {\n" +
-            "    \"id\": 102,\n" +
-            "    \"name\": \"Actor\"\n" +
+            "    \"id\": 101,\n" +
+            "    \"name\": \"Accountant\"\n" +
             "  },\n" +
             "  \"confirmPassword\": \"%s\",\n" +
             "  \"email\": \"%s\",\n" +
