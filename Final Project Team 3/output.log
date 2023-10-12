@@ -1,6 +1,5 @@
-2023-10-11 10:05:23,894 INFO  [main] Initializing WebDriver
-2023-10-11 10:05:26,533 INFO  [main] Initializing WebDriver
-2023-10-11 10:05:26,534 INFO  [main] Initializing WebDriver
-2023-10-11 10:05:27,225 INFO  [main] Clicking on element homePage.searchUsers.button
-2023-10-11 10:05:27,433 INFO  [main] Initializing WebDriver
-2023-10-11 10:05:27,455 INFO  [main] Quitting WebDriver
+2023-10-12 19:56:17,317 INFO  [main] Initializing WebDriver
+2023-10-12 19:56:20,240 INFO  [main] Initializing WebDriver
+2023-10-12 19:56:20,241 INFO  [main] Initializing WebDriver
+2023-10-12 19:56:20,636 INFO  [main] Clicking on element postsPage.exploreThisPost.button
+2023-10-12 19:56:21,037 INFO  [main] Quitting WebDriver
