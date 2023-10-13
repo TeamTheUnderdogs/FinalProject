@@ -56,6 +56,8 @@ public class HomePageTests extends BaseTest {
     public void searchUserByCategory_as_AnonymousUser(){
 
         homePage.searchUserByCategory();
+    Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"), getWebDriver().getCurrentUrl() ,
+            "Page not successfully navigated");
 
 
     Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"),

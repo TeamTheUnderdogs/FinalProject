@@ -48,5 +48,11 @@ public class LoginPage extends WEareBasePage {
           actions.waitForElementClickable("homePage.logout.button");
           actions.clickElement("homePage.logout.button");}
 
+    public void logoutAdmin() {
+        loginAdmin();
+
+        actions.waitForElementClickable("homePage.logout.button");
+        actions.clickElement("homePage.logout.button");}
+
     }
 

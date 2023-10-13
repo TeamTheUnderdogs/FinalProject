@@ -13,7 +13,10 @@ public class UserFactory {
 user.setUsername(faker.name().firstName());
 user.setEmail(faker.internet().safeEmailAddress());
 user.setPassword(faker.internet().password(8,20,true, true, true ));
-
+user.setFirstName(faker.name().firstName());
+user.setLastName(faker.name().lastName());
+user.setBirthday(faker.date().birthday());
+user.setIntroduction((faker.lorem().paragraph(2)));
 
 return user;
 
@@ -22,7 +25,7 @@ return user;
     public static User createUserWithTwentyLettersUsername() {
         User user = new User();
 
-        user.setUsername(faker.name().firstName());
+        user.setUsername(faker.lorem().characters(20));
         user.setEmail(faker.internet().safeEmailAddress());
         user.setPassword(faker.internet().password(8,20,true, true, true ));
 

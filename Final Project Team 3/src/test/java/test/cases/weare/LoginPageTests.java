@@ -20,12 +20,27 @@ public class LoginPageTests extends BaseTest {
         loginPage.loginUser();
         userActions.assertElementPresent("homePage.logout.button");
     }
+@Test
+    public void loginAdmin_when_validCredentialsProvided () {
+
+        loginPage.loginAdmin();
+        userActions.assertElementPresent("homePage.logout.button");
+    }
+    @Test
      public void logoutUser_Successfully(){
         loginPage.logoutUser();
-        userActions.assertElementPresent("homePage.login.button");
-         Assertions.assertEquals(getConfigPropertyByKey("social.app.logoutPage"),
+
+        Assertions.assertEquals(getConfigPropertyByKey("social.app.logoutPage"),
                  getWebDriver().getCurrentUrl() , "Page not successfully navigated");
      }
+
+    @Test
+    public void logoutAdmin_Successfully(){
+        loginPage.logoutAdmin();
+
+        Assertions.assertEquals(getConfigPropertyByKey("social.app.logoutPage"),
+                getWebDriver().getCurrentUrl() , "Page not successfully navigated");
+    }
 
 
 }
