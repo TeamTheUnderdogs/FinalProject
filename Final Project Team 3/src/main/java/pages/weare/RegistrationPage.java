@@ -13,30 +13,27 @@ public class RegistrationPage extends WEareBasePage {
         super(driver, "social.app.registrationPage");
     }
 
+    User user = createUser();
 
+    Admin admin = createAdmin();
     public void registerUser () {
 
-        User user = createUser();
-
-        String username = user.getUsername();
-        String email = user.getEmail();
-        String password = user.getPassword();
 
 
         actions.waitForElementVisible("homePage.register.button");
         actions.clickElement("homePage.register.button");
 
         actions.waitForElementVisible("registrationPage.username.field");
-        actions.typeValueInField(username,"registrationPage.username.field");
+        actions.typeValueInField(user.getUsername(),"registrationPage.username.field");
 
         actions.waitForElementVisible("registrationPage.email.field");
-        actions.typeValueInField(email,"registrationPage.email.field");
+        actions.typeValueInField(user.getEmail(), "registrationPage.email.field");
 
         actions.waitForElementVisible("registrationPage.password.field");
-        actions.typeValueInField(password,"registrationPage.password.field");
+        actions.typeValueInField(user.getPassword(),"registrationPage.password.field");
 
         actions.waitForElementVisible("registrationPage.confirmPassword.field");
-        actions.typeValueInField(password,"registrationPage.confirmPassword.field");
+        actions.typeValueInField(user.getPassword(),"registrationPage.confirmPassword.field");
 
 
         actions.clickElement("registrationPage.register.button");
@@ -44,27 +41,20 @@ public class RegistrationPage extends WEareBasePage {
 
     public void registerAdmin () {
 
-        Admin admin = createAdmin();
-
-        String username = admin.getUsername();
-        String email = admin.getEmail();
-        String password = admin.getPassword();
-
-
         actions.waitForElementVisible("homePage.register.button");
         actions.clickElement("homePage.register.button");
 
         actions.waitForElementVisible("registrationPage.username.field");
-        actions.typeValueInField(username,"registrationPage.username.field");
+        actions.typeValueInField(admin.getUsername(),"registrationPage.username.field");
 
         actions.waitForElementVisible("registrationPage.email.field");
-        actions.typeValueInField(email,"registrationPage.email.field");
+        actions.typeValueInField(admin.getEmail(),"registrationPage.email.field");
 
         actions.waitForElementVisible("registrationPage.password.field");
-        actions.typeValueInField(password,"registrationPage.password.field");
+        actions.typeValueInField(admin.getPassword(),"registrationPage.password.field");
 
         actions.waitForElementVisible("registrationPage.confirmPassword.field");
-        actions.typeValueInField(password,"registrationPage.confirmPassword.field");
+        actions.typeValueInField(admin.getPassword(),"registrationPage.confirmPassword.field");
 
         actions.waitForElementClickable("registrationPage.register.button");
         actions.clickElement("registrationPage.register.button");
@@ -73,10 +63,10 @@ public class RegistrationPage extends WEareBasePage {
         actions.clickElement("homePage.login.button");
 
         actions.waitForElementVisible("loginPage.username.field");
-        actions.typeValueInField(username,"loginPage.username.field");
+        actions.typeValueInField(admin.getUsername(),"loginPage.username.field");
 
         actions.waitForElementVisible("loginPage.password.field");
-        actions.typeValueInField(password,"loginPage.password.field");
+        actions.typeValueInField(admin.getPassword(),"loginPage.password.field");
 
         actions.waitForElementClickable("loginPage.login.button");
         actions.clickElement("loginPage.login.button");
@@ -87,8 +77,8 @@ public class RegistrationPage extends WEareBasePage {
         actions.waitForElementClickable("adminPage.viewUsers.button");
         actions.clickElement("adminPage.viewUsers.button");
 
-        actions.waitForElementClickable("viewUsersPage.viewFirstProfile.button");
-        actions.clickElement("viewUsersPage.viewFirstProfile.button");
+        actions.waitForElementClickable("viewAllUsersPage.viewFirstProfile.button");
+        actions.clickElement("viewAllUsersPage.viewFirstProfile.button");
 
 
     }
