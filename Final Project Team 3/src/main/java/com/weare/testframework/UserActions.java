@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
@@ -63,6 +64,14 @@ public class UserActions {
         dragAndDrop.perform();
     }
 
+    public void selectFromDropdownMenu(String dropdownMenuLocator, String option) {
+        String menuLocator = getLocatorValueByKey(dropdownMenuLocator);
+        WebElement menuElement = driver.findElement(By.xpath(menuLocator));
+        Select selectMenu = new Select(menuElement);
+        selectMenu.selectByVisibleText(option);
+
+    }
+
     //############# WAITS #########
     public void waitForElementVisible(String locatorKey, Object... arguments) {
         int defaultTimeout = Integer.parseInt(Utils.getConfigPropertyByKey("config.defaultTimeoutSeconds"));
@@ -78,11 +87,8 @@ public class UserActions {
 
     //############# WAITS #########
     public void waitForElementPresent(String locator, Object... arguments) {
-        // TODO: Implement the method
-        // 1. Initialize Wait utility with default timeout from properties
+
         int defaultTimeout = Integer.parseInt(Utils.getConfigPropertyByKey("config.defaultTimeoutSeconds"));
-        // 2. Use the method that checks for Element present
-        // 3. Fail the test with meaningful error message in case the element is not present
         waitForElementPresenceUntilTimeout(locator, defaultTimeout, arguments);
     }
 
