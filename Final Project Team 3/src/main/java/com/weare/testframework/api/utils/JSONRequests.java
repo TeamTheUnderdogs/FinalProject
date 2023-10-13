@@ -26,4 +26,8 @@ public class JSONRequests {
             "    \"userId\": %d\n" +
             "}";
 
+    public static final String SEND_REQUEST_BODY = "{\n" +
+            "    \"id\": %d,\n" +
+            "    \"username\": \"%s\"\n" +
+            "}";
 }
