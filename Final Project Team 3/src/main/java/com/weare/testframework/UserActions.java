@@ -92,13 +92,9 @@ public class UserActions {
     }
 
     public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
-        // TODO: Implement the method
-        // 1. Find Element using the locator value from Properties
-        String xpath = getLocatorValueByKey(locator);
+                String xpath = getLocatorValueByKey(locator);
         WebElement element = driver.findElement(By.xpath(xpath));
-        // 2. Get the element attribute
         String value = element.getAttribute(attributeName);
-        // 3. Assert equality with expected value
         Assertions.assertEquals(format("Element with locator %s doesn't match", attributeName), getLocatorValueByKey(attributeValue), value);
     }
 

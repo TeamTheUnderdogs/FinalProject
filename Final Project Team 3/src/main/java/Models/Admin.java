@@ -20,7 +20,7 @@ public class Admin {
     }
 
     public void setUsername(String username) {
-        this.username = "admin"+faker.name().firstName() ;
+        this.username = "admin"+faker.name().firstName();
     }
 
 

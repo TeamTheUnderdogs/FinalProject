@@ -6,8 +6,8 @@ public class JSONRequests {
             "    \"ROLE_USER\"\n" +
             "  ],\n" +
             "  \"category\": {\n" +
-            "    \"id\": 101,\n" +
-            "    \"name\": \"Accountant\"\n" +
+            "    \"id\": 102,\n" +
+            "    \"name\": \"Actor\"\n" +
             "  },\n" +
             "  \"confirmPassword\": \"%s\",\n" +
             "  \"email\": \"%s\",\n" +
@@ -26,8 +26,4 @@ public class JSONRequests {
             "    \"userId\": %d\n" +
             "}";
 
-    public static final String SEND_REQUEST_BODY = "{\n" +
-            "    \"id\": %d,\n" +
-            "    \"username\": \"%s\"\n" +
-            "}";
 }

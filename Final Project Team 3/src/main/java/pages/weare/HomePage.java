@@ -1,6 +1,10 @@
 package pages.weare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+
+import static com.weare.testframework.Utils.getConfigPropertyByKey;
+import static com.weare.testframework.Utils.getWebDriver;
 
 public class HomePage extends WEareBasePage {
 
@@ -19,4 +23,13 @@ public class HomePage extends WEareBasePage {
     public void assertProfileButtonExists() {
         actions.waitForElementPresent("homePage.profile.button");
     }
+
+public void searchUserByCategory () {
+    actions.waitForElementVisible("homePage.searchUsersByCategory.field");
+    actions.typeValueInField("baker", "homePage.searchUsersByCategory.field");
+
+    actions.waitForElementVisible("homePage.searchUsers.button");
+    actions.clickElement("homePage.searchUsers.button");
+
+}
 }
