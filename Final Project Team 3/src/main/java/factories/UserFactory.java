@@ -15,8 +15,9 @@ user.setEmail(faker.internet().safeEmailAddress());
 user.setPassword(faker.internet().password(8,20,true, true, true ));
 user.setFirstName(faker.name().firstName());
 user.setLastName(faker.name().lastName());
-user.setBirthday(faker.date().birthday());
+user.setBirthday(faker.date().birthday().toString());
 user.setIntroduction((faker.lorem().paragraph(2)));
+user.setSkill(faker.lorem().paragraph(1));
 
 return user;
 

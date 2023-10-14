@@ -40,7 +40,11 @@ public class PostsPage extends WEareBasePage {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
-        actions.waitForElementClickable("postsPage.likeOrDislikePost.button");
-        actions.clickElement("postsPage.likeOrDislikePost.button");
+
+        actions.waitForElementClickable("postsPage.browseAllPublicPosts.button");
+        actions.clickElement("postsPage.browseAllPublicPosts.button");
+
+        actions.waitForElementClickable("postsPage.likePost.button");
+        actions.clickElement("postsPage.likePost.button");
     }
 }

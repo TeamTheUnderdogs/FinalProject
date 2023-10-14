@@ -97,11 +97,12 @@ public class UserActions {
                 format("Element with %s doesn't present.", locator));
     }
 
-    public void assertElementAttribute(String locator, String attributeName, String attributeValue) {
+    public void assertElementAttribute(String locator, String attributeName, String attributeExpectedValue) {
                 String xpath = getLocatorValueByKey(locator);
         WebElement element = driver.findElement(By.xpath(xpath));
-        String value = element.getAttribute(attributeName);
-        Assertions.assertEquals(format("Element with locator %s doesn't match", attributeName), getLocatorValueByKey(attributeValue), value);
+        String attributeText = element.getAttribute(attributeName);
+
+        Assertions.assertEquals(element.getAttribute(attributeName), attributeExpectedValue, (format("Value of attribute %s doesn't match. Expected value: %s\n Actual value: %s", attributeName, attributeExpectedValue,attributeText)));
     }
 
 

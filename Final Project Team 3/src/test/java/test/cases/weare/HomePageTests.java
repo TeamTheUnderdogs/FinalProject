@@ -59,7 +59,6 @@ public class HomePageTests extends BaseTest {
     Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"), getWebDriver().getCurrentUrl() ,
             "Page not successfully navigated");
 
-
     Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"),
             getWebDriver().getCurrentUrl() , "Page not successfully navigated");
 

@@ -14,13 +14,12 @@ public class RegistrationPage extends WEareBasePage {
     }
 
     User user = createUser();
-
     Admin admin = createAdmin();
+
+
     public void registerUser () {
 
-
-
-        actions.waitForElementVisible("homePage.register.button");
+        actions.waitForElementClickable("homePage.register.button");
         actions.clickElement("homePage.register.button");
 
         actions.waitForElementVisible("registrationPage.username.field");

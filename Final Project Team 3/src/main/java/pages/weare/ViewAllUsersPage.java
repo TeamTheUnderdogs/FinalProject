@@ -25,4 +25,6 @@ navigateToPage();
         actions.waitForElementClickable("viewAllUsersPage.viewFirstProfile.button");
         actions.clickElement("viewAllUsersPage.viewFirstProfile.button");
     }
+
+
 }

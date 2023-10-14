@@ -34,16 +34,16 @@ public class UsersAPI extends WeAreAPI {
     }
 
    // API: Show profile posts
-   public Response getProfilePosts(int userId, PageModel model) {
-       String url = String.format("/api/users/auth/%s/posts", userId);
-       String body = String.format(JSONRequests.PAGE,
-               model.getIndex(),
-               model.getNext(),
-               model.getSearchParam1(),
-               model.getSearchParam2(),
-               model.getSize());
-       return getRestAssured()
-               .body(body)
-               .get(url);
-   }
+//   public Response getProfilePosts(int userId, PageModel model) {
+//       String url = String.format("/api/users/auth/%s/posts", userId);
+//       String body = String.format(JSONRequests.PAGE,
+//               model.getIndex(),
+//               model.getNext(),
+//               model.getSearchParam1(),
+//               model.getSearchParam2(),
+//               model.getSize());
+//       return getRestAssured()
+//               .body(body)
+//               .get(url);
+//   }
 }

@@ -14,8 +14,10 @@ public class User {
 
     private String lastName;
 
-    private Date birthday;
+    private String birthday;
     private String introduction;
+
+    private String skill;
 
 
 
@@ -61,11 +63,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -75,5 +77,13 @@ public class User {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
     }
 }
