@@ -1,7 +1,7 @@
 package com.weare.testframework.api.utils;
 
 public class JSONRequests {
-    public static final String CREATE_USER_BODY = "{\n" +
+    public static final String USER_REGISTER = "{\n" +
             "  \"authorities\": [\n" +
             "    \"ROLE_USER\"\n" +
             "  ],\n" +
