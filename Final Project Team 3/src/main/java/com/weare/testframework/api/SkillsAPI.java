@@ -15,19 +15,19 @@ public class SkillsAPI extends WeAreAPI {
     }
 
     // API: Create a skill
-    public Response createSkill(CategoryModel categoryModel, String skill) {
-        String body = String.format(JSONRequests.SKILL_CREATE,
-                categoryModel.getId(),
-                categoryModel.getName(),
-                skill);
-        return getRestAssured()
-                .body(body)
-                .when()
-                .post("/skill/auth/creator")
-                .then()
-                .extract()
-                .response();
-    }
+   public Response createSkill(CategoryModel categoryModel, String skill) {
+       String body = String.format(JSONRequests.SKILL_CREATE,
+               categoryModel.getId(),
+               categoryModel.getName(),
+               skill);
+       return getRestAssured()
+               .body(body)
+               .when()
+               .post("/skill/auth/creator")
+               .then()
+               .extract()
+               .response();
+   }
 
     // API: Update a skill
     public Response updateSkill(int skillId, String skill) {

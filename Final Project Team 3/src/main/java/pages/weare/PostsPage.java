@@ -3,7 +3,6 @@ package pages.weare;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class PostsPage extends WEareBasePage {
@@ -34,5 +33,14 @@ public class PostsPage extends WEareBasePage {
         browsePublicPosts();
         actions.waitForElementClickable("postsPage.exploreThisPost.button");
         actions.clickElement("postsPage.exploreThisPost.button");
+    }
+
+    public void likePublicPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.latestPosts.button");
+        actions.clickElement("homePage.latestPosts.button");
+        actions.waitForElementClickable("postsPage.likeOrDislikePost.button");
+        actions.clickElement("postsPage.likeOrDislikePost.button");
     }
 }

@@ -104,6 +104,8 @@ public class UserActions {
         Assertions.assertEquals(format("Element with locator %s doesn't match", attributeName), getLocatorValueByKey(attributeValue), value);
     }
 
+
+
     private String getLocatorValueByKey(String locator) {
         return format(Utils.getUIMappingByKey(locator));
     }

@@ -46,5 +46,14 @@ public class PostsPageTests extends BaseTest {
         postsPage.explorePublicPost();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
+
+    @Test
+    public void userLikePublicPost() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.likePublicPost();
+        actions.assertElementPresent("postsPage.likeOrDislikePost.button");
+        actions.assertElementAttribute("postsPage.likeOrDislikePost.button", "id", "Dislike");
+    }
+
 }
 
