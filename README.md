@@ -1,11 +1,11 @@
-# FinalProject 
+# Final Project 
 
 This repository contains the testing framework and resources for the WEare web application project as part of the final project of Team 3 “The Underdogs”. It serves as a foundation for testing and understanding the core functionality of the application and also aims to test the reliability, and performance of the web app. 
 
 
 # Table of Contents
 - [Structure](#structure)
-- [Step by Step Guide](#guide)
+- [Step by Step Guide](#step-by-step-guide)
 - [Contributing](#contributing)
 - [Notes](#notes)
 
@@ -44,7 +44,7 @@ Contains Java classes for different test scenarios (e.g., login, registration, s
 pom.xml: Maven configuration file with dependencies required for the project.
 
 
-## [Step by Step Guide](#guide)
+## [Step by Step Guide](#step-by-step-guide)
 
 
 **1. Steps to review Manual tests** 
