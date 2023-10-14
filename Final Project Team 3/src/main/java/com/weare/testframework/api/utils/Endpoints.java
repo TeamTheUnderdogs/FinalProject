@@ -6,4 +6,5 @@ public class Endpoints {
     public static final String APPROVE_REQUEST = "approve";
     public static final String GET_SKILLS = "api/skill";
     public static final String CREATE_SKILL = "api/skill/create";
+    public static final String GET_USER_REQUEST = "api/auth/users/%d/request/";
 }

@@ -1,5 +1,6 @@
 package com.weare.testframework.api;
 
+import com.github.javafaker.Faker;
 import com.weare.testframework.api.utils.Constants;
 import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.RestAssured;
@@ -15,6 +16,7 @@ import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class WeAreAPI {
     private static Cookies authenticateCookies;
+    public static Faker faker = new Faker();
 
     public static boolean hasAuthenticateCookies() {
         return authenticateCookies != null;
@@ -69,5 +71,18 @@ public class WeAreAPI {
 //            Constants.USER_ID = Integer.parseInt(matcher.group(1));
 //        }
 //        System.out.println("The user id is:" + Constants.USER_ID);
+
+
+    }
+    public String getRandomUsername() {
+        return faker.name().firstName();
+    }
+
+    public String getRandomPassword() {
+        return faker.internet().emailAddress();
+    }
+
+    public String getRandomEmail() {
+        return faker.internet().emailAddress();
     }
 }

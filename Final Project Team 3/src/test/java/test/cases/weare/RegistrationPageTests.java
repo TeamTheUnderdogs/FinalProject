@@ -4,6 +4,7 @@ import Models.User;
 import com.weare.testframework.UserActions;
 import factories.UserFactory;
 import org.junit.jupiter.api.Test;
+import pages.weare.LoginPage;
 import pages.weare.RegistrationPage;
 
 public class RegistrationPageTests extends BaseTest{
@@ -18,6 +19,8 @@ public class RegistrationPageTests extends BaseTest{
         registrationPage.registerUser();
         UserActions userActions = new UserActions();
         userActions.assertElementPresent("registrationPage.updateYouProfile.button");
+        LoginPage loginPage=new LoginPage(actions.getDriver());
+        loginPage.logoutUser();
     }
 
     @Test
