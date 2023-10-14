@@ -1,6 +1,6 @@
 # FinalProject 
 
-This repository contains the testing framework and resources for the WEare web application project as part of the final project of Team 3 “The underdogs”. It serves as a foundation for testing and understanding the core functionality of the application and also aims to test the reliability, and performance of the web app. 
+This repository contains the testing framework and resources for the WEare web application project as part of the final project of Team 3 “The Underdogs”. It serves as a foundation for testing and understanding the core functionality of the application and also aims to test the reliability, and performance of the web app. 
 
 
 # Table of Contents
@@ -15,7 +15,7 @@ This repository contains the testing framework and resources for the WEare web a
 The project is organized into four main components:
 
 **1. Manual Testing** 
-   - Please refer to [Team 3 Final Project](https://github.com/TeamTheUnderdogs).
+   - Please refer to [Team 3 Final Project](https://final-project-team-3.atlassian.net/).
 
 The Manual testing cover test plans, test cases, and related documentation per project requirements: 
 
@@ -75,5 +75,4 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Denitsa Petrova
 
 ## [Notes](#notes)
-
 
