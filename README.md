@@ -1,6 +1,6 @@
 # FinalProject 
 
-This repository contains the testing framework and resources for the WEare web application project as part of the final project of Team 3 “The underdogs”. It serves as a foundation for testing and understanding the core functionality of the application.
+This repository contains the testing framework and resources for the WEare web application project as part of the final project of Team 3 “The underdogs”. It serves as a foundation for testing and understanding the core functionality of the application and also aims to test the reliability, and performance of the web app. 
 
 
 # Table of Contents
@@ -45,7 +45,7 @@ pom.xml: Maven configuration file with dependencies required for the project.
 1. Steps to review Manual tests
 - Please refer to JIRA for the Manual Test cases.
 
-3. Steps to run the Postman requests:
+2. Steps to run the Postman requests:
 - Import the WEare_API_Collection.json and WEare_API_Environment.json into your Postman workspace.
 - Select the desired environment (e.g., development, staging) from the environment dropdown.
 - Run the collection to execute the API tests.
@@ -69,4 +69,5 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Denitsa Petrova
 
 # [Notes](#notes)
+
 
