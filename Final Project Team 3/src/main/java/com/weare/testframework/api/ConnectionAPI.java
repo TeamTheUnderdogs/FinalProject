@@ -84,7 +84,7 @@ public class ConnectionAPI extends WeAreAPI {
     public void assertResponseRequestId(Response response, String propertyName, String expectedValue) {
         JsonPath jsonPath = response.getBody().jsonPath();
         String actualValue = jsonPath.get(propertyName);
-        assertNotNull(actualValue, "The " + propertyName + " property does not exist in the resposnse.");
+        assertNotNull(actualValue, "The " + propertyName + " property does not exist in the response.");
         assertEquals(expectedValue, actualValue, "The" + propertyName + " property in the response does not match the expected value.");
     }
 
