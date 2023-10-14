@@ -1,39 +1,46 @@
 # FinalProject 
-# Overview
 
 This repository contains the testing framework and resources for the WEare web application project as part of the final project of Team 3 “The underdogs”. It serves as a foundation for testing and understanding the core functionality of the application.
 
-# Structure
+
+# Table of Contents
+- [Structure](#structure)
+- [Step by step guide](#step)
+- [Contributing](#contributing)
+- [Notes](#notes)
+
+
+# [Structure](#structure)
 
 The project is organized into four main components:
 
-1. Manual Testing
-
- The Manual testing cover test plans, test cases, and related documentation per project requirements: 
+1. Manual Testing.
+The Manual testing cover test plans, test cases, and related documentation per project requirements: 
 
 - TestPlans: Contains high-level test plans outlining the testing strategy, objectives, and scope. In addition, the entry and exit criteria are included. 
 - TestCases: Contains detailed test cases for different functional areas of the application.
 - BugReports: Contains templates and logs for reporting defects found during manual testing.
 
-2. Postman (API Testing)
+2. Postman (API Testing).
 The Postman directory contains the collection and environment files used for API testing.
 
 - WEare_API_Collection.json: Postman collection file with a set of requests for testing the WEare application APIs.
 - WEare_API_Environment.json: Postman environment file with environment variables and configurations for different testing environments (e.g., development, staging, production).
 Running API Tests
 
-3. Rest Assured Tests
+3. Rest Assured Tests.
 The RestAssured directory contains Java classes for automated testing of RESTful web services.
 The Res Assured tests cover Java classes organized by test suites (e.g., user authentication, data retrieval, etc.).
 pom.xml: Maven configuration file with dependencies required for the project.
 
-4. Selenium (UI Testing)
+4. Selenium (UI Testing).
 The Selenium directory contains test scripts for UI testing of the WEare web application.
 Contains Java classes for different test scenarios (e.g., login, registration, search functionality, etc.).
 pom.xml: Maven configuration file with dependencies required for the project.
 
 
-# Step by step guide
+# [Step by step guide](#step)
+
 
 1. Steps to review Manual tests
 - Please refer to JIRA for the Manual Test cases.
@@ -56,6 +63,10 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Choose the desired browser.
 
 
+# [Contributing](#contributing)
+- Elena Zlateva
+- Vladislav Ganchev
+- Denitsa Petrova
 
-
+# [Notes](#notes)
 
