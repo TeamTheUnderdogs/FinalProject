@@ -19,15 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class PostTests {
+public class PostTests extends BaseAPITest {
     private final PostsAPI api = new PostsAPI();
-
-    public void authenticate() {
-        if (!api.hasAuthenticateCookies()) {
-            api.authenticateAndFetchCookies();
-            assertTrue(api.hasAuthenticateCookies());
-        }
-    }
 
     @Test
     @Order(1)

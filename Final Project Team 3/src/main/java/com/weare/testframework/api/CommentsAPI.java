@@ -1,10 +1,7 @@
 package com.weare.testframework.api;
 
-import com.weare.testframework.api.utils.Constants;
 import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.response.Response;
-
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class CommentsAPI extends WeAreAPI {
     // API: Get comments
@@ -31,7 +28,7 @@ public class CommentsAPI extends WeAreAPI {
 
     // API: Create a comment
     public Response createComment(String content, int postId, int userId) {
-        String body = String.format(JSONRequests.COMMENT_CREATE_UPDATE, content, postId, userId);
+        String body = String.format(JSONRequests.COMMENT_CREATE_UPDATE_BODY, content, postId, userId);
         return getRestAssured()
                 .body(body)
                 .when()
