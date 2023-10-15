@@ -3,7 +3,7 @@ package com.weare.testframework.api.utils;
 public class JSONRequests {
     public static final String USER_REGISTER_BODY = "{\n" +
             "  \"authorities\": [\n" +
-            "    \"ROLE_USER\"\n" +
+            "    \"%s\"\n" +
             "  ],\n" +
             "  \"category\": {\n" +
             "    \"id\": %d,\n" +

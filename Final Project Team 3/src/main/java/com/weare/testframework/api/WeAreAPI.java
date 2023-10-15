@@ -18,6 +18,10 @@ public class WeAreAPI {
         return authenticateCookies != null;
     }
 
+    public static void removeAuthenticateCookies() {
+        authenticateCookies = null;
+    }
+
     protected RequestSpecification getRestAssured() {
         String baseUrl = getConfigPropertyByKey("social.api.apiUrl");
         RequestSpecification requestSpecification = RestAssured

@@ -13,8 +13,10 @@ public class Constants {
     public static final int USERNAME_INDEX = 3;
     public static final int USER_ID_INDEX = 6;
 
+    public static final String ROLE_USER = "ROLE_USER";
+
     // TODO: Use registered user id?
-    public static int USER_ID = 74; //-1;
+    public static int USER_ID = Integer.parseInt(getConfigPropertyByKey("social.api.userId")); //74; //-1;
 
     public static String USERNAME = getConfigPropertyByKey("social.api.username");
     public static String PASSWORD = getConfigPropertyByKey("social.api.password");

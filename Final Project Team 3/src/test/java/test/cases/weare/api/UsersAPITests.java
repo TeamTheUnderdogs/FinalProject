@@ -1,6 +1,7 @@
 package test.cases.weare.api;
 
 import com.weare.testframework.api.UsersAPI;
+import com.weare.testframework.api.WeAreAPI;
 import com.weare.testframework.api.models.ExpertiseModel;
 import com.weare.testframework.api.models.PersonalModel;
 import com.weare.testframework.api.utils.Constants;
@@ -31,7 +32,9 @@ public class UsersAPITests extends BaseAPITest {
         String password = faker.internet().password(8, 12);
         String email = faker.internet().emailAddress();
         String username = faker.name().firstName();
-        Response response = api.registerUser(Constants.CATEGORY_ALL, password, email, password, username);
+        Response response = api.registerUser(Constants.ROLE_USER,
+                Constants.CATEGORY_ALL,
+                password, email, password, username);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -46,10 +49,11 @@ public class UsersAPITests extends BaseAPITest {
         assertEquals(username, usernameActual);
 
         Constants.USER_ID = userId;
-        // TODO: Authenticate new user?
         Constants.USERNAME = usernameActual;
         Constants.PASSWORD = password;
         Constants.EMAIL = email;
+        // Remove cookies to force authentication of the new user
+        WeAreAPI.removeAuthenticateCookies();
 
         System.out.printf("User with id %d was created%n%n", Constants.USER_ID);
     }

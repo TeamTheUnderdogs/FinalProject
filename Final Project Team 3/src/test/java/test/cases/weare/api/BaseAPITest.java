@@ -6,7 +6,6 @@ import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.response.Response;
 
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
 import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,6 +40,7 @@ public class BaseAPITest {
 
     public String getRandomSkill() {
         String skill = faker.job().keySkills();
-        return String.format("%s %d", skill, faker.random().nextInt(1, 999));
+        long tm = System.currentTimeMillis();
+        return String.format("%s %d", skill, tm);
     }
 }

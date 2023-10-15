@@ -23,12 +23,13 @@ public class UsersAPI extends WeAreAPI {
     }
 
     // API: Register a new user
-    public Response registerUser(CategoryModel categoryModel,
+    public Response registerUser(String userRole, CategoryModel categoryModel,
                                  String confirmPassword,
                                  String email,
                                  String password,
                                  String username) {
         String body = String.format(JSONRequests.USER_REGISTER_BODY,
+                userRole,
                 categoryModel.getId(),
                 categoryModel.getName(),
                 confirmPassword,
