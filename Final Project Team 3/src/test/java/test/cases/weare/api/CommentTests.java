@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
+import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,7 +31,7 @@ public class CommentTests extends BaseAPITest {
         authenticate();
         createPostIfNeeded();
 
-        String content = getConfigPropertyByKey("social.comment.content");
+        String content = faker.lorem().sentence(5);
         Response response = api.createComment(content, Constants.POST_ID, Constants.USER_ID);
 
         int statusCode = response.getStatusCode();
@@ -65,7 +66,7 @@ public class CommentTests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        String content = getConfigPropertyByKey("social.comment.contentModified");
+        String content = faker.lorem().sentence(5);
         Response response = api.updateComment(content, Constants.COMMENT_ID);
 
         int statusCode = response.getStatusCode();

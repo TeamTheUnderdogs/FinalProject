@@ -32,4 +32,8 @@ public class Constants {
     public static final double AVAILABILITY = 0.5;
 
     public static final LocationModel LOCATION = new LocationModel(0, 1, "Sofia");
+
+    public static final String POST_DEFAULT_PICTURE = "";
+
+    public static final boolean POST_PUBLIC = true;
 }

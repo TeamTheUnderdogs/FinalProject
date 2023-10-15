@@ -31,8 +31,8 @@ public class PostTests extends BaseAPITest {
         authenticate();
 
         String content = faker.lorem().sentence(10);
-        String picture = getConfigPropertyByKey("social.post.picture");
-        boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
+        String picture = Constants.POST_DEFAULT_PICTURE;
+        boolean isPublic = Constants.POST_PUBLIC;
 
         Response response = api.createPost(new PostModel(content, picture, isPublic));
 
@@ -74,8 +74,8 @@ public class PostTests extends BaseAPITest {
         authenticate();
 
         String content = faker.lorem().sentence(10);
-        String picture = getConfigPropertyByKey("social.post.picture");
-        boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
+        String picture = Constants.POST_DEFAULT_PICTURE;
+        boolean isPublic = Constants.POST_PUBLIC;
 
         Response response = api.updatePost(Constants.POST_ID, new PostModel(content, picture, isPublic));
 

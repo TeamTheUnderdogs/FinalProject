@@ -22,16 +22,15 @@ public class BaseAPITest {
         }
     }
 
-    private final PostsAPI apiPosts = new PostsAPI();
-
     public void createPostIfNeeded() {
         if (Constants.POST_ID != -1) {
             return;
         }
 
+        PostsAPI apiPosts = new PostsAPI();
         String content = faker.lorem().sentence(10);
-        String picture = getConfigPropertyByKey("social.post.picture");
-        boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
+        String picture = Constants.POST_DEFAULT_PICTURE;
+        boolean isPublic = Constants.POST_PUBLIC;
 
         Response response = apiPosts.createPost(new PostModel(content, picture, isPublic));
 
