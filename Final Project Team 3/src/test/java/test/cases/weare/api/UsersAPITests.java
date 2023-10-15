@@ -66,7 +66,7 @@ public class UsersAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList users = bodyJsonPath.get();
+        ArrayList<Object> users = bodyJsonPath.get();
         assertTrue(users.size() > 0);
     }
 
@@ -103,7 +103,7 @@ public class UsersAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList posts = bodyJsonPath.get();
+        ArrayList<Object> posts = bodyJsonPath.get();
         assertTrue(posts.size() > 0);
     }
 
@@ -131,7 +131,7 @@ public class UsersAPITests extends BaseAPITest {
         // {"id":74,"skills":[{"skillId":137,"skill":"Fast learner 859","category":{"id":100,"name":"All"}},{"skillId":138,"skill":"Work under pressure 57","category":{"id":100,"name":"All"}},{"skillId":139,"skill":"Confidence 777","category":{"id":100,"name":"All"}},{"skillId":140,"skill":"Technical savvy 407","category":{"id":100,"name":"All"}}],"category":{"id":100,"name":"All"},"availability":0.5}
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         int id = bodyJsonPath.getInt("id");
-        ArrayList userSkills = bodyJsonPath.get("skills");
+        ArrayList<Object> userSkills = bodyJsonPath.get("skills");
         double availability = bodyJsonPath.getDouble("availability");
 
         assertEquals(Constants.USER_ID, id);

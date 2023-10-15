@@ -54,7 +54,7 @@ public class SkillsAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList skills = bodyJsonPath.get();
+        ArrayList<Object> skills = bodyJsonPath.get();
         assertTrue(skills.size() > 0);
     }
 

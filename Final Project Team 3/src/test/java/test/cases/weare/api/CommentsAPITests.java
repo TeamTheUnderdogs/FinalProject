@@ -54,7 +54,7 @@ public class CommentsAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList comments = bodyJsonPath.get();
+        ArrayList<Object> comments = bodyJsonPath.get();
         assertTrue(comments.size() > 0);
     }
 
@@ -87,7 +87,7 @@ public class CommentsAPITests extends BaseAPITest {
         // Example response:
         // {"commentId":117,"content":"Comment Content","likes":[...
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList likes = bodyJsonPath.get("likes");
+        ArrayList<Object> likes = bodyJsonPath.get("likes");
         boolean likedByUser = false;
         for (Object like: likes) {
             Map<String, Object> likeMap = (Map<String, Object>) like;

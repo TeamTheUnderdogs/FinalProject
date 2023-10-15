@@ -62,7 +62,7 @@ public class PostsAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList posts = bodyJsonPath.get();
+        ArrayList<Object> posts = bodyJsonPath.get();
         assertTrue(posts.size() > 0);
     }
 
@@ -98,7 +98,7 @@ public class PostsAPITests extends BaseAPITest {
         // Example response:
         // {"postId":74,"content":"Post Content","picture":"","date":"08/10/2023 19:03:39","likes":[{"userId":74,"username":"denip","expertiseProfile":{"id":74,"skills":[],"category":{"id":100,"name":"All"},"availability":0.0},"enabled":true,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true}],"comments":[],"rank":75,"public":true,"hibernateLazyInitializer":{},"category":{"id":100,"name":"All"},"liked":true}
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList likes = bodyJsonPath.get("likes");
+        ArrayList<Object> likes = bodyJsonPath.get("likes");
         boolean likedByUser = false;
         for (Object like: likes) {
             Map<String, Object> likeMap = (Map<String, Object>) like;
