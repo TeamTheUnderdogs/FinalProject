@@ -2,6 +2,7 @@ package test.cases.weare.api;
 
 import com.weare.testframework.api.PostsAPI;
 import com.weare.testframework.api.WeAreAPI;
+import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.response.Response;
 
@@ -28,11 +29,11 @@ public class BaseAPITest {
             return;
         }
 
-        String content = getConfigPropertyByKey("social.post.content");
+        String content = faker.lorem().sentence(10);
         String picture = getConfigPropertyByKey("social.post.picture");
         boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
 
-        Response response = apiPosts.createPost(content, picture, isPublic);
+        Response response = apiPosts.createPost(new PostModel(content, picture, isPublic));
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
