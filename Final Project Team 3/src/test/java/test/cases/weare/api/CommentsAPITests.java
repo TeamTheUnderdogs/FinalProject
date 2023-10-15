@@ -119,5 +119,7 @@ public class CommentsAPITests extends BaseAPITest {
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
         Constants.COMMENT_ID = -1;
+
+        deletePostIfNeeded();
     }
 }
