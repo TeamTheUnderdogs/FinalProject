@@ -11,13 +11,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.ArrayList;
 
-import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SkillTests extends BaseAPITest {
+public class SkillsAPITests extends BaseAPITest {
     private final SkillsAPI api = new SkillsAPI();
 
     @Test

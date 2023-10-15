@@ -22,7 +22,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UserTests extends BaseAPITest {
+public class UsersAPITests extends BaseAPITest {
     private final UsersAPI api = new UsersAPI();
 
     @Test

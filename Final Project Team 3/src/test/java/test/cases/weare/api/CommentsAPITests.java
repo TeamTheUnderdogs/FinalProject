@@ -1,8 +1,6 @@
 package test.cases.weare.api;
 
-import com.weare.testframework.api.PostsAPI;
-import com.weare.testframework.api.WeAreAPI;
-import com.weare.testframework.api.models.PostModel;
+import com.weare.testframework.api.CommentsAPI;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -21,68 +19,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class PostTests extends BaseAPITest {
-    private final PostsAPI api = new PostsAPI();
+public class CommentsAPITests extends BaseAPITest {
+    private final CommentsAPI api = new CommentsAPI();
 
     @Test
     @Order(1)
-    public void createPostTest() {
+    public void createCommentTest() {
         // Requires authentication
         authenticate();
+        createPostIfNeeded();
 
-        String content = faker.lorem().sentence(10);
-        String picture = Constants.POST_DEFAULT_PICTURE;
-        boolean isPublic = Constants.POST_PUBLIC;
-
-        Response response = api.createPost(new PostModel(content, picture, isPublic));
+        String content = faker.lorem().sentence(5);
+        Response response = api.createComment(content, Constants.POST_ID, Constants.USER_ID);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         // Response example:
-        // {"postId":70,"content":"Post Content","picture":null,"date":"08/10/2023 18:17:30","likes":[],"comments":[],"rank":70,"public":true,"category":{"id":100,"name":"All"},"liked":false}
+        // {"commentId":116,"content":"Comment Content","likes":[],"date":"11/10/2023 20:01:56","liked":false}
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        String postContent = bodyJsonPath.getString("content");
-        String postPicture = bodyJsonPath.getString("picture");
-        boolean postPublic = bodyJsonPath.getBoolean("public");
-        assertEquals(content, postContent);
-        assertEquals(picture, postPicture);
-        assertEquals(isPublic, postPublic);
+        String commentContent = bodyJsonPath.getString("content");
+        assertEquals(content, commentContent);
 
-        Constants.POST_ID = bodyJsonPath.get("postId");
-
-        System.out.printf("Post with id %d was created%n%n", Constants.POST_ID);
+        Constants.COMMENT_ID = bodyJsonPath.get("commentId");
+        System.out.printf("Comment with id %d was created%n%n", Constants.COMMENT_ID);
     }
 
     @Test
     @Order(2)
-    public void getPostsTest() {
-        Response response = api.getPosts(true);
+    public void getCommentsTest() {
+        Response response = api.getComments();
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        ArrayList posts = bodyJsonPath.get();
-        assertTrue(posts.size() > 0);
+        ArrayList comments = bodyJsonPath.get();
+        assertTrue(comments.size() > 0);
     }
 
     @Test
     @Order(2)
-    public void updatePostTest() {
+    public void updateCommentTest() {
         // Requires authentication
         authenticate();
 
-        String content = faker.lorem().sentence(10);
-        String picture = Constants.POST_DEFAULT_PICTURE;
-        boolean isPublic = Constants.POST_PUBLIC;
-
-        Response response = api.updatePost(Constants.POST_ID, new PostModel(content, picture, isPublic));
+        String content = faker.lorem().sentence(5);
+        Response response = api.updateComment(content, Constants.COMMENT_ID);
 
         int statusCode = response.getStatusCode();
-        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode , "Incorrect status code. Expected 200.");
 
-        System.out.printf("Post with id %d was updated%n%n", Constants.POST_ID);
+        System.out.printf("Comment with id %d was updated%n%n", Constants.COMMENT_ID);
     }
 
     @Test
@@ -91,13 +79,13 @@ public class PostTests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.likePost(Constants.POST_ID);
+        Response response = api.likeComment(Constants.COMMENT_ID);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         // Example response:
-        // {"postId":74,"content":"Post Content","picture":"","date":"08/10/2023 19:03:39","likes":[{"userId":74,"username":"denip","expertiseProfile":{"id":74,"skills":[],"category":{"id":100,"name":"All"},"availability":0.0},"enabled":true,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true}],"comments":[],"rank":75,"public":true,"hibernateLazyInitializer":{},"category":{"id":100,"name":"All"},"liked":true}
+        // {"commentId":117,"content":"Comment Content","likes":[...
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList likes = bodyJsonPath.get("likes");
         boolean likedByUser = false;
@@ -115,7 +103,7 @@ public class PostTests extends BaseAPITest {
     @Test
     @Order(2)
     public void getCommentsForPostTest() {
-        Response response = api.getCommentsForPost(Constants.POST_ID);
+        Response response = api.getCommentsForPost(Constants.POST_ID, true);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -123,14 +111,14 @@ public class PostTests extends BaseAPITest {
 
     @Test
     @Order(3)
-    public void deletePostTest() {
+    public void deleteCommentTest() {
         // Requires authentication
         authenticate();
 
-        Response response = api.deletePost(Constants.POST_ID);
+        Response response = api.deleteComment(Constants.COMMENT_ID);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-        Constants.POST_ID = -1;
+        Constants.COMMENT_ID = -1;
     }
 }
