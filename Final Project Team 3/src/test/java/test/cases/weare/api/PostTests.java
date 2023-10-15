@@ -2,6 +2,7 @@ package test.cases.weare.api;
 
 import com.weare.testframework.api.PostsAPI;
 import com.weare.testframework.api.WeAreAPI;
+import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
+import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,14 +30,14 @@ public class PostTests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        String content = getConfigPropertyByKey("social.post.content");
+        String content = faker.lorem().sentence(10);
         String picture = getConfigPropertyByKey("social.post.picture");
         boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
 
-        Response response = api.createPost(content, picture, isPublic);
+        Response response = api.createPost(new PostModel(content, picture, isPublic));
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         // Response example:
         // {"postId":70,"content":"Post Content","picture":null,"date":"08/10/2023 18:17:30","likes":[],"comments":[],"rank":70,"public":true,"category":{"id":100,"name":"All"},"liked":false}
@@ -55,10 +57,10 @@ public class PostTests extends BaseAPITest {
     @Test
     @Order(2)
     public void getPostsTest() {
-        Response response = api.getPosts();
+        Response response = api.getPosts(true);
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList posts = bodyJsonPath.get();
@@ -71,14 +73,14 @@ public class PostTests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        String content = getConfigPropertyByKey("social.post.contentModified");
+        String content = faker.lorem().sentence(10);
         String picture = getConfigPropertyByKey("social.post.picture");
         boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
 
-        Response response = api.updatePost(content, picture, isPublic);
+        Response response = api.updatePost(Constants.POST_ID, new PostModel(content, picture, isPublic));
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         System.out.printf("Post with id %d was updated%n%n", Constants.POST_ID);
     }
@@ -89,10 +91,10 @@ public class PostTests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.likePost();
+        Response response = api.likePost(Constants.POST_ID);
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         // Example response:
         // {"postId":74,"content":"Post Content","picture":"","date":"08/10/2023 19:03:39","likes":[{"userId":74,"username":"denip","expertiseProfile":{"id":74,"skills":[],"category":{"id":100,"name":"All"},"availability":0.0},"enabled":true,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true}],"comments":[],"rank":75,"public":true,"hibernateLazyInitializer":{},"category":{"id":100,"name":"All"},"liked":true}
@@ -113,10 +115,10 @@ public class PostTests extends BaseAPITest {
     @Test
     @Order(2)
     public void getCommentsForPostTest() {
-        Response response = api.getCommentsForPost();
+        Response response = api.getCommentsForPost(Constants.POST_ID);
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
     }
 
     @Test
@@ -125,10 +127,10 @@ public class PostTests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.deletePost();
+        Response response = api.deletePost(Constants.POST_ID);
 
         int statusCode = response.getStatusCode();
-        assertEquals(statusCode, SC_OK, "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
         Constants.POST_ID = -1;
     }
 }

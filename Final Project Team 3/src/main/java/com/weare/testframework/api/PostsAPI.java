@@ -1,5 +1,6 @@
 package com.weare.testframework.api;
 
+import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.response.Response;
@@ -8,15 +9,16 @@ import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class PostsAPI extends WeAreAPI {
     // API: Get posts
-    public Response getPosts() {
+    public Response getPosts(boolean sorted) {
         return getRestAssured()
-                .queryParam("sorted", true)
+                .queryParam("sorted", sorted)
                 .get("/post/");
     }
 
     // API: Create a post
-    public Response createPost(String content, String picture, boolean isPublic) {
-        String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY, content, picture, isPublic);
+    public Response createPost(PostModel post) {
+        String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY,
+                post.getContent(), post.getPicture(), post.isPublic());
         return getRestAssured()
                 .body(body)
                 .when()
@@ -27,10 +29,11 @@ public class PostsAPI extends WeAreAPI {
     }
 
     // API: Update a post
-    public Response updatePost(String content, String picture, boolean isPublic) {
-        String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY, content, picture, isPublic);
+    public Response updatePost(int postId, PostModel post) {
+        String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY,
+                post.getContent(), post.getPicture(), post.isPublic());
         return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
+                .queryParam("postId", postId)
                 .queryParam("name", getConfigPropertyByKey("social.api.username"))
                 .body(body)
                 .when()
@@ -41,9 +44,9 @@ public class PostsAPI extends WeAreAPI {
     }
 
     // API: Like or Unlike a post
-    public Response likePost() {
+    public Response likePost(int postId) {
         return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
+                .queryParam("postId", postId)
                 .when()
                 .post("/post/auth/likesUp")
                 .then()
@@ -51,17 +54,17 @@ public class PostsAPI extends WeAreAPI {
                 .response();
     }
 
-    // API: Get comments for a post {{baseURL}}/api/post/Comments?postId={{postId}}
-    public Response getCommentsForPost() {
+    // API: Get comments for a post
+    public Response getCommentsForPost(int postId) {
         return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
+                .queryParam("postId", postId)
                 .get("/post/Comments");
     }
 
     // API: Delete a post
-    public Response deletePost() {
+    public Response deletePost(int postId) {
         return getRestAssured()
-                .queryParam("postId", Constants.POST_ID)
+                .queryParam("postId", postId)
                 .when()
                 .delete("/post/auth/manager")
                 .then()
