@@ -14,6 +14,8 @@ public class Constants {
     public static final String ROLE_USER = "ROLE_USER";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
+    public static final String ADMIN_PREFIX = "admin";
+
     public static UserModel USER;
     public static UserModel ADMIN;
 

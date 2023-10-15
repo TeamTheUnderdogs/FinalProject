@@ -21,6 +21,22 @@ public class BaseAPITest {
         }
     }
 
+    public void authenticate(boolean admin) {
+        if (admin) {
+            if (!WeAreAPI.hasAdminAuthenticateCookies()) {
+                WeAreAPI.authenticateAndFetchCookies(true);
+                assertTrue(WeAreAPI.hasAdminAuthenticateCookies());
+            }
+        } else {
+            if (!WeAreAPI.hasAuthenticateCookies()) {
+                WeAreAPI.authenticateAndFetchCookies();
+                assertTrue(WeAreAPI.hasAuthenticateCookies());
+            }
+        }
+    }
+
+    private static boolean postCreated = false;
+
     public void createPostIfNeeded() {
         if (Constants.POST_ID != -1) {
             return;
@@ -36,6 +52,19 @@ public class BaseAPITest {
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
         Constants.POST_ID = response.getBody().jsonPath().get("postId");
+        postCreated = true;
+    }
+
+    public void deletePostIfNeeded() {
+        if (postCreated) {
+            PostsAPI apiPosts = new PostsAPI();
+            Response response = apiPosts.deletePost(Constants.POST_ID);
+
+            int statusCode = response.getStatusCode();
+            assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
+            Constants.POST_ID = -1;
+        }
+        postCreated = false;
     }
 
     public String getRandomSkill() {

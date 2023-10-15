@@ -1,11 +1,8 @@
 package com.weare.testframework.api;
 
 import com.weare.testframework.api.models.PostModel;
-import com.weare.testframework.api.utils.Constants;
 import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.response.Response;
-
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class PostsAPI extends WeAreAPI {
     // API: Get posts
@@ -30,11 +27,14 @@ public class PostsAPI extends WeAreAPI {
 
     // API: Update a post
     public Response updatePost(int postId, PostModel post) {
+        return updatePost(false, postId, post);
+    }
+
+    public Response updatePost(boolean useAdmin, int postId, PostModel post) {
         String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY,
                 post.getContent(), post.getPicture(), post.isPublic());
-        return getRestAssured()
+        return getRestAssured(useAdmin)
                 .queryParam("postId", postId)
-                .queryParam("name", getConfigPropertyByKey("social.api.username"))
                 .body(body)
                 .when()
                 .put("/post/auth/editor")

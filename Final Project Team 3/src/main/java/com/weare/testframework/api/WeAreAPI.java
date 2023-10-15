@@ -9,6 +9,8 @@ import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.Objects;
+
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class WeAreAPI {
@@ -19,6 +21,10 @@ public class WeAreAPI {
 
     public static boolean hasAuthenticateCookies() {
         return authenticateCookies != null;
+    }
+
+    public static boolean hasAdminAuthenticateCookies() {
+        return adminAuthenticateCookies != null;
     }
 
     protected RequestSpecification getRestAssured() {
@@ -101,6 +107,12 @@ public class WeAreAPI {
         String password = faker.internet().password(8, 12);
         String email = faker.internet().emailAddress();
         String username = faker.name().firstName();
+
+        if (Objects.equals(userRole, Constants.ROLE_ADMIN)) {
+            username = String.format("%s%s", Constants.ADMIN_PREFIX, username);
+            password = String.format("%s%s", Constants.ADMIN_PREFIX, password);
+        }
+
         Response response = api.registerUser(userRole,
                 Constants.CATEGORY_ALL,
                 password, email, password, username);
