@@ -28,7 +28,7 @@ public class RegistrationPageTests extends BaseTest{
 
 
         registrationPage.registerAdmin();
-        UserActions userActions = new UserActions();
-        userActions.assertElementPresent("userPage.disableProfile.button");
+       actions.assertElementPresent ("userPage.disableProfile.button");
+
     }
 }

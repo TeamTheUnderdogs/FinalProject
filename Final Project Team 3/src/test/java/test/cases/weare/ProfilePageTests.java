@@ -10,5 +10,6 @@ public class ProfilePageTests extends BaseTest {
 
     public void AdminSuccessfullyUpdateUserPersonalProfile_when_LogedIn() {
         profilePage.editUserPersonalProfile();
+        actions.assertElementAttribute("profilePage.email.field", "id", "emailE");
     }
 }
