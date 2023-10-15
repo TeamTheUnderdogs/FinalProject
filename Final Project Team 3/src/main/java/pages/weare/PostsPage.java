@@ -47,4 +47,6 @@ public class PostsPage extends WEareBasePage {
         actions.waitForElementClickable("postsPage.likePost.button");
         actions.clickElement("postsPage.likePost.button");
     }
+
+
 }
