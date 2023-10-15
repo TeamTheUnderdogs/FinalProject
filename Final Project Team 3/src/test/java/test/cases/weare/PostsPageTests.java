@@ -28,7 +28,18 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void browsePublicPostsByCategory_when_Anonymous() {
-        postsPage.browsePublicPostsByCategory();
+        postsPage.anonymous_browsePublicPostsByCategory();
+        Assertions.assertEquals(getConfigPropertyByKey("social.app.postsByCategoryPage"), getWebDriver().getCurrentUrl(),
+                "Page not successfully navigated");
+
+        actions.assertElementPresent("postsPage.assertSearchByCategory.element");
+
+
+    }
+
+    @Test
+    public void browsePublicPostsByCategory_when_Logedin() {
+        postsPage.registered_browsePublicPostsByCategory();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.postsByCategoryPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
 
@@ -49,7 +60,18 @@ public class PostsPageTests extends BaseTest {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.likePublicPost();
         actions.assertElementPresent("postsPage.dislikePost.button");
-        actions.assertElementAttribute ("postsPage.dislikePost.button", "value", "Dislike");
+        actions.assertElementAttribute ("postsPage.dislikePost.button",
+                "value", "Dislike");
+        postsPage.dislikePublicPost();
+    }
+
+    @Test
+    public void userDislikePublicPost() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.likePublicPost();
+        postsPage.dislikePublicPost();
+        actions.assertElementPresent("postsPage.likePost.button");
+        actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
     }
 
 }

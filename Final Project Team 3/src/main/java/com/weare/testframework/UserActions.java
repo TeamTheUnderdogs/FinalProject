@@ -102,7 +102,9 @@ public class UserActions {
         WebElement element = driver.findElement(By.xpath(xpath));
         String attributeText = element.getAttribute(attributeName);
 
-        Assertions.assertEquals(element.getAttribute(attributeName), attributeExpectedValue, (format("Value of attribute %s doesn't match. Expected value: %s\n Actual value: %s", attributeName, attributeExpectedValue,attributeText)));
+        Assertions.assertEquals(element.getAttribute(attributeName), attributeExpectedValue,
+                (format("Value of attribute %s doesn't match. Expected value: %s\n Actual value: %s",
+                        attributeName, attributeExpectedValue,attributeText)));
     }
 
 
