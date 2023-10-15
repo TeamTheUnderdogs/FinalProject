@@ -16,7 +16,7 @@ public class PostsAPI extends WeAreAPI {
 
     // API: Create a post
     public Response createPost(String content, String picture, boolean isPublic) {
-        String body = String.format(JSONRequests.POST_CREATE_UPDATE, content, picture, isPublic);
+        String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY, content, picture, isPublic);
         return getRestAssured()
                 .body(body)
                 .when()
@@ -28,7 +28,7 @@ public class PostsAPI extends WeAreAPI {
 
     // API: Update a post
     public Response updatePost(String content, String picture, boolean isPublic) {
-        String body = String.format(JSONRequests.POST_CREATE_UPDATE, content, picture, isPublic);
+        String body = String.format(JSONRequests.POST_CREATE_UPDATE_BODY, content, picture, isPublic);
         return getRestAssured()
                 .queryParam("postId", Constants.POST_ID)
                 .queryParam("name", getConfigPropertyByKey("social.api.username"))

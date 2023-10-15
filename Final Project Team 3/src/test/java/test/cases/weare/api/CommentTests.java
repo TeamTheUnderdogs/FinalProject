@@ -20,33 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CommentTests {
+public class CommentTests extends BaseAPITest {
     private final CommentsAPI api = new CommentsAPI();
-    private final PostsAPI apiPosts = new PostsAPI();
-
-    // TODO: move to base class
-    public void authenticate() {
-        if (!WeAreAPI.hasAuthenticateCookies()) {
-            WeAreAPI.authenticateAndFetchCookies();
-            assertTrue(WeAreAPI.hasAuthenticateCookies());
-        }
-    }
-
-    public void createPostIfNeeded() {
-        if (Constants.POST_ID != -1) {
-            return;
-        }
-
-        String content = getConfigPropertyByKey("social.post.content");
-        String picture = getConfigPropertyByKey("social.post.picture");
-        boolean isPublic = Boolean.parseBoolean(getConfigPropertyByKey("social.post.public"));
-
-        Response response = apiPosts.createPost(content, picture, isPublic);
-
-        int statusCode = response.getStatusCode();
-        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-        Constants.POST_ID = response.getBody().jsonPath().get("postId");
-    }
 
     @Test
     @Order(1)

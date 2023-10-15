@@ -43,8 +43,8 @@ public class WeAreAPI {
 
         // Authorize to get cookies
         RestAssured.baseURI = getConfigPropertyByKey("social.api.baseUrl");
-        String username = getConfigPropertyByKey("social.api.username");
-        String password = getConfigPropertyByKey("social.api.password");
+        String username = Constants.USERNAME;
+        String password = Constants.PASSWORD;
 
         Response response = RestAssured.given()
                 .contentType("multipart/form-data")
@@ -71,9 +71,21 @@ public class WeAreAPI {
 //            Constants.USER_ID = Integer.parseInt(matcher.group(1));
 //        }
 //        System.out.println("The user id is:" + Constants.USER_ID);
-
-
     }
+
+    public static String arrayToJSONString(String[] array) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            String element = array[i];
+            if (i < array.length - 1) {
+                builder.append(String.format("\"%s\",\n", element));
+            } else {
+                builder.append(String.format("\"%s\"", element));
+            }
+        }
+        return builder.toString();
+    }
+
     public String getRandomUsername() {
         return faker.name().firstName();
     }

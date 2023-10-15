@@ -1,0 +1,1663 @@
+{
+	"info": {
+		"_postman_id": "d81d5194-7843-4888-b264-d27459004fcf",
+		"name": "WEareApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28803294",
+		"_collection_link": "https://grey-meadow-244742.postman.co/workspace/Team-3---The-Underdogs~8416b2c6-9f7e-4e32-99a1-ce718d7b96a5/collection/28803294-d81d5194-7843-4888-b264-d27459004fcf?action=share&creator=28803294&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Users - Registration and Modification of Profile",
+			"item": [
+				{
+					"name": "Register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"",
+									"    // Example response: User with name Buddy and id 86 was created",
+									"    const responseBody = pm.response.text();",
+									"    const splitByIntervals = responseBody.split(\" \");",
+									"    const userNameIndex = 3;",
+									"    const userIdIndex = 6;",
+									"    pm.collectionVariables.set(\"username\", splitByIntervals[userNameIndex]);",
+									"    pm.collectionVariables.set(\"userId\", splitByIntervals[userIdIndex]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"email\", pm.variables.replaceIn('{{$randomEmail}}'));",
+									"pm.environment.set(\"password\", pm.variables.replaceIn('{{$randomUUID}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"authorities\": [\n    \"ROLE_USER\"\n  ],\n  \"category\": {\n    \"id\": 100 // All\n  },\n  \"confirmPassword\": \"{{password}}\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"username\": \"{{$randomFirstName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contains user IDs\", function () {",
+									"    const responseBody = pm.response.json();",
+									"    pm.expect(responseBody.id + \"\").to.eql(pm.collectionVariables.get(\"userId\"));",
+									"    pm.expect(responseBody.username).to.eql(pm.collectionVariables.get(\"username\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"index\": 0,\n  \"next\": true,\n  \"searchParam1\": \"denip\",\n  \"searchParam2\": \"denip\",\n  \"size\": 0\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/auth/{{userId}}?principal={{username}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"{{userId}}"
+							],
+							"query": [
+								{
+									"key": "principal",
+									"value": "{{username}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate User and Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/authenticate?username={{username}}&password={{password}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authenticate"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{username}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"index\": 0,\n  \"next\": false,\n  \"searchParam1\": \"\",\n  \"searchParam2\": \"\",\n  \"size\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/{{userId}}/posts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upgrade User Personal Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contains correct user ID\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.id).to.eql(parseInt(pm.variables.get(\"userId\")));",
+									"});",
+									"",
+									"pm.test(\"Response contains correct first name\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.firstName).to.eql(pm.variables.get(\"username\"));",
+									"});",
+									"",
+									"pm.test(\"Response contains non-empty last name\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.lastName).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response contains correct city ID and name\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.location.city.id).to.eql(1);",
+									"    pm.expect(responseBody.location.city.city).to.eql(\"Sofia\");",
+									"});",
+									"",
+									"pm.test(\"Response contains personal review\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.personalReview).to.eql(\"Personal details about me\");",
+									"});",
+									"",
+									"pm.test(\"Response contains correct sex\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.sex).to.eql(\"FEMALE\");",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"birthYear\": \"1994-09-22\",\n  \"firstName\": \"{{username}}\",\n  \"id\": {{userId}},\n  \"lastName\": \"{{$randomLastName}}\",\n  \"location\": {\n    \"city\": {\n      \"id\": 1,\n      \"city\": \"Sofia\",\n      \"country\": {}\n    }\n  },\n  \"personalReview\": \"Personal details about me\",\n  \"picture\": \"\",\n  \"picturePrivacy\": true,\n  \"sex\": \"FEMALE\"\n}\n \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/auth/{{userId}}/personal",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"{{userId}}",
+								"personal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upgrade User Expertise Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"availability\": 1,\n  \"category\": {\n    \"id\": 103\n  },\n  \"id\": {{userId}},\n  \"skill\": {{$randomCatchPhraseDescriptor}},\n  \"skills\": [\n    \"second skill 3\",\n    \"third skill 4\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/auth/{{userId}}/expertise",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"{{userId}}",
+								"expertise"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts - Creation and Modification",
+			"item": [
+				{
+					"name": "Authenticate User and Password Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/authenticate?username={{username}}&password={{password}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authenticate"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{username}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Post is created\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.content).to.eql(pm.collectionVariables.get(\"postContent\"));",
+									"    pm.collectionVariables.set(\"postId\", jsonData.postId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"{{postContent}}\",\n  \"public\": true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/post/auth/creator",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/post/?sorted=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"post",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{username}}",
+									"disabled": true
+								},
+								{
+									"key": "sorted",
+									"value": "true"
+								},
+								{
+									"key": "unsorted",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contains updated post information\", function () {",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody.content).to.eql(pm.collectionVariables.get(\"postContentModified\"));",
+									"    pm.expect(responseBody.picture).to.eql(\"\");",
+									"    pm.expect(responseBody.public).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"{{postContentModified}}\",\n    \"picture\": \"\",\n    \"public\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/post/auth/editor?postId={{postId}}&name={{username}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"auth",
+								"editor"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								},
+								{
+									"key": "name",
+									"value": "{{username}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like a Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Post is liked by user\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    const likes = jsonData.likes;",
+									"    const likedByUser = likes.find(l => l.username === pm.collectionVariables.get(\"username\"));",
+									"    pm.expect(likedByUser).to.not.eq(undefined);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/post/auth/likesUp?postId={{postId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"auth",
+								"likesUp"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments - Creation and Modification",
+			"item": [
+				{
+					"name": "Create a Comment on a Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Comment is created\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.content).to.eql(pm.collectionVariables.get(\"commentContent\"));",
+									"    pm.collectionVariables.set(\"commentId\", jsonData.commentId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"{{commentContent}}\",\n  \"postId\": {{postId}},\n  \"userId\": {{userId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/comment/auth/creator",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"auth",
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments of a Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comment/byPost?postId={{postId}}&sorted=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"byPost"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								},
+								{
+									"key": "sorted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comment/?sorted=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								""
+							],
+							"query": [
+								{
+									"key": "sorted",
+									"value": "true"
+								},
+								{
+									"key": "unsorted",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Comment is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.commentId).to.eql(pm.collectionVariables.get(\"commentId\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comment/single?commentId={{commentId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"single"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{commentId}}"
+								},
+								{
+									"key": "sorted",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comment/auth/editor?commentId={{commentId}}&content={{commentContentModified}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"auth",
+								"editor"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{commentId}}"
+								},
+								{
+									"key": "content",
+									"value": "{{commentContentModified}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Comments for Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/post/Comments?postId={{postId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"Comments"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like a Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Comment is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.commentId).to.eql(pm.collectionVariables.get(\"commentId\"));",
+									"    pm.collectionVariables.set(\"commentId\", jsonData.commentId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/comment/auth/likesUp?commentId={{commentId}}&name={{username}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"auth",
+								"likesUp"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{commentId}}"
+								},
+								{
+									"key": "name",
+									"value": "{{username}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts and Comments - Deletion",
+			"item": [
+				{
+					"name": "Delete a Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/post/auth/manager?postId={{postId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"auth",
+								"manager"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "{{postId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comment/auth/manager?commentId={{commentId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"auth",
+								"manager"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "{{commentId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connect to user",
+			"item": [
+				{
+					"name": "Create Sender User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"",
+									"    // Example response: User with name Buddy and id 86 was created",
+									"    const responseBody = pm.response.text();",
+									"    const splitByIntervals = responseBody.split(\" \");",
+									"    pm.collectionVariables.set(\"senderUsername\", splitByIntervals[3]);",
+									"    pm.collectionVariables.set(\"senderId\", splitByIntervals[6]);",
+									"",
+									"",
+									"pm.test(\"User name is as expected\", function(){",
+									"    const expectedUserName = pm.collectionVariables.get(\"senderUsername\");",
+									"",
+									"    const actualUserName= splitByIntervals[3];",
+									"",
+									"    pm.expect(actualUserName).to.equals(expectedUserName);",
+									"});",
+									"",
+									"pm.test(\"User id is not null\", function(){",
+									"    const expectedUserId = pm.collectionVariables.get(\"senderId\");",
+									"",
+									"    const actualUserId= splitByIntervals[6];",
+									"    pm.expect(actualUserId).is.not.null;",
+									"    ",
+									"});",
+									"",
+									"pm.test(\"User id is as expected\", function(){",
+									"    const expectedUserId = pm.collectionVariables.get(\"senderId\");",
+									"",
+									"    const actualUserId= splitByIntervals[6];",
+									"",
+									"    pm.expect(actualUserId).to.equals(expectedUserId)",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"senderEmail\", pm.variables.replaceIn('{{$randomEmail}}'));",
+									"pm.collectionVariables.set(\"senderPassword\", pm.variables.replaceIn('{{$randomUUID}}'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"authorities\": [\n    \"ROLE_USER\"\n  ],\n  \"category\": {\n    \"id\": 100 // All\n  },\n  \"confirmPassword\": \"{{senderPassword}}\",\n  \"email\": \"{{senderEmail}}\",\n  \"password\": \"{{senderPassword}}\",\n  \"username\": \"{{$randomFirstName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Receiver User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"receiverEmail\", pm.variables.replaceIn('{{$randomEmail}}'));",
+									"pm.collectionVariables.set(\"receiverPassword\", pm.variables.replaceIn('{{$randomUUID}}'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"",
+									"    // Example response: User with name Buddy and id 86 was created",
+									"    const responseBody = pm.response.text();",
+									"    const splitByIntervals = responseBody.split(\" \");",
+									"    pm.collectionVariables.set(\"receiverUsername\", splitByIntervals[3]);",
+									"    pm.collectionVariables.set(\"receiverId\", splitByIntervals[6]);",
+									"",
+									"",
+									"pm.test(\"User name is as expected\", function(){",
+									"    const expectedUserName = pm.collectionVariables.get(\"receiverUsername\");",
+									"",
+									"    const actualUserName= splitByIntervals[3];",
+									"",
+									"    pm.expect(actualUserName).to.equals(expectedUserName);",
+									"});",
+									"",
+									"pm.test(\"User id is not null\", function(){",
+									"    const expectedUserId = pm.collectionVariables.get(\"receiverId\");",
+									"",
+									"    const actualUserId= splitByIntervals[6];",
+									"    pm.expect(actualUserId).is.not.null;",
+									"    ",
+									"});",
+									"",
+									"pm.test(\"User id is as expected\", function(){",
+									"    const expectedUserId = pm.collectionVariables.get(\"receiverId\");",
+									"",
+									"    const actualUserId= splitByIntervals[6];",
+									"",
+									"    pm.expect(actualUserId).to.equals(expectedUserId)",
+									"});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"authorities\": [\n    \"ROLE_USER\"\n  ],\n  \"category\": {\n    \"id\": 100 // All\n  },\n  \"confirmPassword\": \"{{receiverPassword}}\",\n  \"email\": \"{{receiverEmail}}\",\n  \"password\": \"{{receiverPassword}}\",\n  \"username\": \"{{$randomFirstName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate Sender",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/authenticate?username={{senderUsername}}&password={{senderPassword}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authenticate"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{senderUsername}}"
+								},
+								{
+									"key": "password",
+									"value": "{{senderPassword}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{receiverId}},\n  \"username\": \"{{receiverUsername}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/request",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate Receiver",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{receiverUsername}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{receiverPassword}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/authenticate?username={{receiverUsername}}&password={{receiverPassword}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authenticate"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{receiverUsername}}"
+								},
+								{
+									"key": "password",
+									"value": "{{receiverPassword}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Get id from response body\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"requestId\", jsonData[0].id);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/auth/users/{{receiverId}}/request/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"users",
+								"{{receiverId}}",
+								"request",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/auth/users/{{receiverId}}/request/approve?requestId={{requestId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"users",
+								"{{receiverId}}",
+								"request",
+								"approve"
+							],
+							"query": [
+								{
+									"key": "requestId",
+									"value": "{{requestId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User skills - Personalization and Modification",
+			"item": [
+				{
+					"name": "Get All Skills",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/skill?unsorted=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"skill"
+							],
+							"query": [
+								{
+									"key": "unsorted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a skill",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});         ",
+									"",
+									"pm.collectionVariables.set(\"newSkillName\", pm.response.json().skill); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\": {\n      \"id\": 103\n    },\n    \"skill\": \"{{$randomVerb}}\",\n    \"skillId\": \"{{$randomInt}}\"\n}\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/skill/create",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"skill",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Skill",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/skill/edit?skillId={{skillId}}&skill={{newSkillName}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"skill",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "skillId",
+									"value": "{{skillId}}"
+								},
+								{
+									"key": "skill",
+									"value": "{{newSkillName}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Skills",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/skill?sorted=true&unsorted=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"skill"
+							],
+							"query": [
+								{
+									"key": "sorted",
+									"value": "true"
+								},
+								{
+									"key": "unsorted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Skill",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "41",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "denip",
+			"type": "string"
+		},
+		{
+			"key": "postId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "postContent",
+			"value": "My first post content",
+			"type": "string"
+		},
+		{
+			"key": "postContentModified",
+			"value": "My first post content edit",
+			"type": "string"
+		},
+		{
+			"key": "commentId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "commentContent",
+			"value": "My first comment",
+			"type": "string"
+		},
+		{
+			"key": "commentContentModified",
+			"value": "My first comment modified",
+			"type": "string"
+		},
+		{
+			"key": "skillId",
+			"value": "9"
+		},
+		{
+			"key": "senderId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "receiverId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "senderUsername",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "senderPassword",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "senderEmail",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "receiverUsername",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "receiverPassword",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "receiverEmail",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "requestId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "sessionID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "skill",
+			"value": "skill"
+		},
+		{
+			"key": "newSkillName",
+			"value": "newSkillName"
+		}
+	]
+}

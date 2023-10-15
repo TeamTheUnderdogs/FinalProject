@@ -1,4 +1,4 @@
-package com.weare.testframework.api;
+package com.weare.testframework.api.models;
 
 public class PageModel {
     private int index;
