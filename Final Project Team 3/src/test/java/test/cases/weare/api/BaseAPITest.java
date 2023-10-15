@@ -70,6 +70,7 @@ public class BaseAPITest {
     public String getRandomSkill() {
         String skill = faker.job().keySkills();
         long tm = System.currentTimeMillis();
-        return String.format("%s %d", skill, tm);
+        long rnd = faker.random().nextLong(999);
+        return String.format("%s %d", skill, tm + rnd);
     }
 }
