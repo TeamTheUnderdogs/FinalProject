@@ -80,5 +80,18 @@ public class PostsPageTests extends BaseTest {
         actions.assertElementPresent("postPage.showNumberOfLikes.element");
     }
 
+    @Test
+    public void exploreAllPostsFromSomeAuthor() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.exploreAllPostsFromSomeAuthor();
+        actions.assertElementPresent("postPage.exploreAllPosts.header");
+    }
+
+    @Test
+    public void exploreProfileOfThePostAuthor() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.exploreProfileOfThePostAuthor();
+        actions.assertElementPresent("profilePage.personalInformation.menu");
+    }
 }
 

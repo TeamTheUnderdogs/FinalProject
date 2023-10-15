@@ -1,5 +1,6 @@
 package pages.weare;
 
+import groovy.util.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -82,9 +83,26 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void readCommentsInPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
         explorePublicPost();
         actions.waitForElementClickable("postPage.showComments.button");
         actions.clickElement("postPage.showComments.button");
     }
+    public void exploreAllPostsFromSomeAuthor() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        explorePublicPost();
+        actions.waitForElementClickable("postPage.allPostsOfThisUser.button");
+        actions.clickElement("postPage.allPostsOfThisUser.button");
+    }
 
+    public void exploreProfileOfThePostAuthor() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        explorePublicPost();
+        actions.waitForElementClickable("profilePage.seeProfile.button");
+        actions.clickElement("profilePage.seeProfile.button");
+
+    }
 }
