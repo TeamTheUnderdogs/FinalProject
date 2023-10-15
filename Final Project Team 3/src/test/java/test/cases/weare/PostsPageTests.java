@@ -73,5 +73,12 @@ public class PostsPageTests extends BaseTest {
         actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
     }
 
+    @Test
+    public void readCommentInPost() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.readCommentsInPost();
+        actions.assertElementPresent("postPage.showNumberOfLikes.element");
+    }
+
 }
 

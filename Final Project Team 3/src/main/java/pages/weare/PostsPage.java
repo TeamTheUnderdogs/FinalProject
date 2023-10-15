@@ -83,7 +83,8 @@ public class PostsPage extends WEareBasePage {
 
     public void readCommentsInPost() {
         explorePublicPost();
-
+        actions.waitForElementClickable("postPage.showComments.button");
+        actions.clickElement("postPage.showComments.button");
     }
 
 }
