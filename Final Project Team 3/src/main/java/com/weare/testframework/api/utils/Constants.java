@@ -2,8 +2,6 @@ package com.weare.testframework.api.utils;
 
 import com.weare.testframework.api.models.*;
 
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
-
 public class Constants {
     public static int POST_ID = -1;
 
@@ -14,14 +12,10 @@ public class Constants {
     public static final int USER_ID_INDEX = 6;
 
     public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
-    // TODO: Use registered user id?
-    public static int USER_ID = Integer.parseInt(getConfigPropertyByKey("social.api.userId")); //74; //-1;
-
-    public static String USERNAME = getConfigPropertyByKey("social.api.username");
-    public static String PASSWORD = getConfigPropertyByKey("social.api.password");
-
-    public static String EMAIL;
+    public static UserModel USER;
+    public static UserModel ADMIN;
 
     public static final CategoryModel CATEGORY_ALL = new CategoryModel(100, "All");
 

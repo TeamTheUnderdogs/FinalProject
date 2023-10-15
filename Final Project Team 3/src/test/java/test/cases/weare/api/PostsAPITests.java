@@ -13,7 +13,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
 import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -103,7 +102,7 @@ public class PostsAPITests extends BaseAPITest {
         for (Object like: likes) {
             Map<String, Object> likeMap = (Map<String, Object>) like;
             String username = (String)likeMap.get("username");
-            if (username.equals(getConfigPropertyByKey("social.api.username"))) {
+            if (username.equals(Constants.USER.getUsername())) {
                 likedByUser = true;
                 break;
             }

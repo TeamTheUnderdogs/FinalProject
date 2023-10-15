@@ -12,7 +12,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
 import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,7 +29,7 @@ public class CommentsAPITests extends BaseAPITest {
         createPostIfNeeded();
 
         String content = faker.lorem().sentence(5);
-        Response response = api.createComment(content, Constants.POST_ID, Constants.USER_ID);
+        Response response = api.createComment(content, Constants.POST_ID, Constants.USER.getUserId());
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -92,7 +91,7 @@ public class CommentsAPITests extends BaseAPITest {
         for (Object like: likes) {
             Map<String, Object> likeMap = (Map<String, Object>) like;
             String username = (String)likeMap.get("username");
-            if (username.equals(getConfigPropertyByKey("social.api.username"))) {
+            if (username.equals(Constants.USER.getUsername())) {
                 likedByUser = true;
                 break;
             }

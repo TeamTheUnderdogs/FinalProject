@@ -4,7 +4,6 @@ import com.weare.testframework.api.models.CategoryModel;
 import com.weare.testframework.api.models.ExpertiseModel;
 import com.weare.testframework.api.models.PageModel;
 import com.weare.testframework.api.models.PersonalModel;
-import com.weare.testframework.api.utils.Constants;
 import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.response.Response;
 
@@ -46,10 +45,10 @@ public class UsersAPI extends WeAreAPI {
     }
 
     // API: Get user by id
-    public Response getUser(int userId) {
+    public Response getUser(int userId, String username) {
         String url = String.format("/users/auth/%s", userId);
         return getRestAssured()
-                .queryParam("principal", Constants.USERNAME)
+                .queryParam("principal", username)
                 .get(url);
     }
 

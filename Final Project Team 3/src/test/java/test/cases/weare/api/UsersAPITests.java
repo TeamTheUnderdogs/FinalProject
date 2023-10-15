@@ -1,7 +1,6 @@
 package test.cases.weare.api;
 
 import com.weare.testframework.api.UsersAPI;
-import com.weare.testframework.api.WeAreAPI;
 import com.weare.testframework.api.models.ExpertiseModel;
 import com.weare.testframework.api.models.PersonalModel;
 import com.weare.testframework.api.utils.Constants;
@@ -48,14 +47,7 @@ public class UsersAPITests extends BaseAPITest {
 
         assertEquals(username, usernameActual);
 
-        Constants.USER_ID = userId;
-        Constants.USERNAME = usernameActual;
-        Constants.PASSWORD = password;
-        Constants.EMAIL = email;
-        // Remove cookies to force authentication of the new user
-        WeAreAPI.removeAuthenticateCookies();
-
-        System.out.printf("User with id %d was created%n%n", Constants.USER_ID);
+        System.out.printf("User with id %d was created%n%n", userId);
     }
 
     @Test
@@ -80,7 +72,7 @@ public class UsersAPITests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.getUser(Constants.USER_ID);
+        Response response = api.getUser(Constants.USER.getUserId(), Constants.USER.getUsername());
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -89,9 +81,9 @@ public class UsersAPITests extends BaseAPITest {
         int id = bodyJsonPath.getInt("id");
         String username = bodyJsonPath.getString("username");
         String email = bodyJsonPath.getString("email");
-        assertEquals(Constants.USER_ID, id);
-        assertEquals(Constants.USERNAME, username);
-        assertEquals(Constants.EMAIL, email);
+        assertEquals(Constants.USER.getUserId(), id);
+        assertEquals(Constants.USER.getUsername(), username);
+        assertEquals(Constants.USER.getEmail(), email);
     }
 
     @Test
@@ -101,7 +93,7 @@ public class UsersAPITests extends BaseAPITest {
         authenticate();
         createPostIfNeeded();
 
-        Response response = api.getProfilePosts(Constants.USER_ID, Constants.PAGE);
+        Response response = api.getProfilePosts(Constants.USER.getUserId(), Constants.PAGE);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -122,11 +114,11 @@ public class UsersAPITests extends BaseAPITest {
         String[] skills = new String[] { getRandomSkill(), getRandomSkill() };
         ExpertiseModel model = new ExpertiseModel(Constants.AVAILABILITY,
                 Constants.CATEGORY_ALL,
-                Constants.USER_ID,
+                Constants.USER.getUserId(),
                 skill1,
                 skill2,
                 skills);
-        Response response = api.upgradeExpertise(Constants.USER_ID, model);
+        Response response = api.upgradeExpertise(Constants.USER.getUserId(), model);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -138,7 +130,7 @@ public class UsersAPITests extends BaseAPITest {
         ArrayList<Object> userSkills = bodyJsonPath.get("skills");
         double availability = bodyJsonPath.getDouble("availability");
 
-        assertEquals(Constants.USER_ID, id);
+        assertEquals(Constants.USER.getUserId(), id);
         assertEquals(Constants.AVAILABILITY, availability);
         assertTrue(userSkills.size() >= 4);
     }
@@ -155,14 +147,14 @@ public class UsersAPITests extends BaseAPITest {
                 ZoneId.systemDefault()));
         model.setBirthYear(formattedDate);
         model.setFirstName(faker.name().firstName());
-        model.setId(Constants.USER_ID);
+        model.setId(Constants.USER.getUserId());
         model.setLastName(faker.name().lastName());
         model.setLocation(Constants.LOCATION);
         model.setPersonalReview(faker.lorem().sentence(5));
         model.setPicture("");
         model.setPicturePrivacy(true);
         model.setSex(PersonalModel.SEX_FEMALE);
-        Response response = api.upgradePersonal(Constants.USER_ID, model);
+        Response response = api.upgradePersonal(Constants.USER.getUserId(), model);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -178,7 +170,7 @@ public class UsersAPITests extends BaseAPITest {
         String personalReview = bodyJsonPath.getString("personalReview");
         boolean picturePrivacy = bodyJsonPath.getBoolean("picturePrivacy");
 
-        assertEquals(Constants.USER_ID, id);
+        assertEquals(Constants.USER.getUserId(), id);
         assertEquals(model.getFirstName(), firstName);
         assertEquals(model.getLastName(), lastName);
         assertEquals(model.getSex(), sex);

@@ -1,6 +1,7 @@
 package com.weare.testframework.api;
 
 import com.github.javafaker.Faker;
+import com.weare.testframework.api.models.UserModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -12,17 +13,19 @@ import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class WeAreAPI {
     private static Cookies authenticateCookies;
+    private static Cookies adminAuthenticateCookies;
+
     public static Faker faker = new Faker();
 
     public static boolean hasAuthenticateCookies() {
         return authenticateCookies != null;
     }
 
-    public static void removeAuthenticateCookies() {
-        authenticateCookies = null;
+    protected RequestSpecification getRestAssured() {
+        return getRestAssured(false);
     }
 
-    protected RequestSpecification getRestAssured() {
+    protected RequestSpecification getRestAssured(boolean authenticateAdmin) {
         String baseUrl = getConfigPropertyByKey("social.api.apiUrl");
         RequestSpecification requestSpecification = RestAssured
                 .given()
@@ -30,21 +33,48 @@ public class WeAreAPI {
                 .log().all()
                 .baseUri(baseUrl);
 
-        if (authenticateCookies != null) {
+        if (authenticateAdmin && adminAuthenticateCookies != null) {
+            requestSpecification.cookies(adminAuthenticateCookies);
+        }
+        if (!authenticateAdmin && authenticateCookies != null) {
             requestSpecification.cookies(authenticateCookies);
         }
         return requestSpecification;
     }
 
     public static void authenticateAndFetchCookies() {
+        authenticateAndFetchCookies(false);
+    }
+
+    public static void authenticateAndFetchCookies(boolean authenticateAdmin) {
         // Remove current cookies
-        authenticateCookies = null;
-        //Constants.USER_ID = -1;
+        if (authenticateAdmin) {
+            adminAuthenticateCookies = null;
+        } else {
+            authenticateCookies = null;
+        }
+
+        // Register new user if needed
+        if (authenticateAdmin && Constants.ADMIN == null) {
+            Constants.ADMIN = registerNewUser(Constants.ROLE_ADMIN);
+        }
+
+        if (!authenticateAdmin && Constants.USER == null) {
+            Constants.USER = registerNewUser(Constants.ROLE_USER);
+        }
+
+        // Get the user to authenticate
+        UserModel userModel;
+        if (authenticateAdmin) {
+            userModel = Constants.ADMIN;
+        } else {
+            userModel = Constants.USER;
+        }
 
         // Authorize to get cookies
         RestAssured.baseURI = getConfigPropertyByKey("social.api.baseUrl");
-        String username = Constants.USERNAME;
-        String password = Constants.PASSWORD;
+        String username = userModel.getUsername();
+        String password = userModel.getPassword();
 
         Response response = RestAssured.given()
                 .contentType("multipart/form-data")
@@ -56,21 +86,33 @@ public class WeAreAPI {
         Cookies cookies = response.detailedCookies();
         // The JSESSIONID cookie is the auth one
         if (cookies.get("JSESSIONID") != null) {
-            authenticateCookies = cookies;
+            if (authenticateAdmin) {
+                adminAuthenticateCookies = cookies;
+            } else {
+                authenticateCookies = cookies;
+            }
         }
         int statusCodeAuthentication = response.getStatusCode();
         System.out.println("The status code is:" + statusCodeAuthentication);
+    }
 
-        // Extract user id from the authenticate html response
-//        String pattern = "/auth/users/(\\d+)/profile";
-//        Pattern regex = Pattern.compile(pattern);
-//        Matcher matcher = regex.matcher(response.getBody().toString());
-//        boolean userIdFound = matcher.find();
-//
-//        if (userIdFound) {
-//            Constants.USER_ID = Integer.parseInt(matcher.group(1));
-//        }
-//        System.out.println("The user id is:" + Constants.USER_ID);
+    public static UserModel registerNewUser(String userRole) {
+        UsersAPI api = new UsersAPI();
+        String password = faker.internet().password(8, 12);
+        String email = faker.internet().emailAddress();
+        String username = faker.name().firstName();
+        Response response = api.registerUser(userRole,
+                Constants.CATEGORY_ALL,
+                password, email, password, username);
+
+        // Response example:
+        // User with name Buddy and id 86 was created
+        String responseBody = response.getBody().print();
+        String[] splitByIntervals = responseBody.split(" ");
+        String usernameActual = splitByIntervals[Constants.USERNAME_INDEX];
+        int userId = Integer.parseInt(splitByIntervals[Constants.USER_ID_INDEX]);
+
+        return new UserModel(userId, usernameActual, password, email);
     }
 
     public static String arrayToJSONString(String[] array) {
