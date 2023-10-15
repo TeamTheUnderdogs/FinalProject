@@ -2,15 +2,11 @@ package com.weare.testframework.api;
 
 import com.github.javafaker.Faker;
 import com.weare.testframework.api.utils.Constants;
-import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.http.Cookies;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.http.Cookies;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 

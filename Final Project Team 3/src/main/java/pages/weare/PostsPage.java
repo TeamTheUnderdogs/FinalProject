@@ -81,5 +81,9 @@ public class PostsPage extends WEareBasePage {
         actions.clickElement("postsPage.dislikePost.button");
     }
 
+    public void readCommentsInPost() {
+        explorePublicPost();
+
+    }
 
 }

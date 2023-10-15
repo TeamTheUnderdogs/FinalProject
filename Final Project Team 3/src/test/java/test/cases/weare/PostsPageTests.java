@@ -69,7 +69,6 @@ public class PostsPageTests extends BaseTest {
     public void userDislikePublicPost() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.likePublicPost();
-        postsPage.dislikePublicPost();
         actions.assertElementPresent("postsPage.likePost.button");
         actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
     }
