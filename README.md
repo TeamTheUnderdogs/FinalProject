@@ -19,14 +19,17 @@ The main purpose of the test process is to verify if the Social Media web applic
 ## [Testing approach](#testing)
 
 **Manual Testing**
+
 Manual testing will cover all aspects of the "WEare" application, including user interfaces, navigation, and user scenarios.
 It will encompass testing on different browsers and devices to ensure cross-browser compatibility.
 
 **Postman and Rest Assured**
+
 API testing will be performed on all exposed APIs.
 The testing scope includes testing different API endpoints, request methods, and data validation.
 
 **Selenium**
+
 Testing will include various scenarios such as user registration, login, profile management, and more.
 
 
