@@ -106,8 +106,8 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 ## [Documentation](#documentation)
 
-- [Test Pla]n(https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing)
-- [Schedule] (https://docs.google.com/spreadsheets/d/1-omMXMc-DQ2R_o4HFXL12XjSKpMbJrMLg-gz9B9eyyE/edit?usp=sharing)
+- [Test Plan](https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing)
+- [Schedule](https://docs.google.com/spreadsheets/d/1-omMXMc-DQ2R_o4HFXL12XjSKpMbJrMLg-gz9B9eyyE/edit?usp=sharing)
 - Bug test sample
 
 ## [Notes](#notes)
