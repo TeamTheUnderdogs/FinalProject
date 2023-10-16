@@ -171,13 +171,28 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void commentOwnPost() {
+
         LoginPage loginPage = new LoginPage(actions.getDriver());
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
+        //actions.waitForElementClickable("userPage.firstOwnPost.item");
+       // actions.clickElement("userPage.firstOwnPost.item");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
         actions.waitForElementClickable("userPage.firstOwnPost.item");
         actions.clickElement("userPage.firstOwnPost.item");
+
+        actions.waitForElementClickable("postPage.editPost.button");
+        actions.clickElement("postPage.editPost.button");
+
+        actions.waitForElementVisible("postPage.postMessage.field");
+        actions.typeValueInField(faker.lorem().characters(25), "postPage.postMessage.field");
+
+        actions.waitForElementClickable("postPage.savePost.button");
+        actions.clickElement("postPage.savePost.button");
 
     }
 }

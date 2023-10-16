@@ -134,7 +134,7 @@ public class PostsPageTests extends BaseTest {
     public void commentOwnPost() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.commentOwnPost();
-        actions.assertElementPresent("explorePostPage.explorePost.sign");
+        actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 }
 
