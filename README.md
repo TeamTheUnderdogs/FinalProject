@@ -4,11 +4,30 @@ This repository contains the testing framework and resources for the WEare web a
 
 
 # Table of Contents
+- [Objective](#objective)
+- [Testing approach](#testing)
 - [Project Structure](#structure)
 - [Repository Structure](#repository)
 - [Step by Step Guide](#step-by-step-guide)
 - [Contributing](#contributing)
 - [Notes](#notes)
+
+## [Objective](#objective)
+
+The main purpose of the test process is to verify if the Social Media web application meets defined requirements. This means that the system works to ensure that it functions reliably, securely, and effectively for its users. This involves a range of testing activities to identify and rectify potential issues before the platform is released to a wider audience.
+
+## [Testing approach](#testing)
+
+**Manual Testing**
+Manual testing will cover all aspects of the "WEare" application, including user interfaces, navigation, and user scenarios.
+It will encompass testing on different browsers and devices to ensure cross-browser compatibility.
+
+**Postman and Rest Assured**
+API testing will be performed on all exposed APIs.
+The testing scope includes testing different API endpoints, request methods, and data validation.
+
+**Selenium**
+Testing will include various scenarios such as user registration, login, profile management, and more.
 
 
 ## [Project Structure](#structure)
@@ -71,7 +90,7 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Navigate to the Rest Assured directory in the terminal
 
 
-**4. Steps to Run Selenium UI
+**4. Steps to Run Selenium UI**
 - Ensure you have Maven installed.
 - Navigate to the Selenium directory in the terminal.
 - Choose the desired browser.
