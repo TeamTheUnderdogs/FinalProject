@@ -10,6 +10,7 @@ This repository contains the testing framework and resources for the WEare web a
 - [Repository Structure](#repository)
 - [Step by Step Guide](#step-by-step-guide)
 - [Contributing](#contributing)
+- [Documentation](#documentation)
 - [Notes](#notes)
 
 ## [Objective](#objective)
@@ -56,8 +57,8 @@ Running API Tests
 
 **3. Rest Assured Testing** 
 
-The RestAssured directory contains Java classes for automated testing of RESTful web services.
-The Res Assured tests cover Java classes organized by test suites (e.g., user authentication, data retrieval, etc.).
+The RestAssured directory contains Java classes for automated testing of REST Assured web services.
+The Res Assured tests cover Java classes organized by test suites (e.g., user authentication, login registration, etc.).
 pom.xml: Maven configuration file with dependencies required for the project.
 
 **4. Selenium (UI Testing)**
@@ -68,7 +69,6 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 ## [Repository Structure](#repository)
 
-- Detailed documentation of the project
 - Test Framework which covers Rest Assured and Selenium testing
 - Postman collection, Postman Environments and Reports
 - Additional reports
@@ -104,5 +104,10 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Vladislav Ganchev
 - Denitsa Petrova
 
-## [Notes](#notes)
+## [Documentation](#documentation)
 
+- Test Plan(https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing)
+- Schedule (https://docs.google.com/spreadsheets/d/1-omMXMc-DQ2R_o4HFXL12XjSKpMbJrMLg-gz9B9eyyE/edit?usp=sharing)
+- Bug test sample
+
+## [Notes](#notes)
