@@ -1,11 +1,15 @@
 package pages.weare;
 
+import Models.User;
+import factories.UserFactory;
 import groovy.util.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import static factories.UserFactory.faker;
 
 public class PostsPage extends WEareBasePage {
     public PostsPage(WebDriver webDriver) {
@@ -103,6 +107,77 @@ public class PostsPage extends WEareBasePage {
         explorePublicPost();
         actions.waitForElementClickable("profilePage.seeProfile.button");
         actions.clickElement("profilePage.seeProfile.button");
+
+    }
+
+    public void likeComment() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        readCommentsInPost();
+        actions.waitForElementClickable("postPage.likeComment");
+        actions.clickElement("postPage.likeComment");
+    }
+
+    public void dislikeComment() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        readCommentsInPost();
+        actions.waitForElementVisible("postPage.dislikeComment");
+        actions.clickElement("postPage.dislikeComment");
+    }
+
+    public void createPostWithOnlyText() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        actions.waitForElementVisible("homePage.addNewPost.button");
+        actions.clickElement("homePage.addNewPost.button");
+
+        actions.waitForElementClickable("postPage.dropDown.button");
+        actions.selectFromDropdownMenu("postPage.dropDown.button","Public post");
+
+        actions.waitForElementVisible("postPage.postMessage.field");
+        actions.typeValueInField(faker.lorem().characters(25), "postPage.postMessage.field");
+
+        actions.waitForElementClickable("postPage.savePost.button");
+        actions.clickElement("postPage.savePost.button");
+    }
+
+    public void createPostWithThousandCharacters() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        actions.waitForElementVisible("homePage.addNewPost.button");
+        actions.clickElement("homePage.addNewPost.button");
+
+        actions.waitForElementClickable("postPage.dropDown.button");
+        actions.selectFromDropdownMenu("postPage.dropDown.button","Private post");
+
+        actions.waitForElementVisible("postPage.postMessage.field");
+        actions.typeValueInField(faker.lorem().characters(1000), "postPage.postMessage.field");
+
+        actions.waitForElementClickable("postPage.savePost.button");
+        actions.clickElement("postPage.savePost.button");
+    }
+
+    public void createCommentWithThousandCharacters() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        explorePublicPost();
+
+        actions.waitForElementVisible("postPage.commentMessage.field");
+        actions.typeValueInField(faker.lorem().characters(1000), "postPage.commentMessage.field");
+
+        actions.waitForElementClickable("postPage.postComment.button");
+        actions.clickElement("postPage.postComment.button");
+    }
+
+    public void commentOwnPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
 
     }
 }

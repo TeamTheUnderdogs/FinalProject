@@ -93,5 +93,48 @@ public class PostsPageTests extends BaseTest {
         postsPage.exploreProfileOfThePostAuthor();
         actions.assertElementPresent("profilePage.personalInformation.menu");
     }
+
+    @Test
+    public void likeComment() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.likeComment();
+        actions.assertElementPresent("postPage.dislikeComment");
+    }
+
+    @Test
+    public void dislikeComment() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.dislikeComment();
+        actions.assertElementPresent("postPage.likeComment");
+    }
+
+    @Test
+    public void createPostWithOnlyText() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.createPostWithOnlyText();
+        actions.assertElementPresent("postPage.exploreAllPosts.header");
+
+    }
+
+    @Test
+    public void createPostWithThousandCharacters() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.createPostWithThousandCharacters();
+        actions.assertElementPresent("postPage.exploreAllPosts.header");
+    }
+
+    @Test
+    public void createCommentWithThousandCharacters() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.createCommentWithThousandCharacters();
+        actions.assertElementPresent("explorePostPage.explorePost.sign");
+    }
+
+    @Test
+    public void commentOwnPost() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.commentOwnPost();
+        actions.assertElementPresent("explorePostPage.explorePost.sign");
+    }
 }
 
