@@ -9,11 +9,12 @@ public class ViewAllUsersPage extends WEareBasePage{
     }
 
     LoginPage loginPage = new LoginPage(actions.getDriver());
+    ViewAllUsersPage viewAllUsersPage;
 
     public void adminViewAllUsers(){
 
         loginPage.loginAdmin();
-        ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
+        viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
 navigateToPage();
     }
 

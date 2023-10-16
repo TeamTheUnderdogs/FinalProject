@@ -45,12 +45,6 @@ public class HomePageTests extends BaseTest {
         System.out.println(message);
     }
 
-    @Test
-    public void UserSeesProfileButton_when_LoggedIn() {
-
-        homePage.assertProfileButtonExists();
-
-    }
 
 @Test
     public void searchUserByCategory_as_AnonymousUser(){

@@ -41,6 +41,7 @@ public class PostsPage extends WEareBasePage {
        browsePublicPosts();
 
         WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='name']"));
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownMenu);
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,350)", "" );
 
 
