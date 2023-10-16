@@ -4,13 +4,14 @@ This repository contains the testing framework and resources for the WEare web a
 
 
 # Table of Contents
-- [Structure](#structure)
+- [Project Structure](#structure)
+- [Repository Structure](#repository)
 - [Step by Step Guide](#step-by-step-guide)
 - [Contributing](#contributing)
 - [Notes](#notes)
 
 
-## [Structure](#structure)
+## [Project Structure](#structure)
 
 The project is organized into four main components:
 
@@ -43,6 +44,13 @@ The Selenium directory contains test scripts for UI testing of the WEare web app
 Contains Java classes for different test scenarios (e.g., login, registration, search functionality, etc.).
 pom.xml: Maven configuration file with dependencies required for the project.
 
+## [Repository Structure](#repository)
+
+- Detailed documentation of the project
+- Test Framework which covers Rest Assured and Selenium testing
+- Postman collection, Postman Environments and Reports
+- Additional reports
+  
 
 ## [Step by Step Guide](#step-by-step-guide)
 
@@ -58,12 +66,12 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 **3. Steps to Run Rest Assured Tests:** 
 
-- Running RESTful Web Service Tests
-- Ensure you have Maven installed.
-- Navigate to the RestAssured directory in the terminal.
+- Running REST Assured Web Service Tests
+- Ensure you have Maven installed
+- Navigate to the Rest Assured directory in the terminal
 
 
-**4. Steps to Run UI Tests:** 
+**4. Steps to Run Selenium UI
 - Ensure you have Maven installed.
 - Navigate to the Selenium directory in the terminal.
 - Choose the desired browser.
