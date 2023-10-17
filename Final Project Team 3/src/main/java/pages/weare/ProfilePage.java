@@ -1,25 +1,18 @@
 package pages.weare;
 
-import Models.Admin;
-import Models.User;
+import com.weare.testframework.Utils;
 import org.openqa.selenium.WebDriver;
 
-import static factories.AdminFactory.createAdmin;
-import static factories.UserFactory.createUser;
+import static factories.UserFactory.faker;
 
 public class ProfilePage extends WEareBasePage {
     public ProfilePage(WebDriver driver) {
         super(driver, "social.app.profile.page");
     }
 
-    User user = createUser();
-    Admin admin = createAdmin();
-    ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
 
     public void adminEditUserPersonalProfile() {
 
-
-        viewAllUsersPage.adminExploreUserProfile();
 
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
@@ -34,8 +27,8 @@ public class ProfilePage extends WEareBasePage {
 
         actions.waitForElementVisible("profilePage.birthday.field");
         actions.clearValueInField("profilePage.birthday.field");
-
-        actions.typeValueInField(user.getLastName(), "profilePage.lastName.field");
+        String birthdayDate = Utils.formatBirthdayDate(faker.date().birthday());
+        actions.typeValueInField(birthdayDate, "profilePage.birthday.field");
 
         actions.selectFromDropdownMenu("profilePage.genderSelect.menu", "FEMALE");
 
@@ -56,7 +49,7 @@ public class ProfilePage extends WEareBasePage {
     public void adminEditUserProfessionalProfile() {
 
 
-        viewAllUsersPage.adminExploreUserProfile();
+
 
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
@@ -72,7 +65,8 @@ public class ProfilePage extends WEareBasePage {
     public void EditSkills() {
 
 
-        viewAllUsersPage.adminExploreUserProfile();
+       ViewAllUsersPage viewAllUsersPage= new ViewAllUsersPage(actions.getDriver());
+       viewAllUsersPage.adminExploreUserProfile();
 
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");

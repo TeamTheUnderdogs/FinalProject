@@ -10,20 +10,19 @@ import static com.weare.testframework.Utils.getWebDriver;
 
 public class LoginPageTests extends BaseTest {
 
-    LoginPage loginPage = new LoginPage(actions.getDriver());
-    UserActions userActions = new UserActions();
+LoginPage loginPage = new LoginPage(actions.getDriver());
+
     @Test
 
     public void loginUser_when_validCredentialsProvided () {
-
+        loginPage= new LoginPage (actions.getDriver());
         loginPage.loginUser();
-        userActions.assertElementPresent("homePage.logout.button");
+        actions.assertElementPresent("homePage.logout.button");
     }
 @Test
     public void loginAdmin_when_validCredentialsProvided () {
-
         loginPage.loginAdmin();
-        userActions.assertElementPresent("homePage.logout.button");
+       actions.assertElementPresent("homePage.logout.button");
     }
     @Test
      public void logoutUser_Successfully(){

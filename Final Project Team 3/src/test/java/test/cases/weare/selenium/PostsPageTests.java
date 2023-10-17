@@ -3,6 +3,7 @@ package test.cases.weare.selenium;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import pages.weare.LoginPage;
 import pages.weare.PostsPage;
 
 import static com.weare.testframework.Utils.*;
@@ -18,10 +19,9 @@ public class PostsPageTests extends BaseTest {
 
         postsPage.browsePublicPosts();
 
-        actions.assertElementPresent("postsPage.browsePostsByCategory.button");
-
         Assertions.assertEquals(getConfigPropertyByKey("social.app.postsPage"),
                 getWebDriver().getCurrentUrl(), "Page not successfully navigated");
+
         actions.assertElementPresent("postsPage.exploreAllPosts.sign");
 
     }
@@ -62,13 +62,14 @@ public class PostsPageTests extends BaseTest {
         actions.assertElementPresent("postsPage.dislikePost.button");
         actions.assertElementAttribute ("postsPage.dislikePost.button",
                 "value", "Dislike");
-        postsPage.dislikePublicPost();
+
     }
 
     @Test
     public void userDislikePublicPost() {
+       loginPage.loginUser();
         PostsPage postsPage = new PostsPage(actions.getDriver());
-        postsPage.likePublicPost();
+        postsPage.dislikePublicPost();
         actions.assertElementPresent("postsPage.likePost.button");
         actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
     }

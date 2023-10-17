@@ -75,8 +75,7 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void dislikePublicPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
+
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
 

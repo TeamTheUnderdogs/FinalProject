@@ -3,6 +3,9 @@ package com.weare.testframework;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public class Utils {
@@ -29,5 +32,10 @@ public class Utils {
     public static String getConfigPropertyByKey(String key) {
         String value = configProperties.getProperty(key);
         return value != null ? value : key;
+    }
+
+    public static String formatBirthdayDate (Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+        return formatter.format(date);
     }
 }

@@ -26,10 +26,7 @@ return user;
 
     }
 
-    public static String formatBirthdayDate (Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-        return formatter.format(date);
-    }
+
 
     public static User createUserWithTwentyLettersUsername() {
         User user = new User();
