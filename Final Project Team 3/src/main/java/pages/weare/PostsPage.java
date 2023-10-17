@@ -265,6 +265,78 @@ public class PostsPage extends WEareBasePage {
         actions.waitForElementClickable("userPage.firstOwnPost.item");
         actions.clickElement("userPage.firstOwnPost.item");
 
+        actions.waitForElementClickable("postPage.deletePost.button");
+        actions.clickElement("postPage.deletePost.button");
 
+        actions.waitForElementClickable("postPage.dropDown.button");
+
+        WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='StringListId']"));
+        Select dropdown = new Select(dropdownMenu);
+        dropdown.selectByVisibleText("Delete post");
+
+        WebElement searchBox = driver.findElement(By.xpath("//input[@value='Submit']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
+    }
+
+    public void editOwnComment() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
+
+        WebElement searchBox = driver.findElement(By.xpath("//button[@class='show-comments']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
+
+        actions.waitForElementClickable("postPage.editComment.button");
+        actions.clickElement("postPage.editComment.button");
+
+        String fakeMessage = faker.lorem().characters(25);
+        actions.typeValueInField(fakeMessage, "postPage.commentMessage.field");
+
+        actions.waitForElementClickable("postPage.editPost.button");
+        actions.clickElement("postPage.editPost.button");
+
+        // After editing, retrieve the edited comment's text from the webpage
+        WebElement commentParagraph = driver.findElement(By.xpath("//div[@class='comment-body']/p"));
+        String commentText = commentParagraph.getText();
+
+        // Compare the edited comment's text with the fake message
+        if (commentText.equals(fakeMessage)) {
+            System.out.println("The edited comment matches the entered text.");
+        } else {
+            System.out.println("The edited comment does not match the entered text.");
+        }
+    }
+
+    public void deleteOwnComment() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
+
+        WebElement searchBox = driver.findElement(By.xpath("//button[@class='show-comments']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
+
+        actions.waitForElementClickable("postPage.deleteComment.button");
+        actions.clickElement("postPage.deleteComment.button");
+
+        WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='StringListId']"));
+        Select dropdown = new Select(dropdownMenu);
+        dropdown.selectByVisibleText("Delete comment");
+
+        WebElement clickOnSubmitButton = driver.findElement(By.xpath("//input[@value='Submit']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickOnSubmitButton);
     }
 }

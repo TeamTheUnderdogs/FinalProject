@@ -160,5 +160,26 @@ public class PostsPageTests extends BaseTest {
         postsPage.commentOwnPost();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
+
+    @Test
+    public void deleteOwnPost() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.deleteOwnPost();
+        actions.waitForElementVisible("postPage.deletePostVerification.item");
+    }
+
+    @Test
+    public void editOwnComment() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.editOwnComment();
+    }
+
+    @Test
+    public void deleteOwnComment() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.deleteOwnComment();
+        actions.assertElementPresent("postPage.deleteComment.item");
+
+    }
 }
 
