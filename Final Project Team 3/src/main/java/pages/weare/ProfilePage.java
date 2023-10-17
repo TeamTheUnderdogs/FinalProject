@@ -32,6 +32,11 @@ public class ProfilePage extends WEareBasePage {
         actions.clearValueInField("profilePage.lastName.field");
         actions.typeValueInField(user.getLastName(), "profilePage.lastName.field");
 
+        actions.waitForElementVisible("profilePage.birthday.field");
+        actions.clearValueInField("profilePage.birthday.field");
+
+        actions.typeValueInField(user.getLastName(), "profilePage.lastName.field");
+
         actions.selectFromDropdownMenu("profilePage.genderSelect.menu", "FEMALE");
 
         actions.waitForElementVisible("profilePage.email.field");

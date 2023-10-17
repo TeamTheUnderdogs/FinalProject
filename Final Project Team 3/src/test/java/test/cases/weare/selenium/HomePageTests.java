@@ -1,17 +1,11 @@
-package test.cases.weare;
+package test.cases.weare.selenium;
 
-import com.weare.testframework.Driver;
-import com.weare.testframework.UserActions;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 import org.opentest4j.AssertionFailedError;
 import pages.weare.HomePage;
-import org.openqa.selenium.WebDriver;
 
 import com.weare.testframework.Utils;
-import pages.weare.LoginPage;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 import static com.weare.testframework.Utils.getWebDriver;

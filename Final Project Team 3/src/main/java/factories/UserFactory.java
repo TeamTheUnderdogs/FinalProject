@@ -2,6 +2,9 @@ package factories;
 import Models.User;
 import com.github.javafaker.Faker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class UserFactory {
 
 
@@ -21,6 +24,11 @@ user.setSkill(faker.lorem().paragraph(1));
 
 return user;
 
+    }
+
+    public static String formatBirthdayDate (Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+        return formatter.format(date);
     }
 
     public static User createUserWithTwentyLettersUsername() {

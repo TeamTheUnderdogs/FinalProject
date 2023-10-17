@@ -1,9 +1,7 @@
-package test.cases.weare;
+package test.cases.weare.selenium;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.weare.LoginPage;
-import pages.weare.RegistrationPage;
 import pages.weare.ViewAllUsersPage;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
@@ -15,13 +13,13 @@ public class ViewAllUsersPageTests extends BaseTest {
 
     @Test
 
-    public void adminSuccessfullyViewAllUsers_when_Logedin(){
+    public void adminSuccessfullyViewAllUsers_when_logedin(){
                 viewAllUsersPage.adminViewAllUsers();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.viewAllUsersPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
     }
     @Test
-    public void adminSuccessfullyViewUserProfile_when_Logedin(){
+    public void adminSuccessfullyViewUserProfile_when_logedin(){
         viewAllUsersPage.adminExploreUserProfile();
 
         actions.assertElementPresent("userPage.disableProfile.button");

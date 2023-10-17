@@ -1,34 +1,32 @@
-package test.cases.weare;
+package test.cases.weare.selenium;
 
-import Models.User;
 import com.weare.testframework.UserActions;
-import factories.UserFactory;
 import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.RegistrationPage;
 
-public class RegistrationPageTests extends BaseTest{
+public class RegistrationPageTests extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage(actions.getDriver());
 
     @Test
 
-    public void successfullyRegisterUser_when_validCredentialsProvided () {
+    public void successfullyRegisterUser_when_validCredentialsProvided() {
 
 
         registrationPage.registerUser();
         UserActions userActions = new UserActions();
         userActions.assertElementPresent("registrationPage.updateYouProfile.button");
-        LoginPage loginPage=new LoginPage(actions.getDriver());
+        LoginPage loginPage = new LoginPage(actions.getDriver());
         loginPage.logoutUser();
     }
 
     @Test
-    public void successfullyRegisterAdmin_when_validCredentialsProvided () {
+    public void successfullyRegisterAdmin_when_validCredentialsProvided() {
 
 
         registrationPage.registerAdmin();
-       actions.assertElementPresent ("userPage.disableProfile.button");
+        actions.assertElementPresent("userPage.disableProfile.button");
 
     }
 }

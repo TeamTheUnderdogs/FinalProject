@@ -1,9 +1,8 @@
-package test.cases.weare;
+package test.cases.weare.selenium;
 
 import com.weare.testframework.UserActions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.weare.HomePage;
 import pages.weare.LoginPage;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
