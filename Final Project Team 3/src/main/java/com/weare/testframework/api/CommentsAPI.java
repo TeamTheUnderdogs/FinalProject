@@ -38,9 +38,14 @@ public class CommentsAPI extends WeAreAPI {
                 .response();
     }
 
-    // API: Update a comment
     public Response updateComment(String content, int commentId) {
-        return getRestAssured()
+        return updateComment(false, content, commentId);
+    }
+
+    // API: Update a comment
+    public Response updateComment(boolean isAdmin, String content, int
+            commentId) {
+        return getRestAssured(isAdmin)
                 .queryParam("commentId", commentId)
                 .queryParam("content", content)
                 .when()

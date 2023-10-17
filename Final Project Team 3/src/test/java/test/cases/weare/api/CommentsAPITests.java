@@ -108,6 +108,22 @@ public class CommentsAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
     }
 
+
+    @Test
+    @Order(2)
+    public void adminUpdateUserCommentTest() {
+        // Requires authentication
+        authenticate(true);
+
+        String content = faker.lorem().sentence(5);
+        Response response = api.updateComment(content, Constants.COMMENT_ID);
+
+        int statusCode = response.getStatusCode();
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
+
+        System.out.printf("Comment with id %d was updated by admin%n%n", Constants.POST_ID);
+    }
+
     @Test
     @Order(3)
     public void deleteCommentTest() {

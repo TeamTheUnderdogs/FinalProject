@@ -88,6 +88,13 @@ public class SkillsAPITests extends BaseAPITest {
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         System.out.printf("Skill with id %d was updated%n%n", Constants.SKILL_ID);
+
+        // Verify content is updated
+        Response getSkillResponse = api.getSkill(Constants.SKILL_ID);
+        String updatedSkill =
+                getSkillResponse.getBody().jsonPath().get("skill");
+        assertEquals(Constants.SKILL, updatedSkill);
+
     }
 
     @Test
