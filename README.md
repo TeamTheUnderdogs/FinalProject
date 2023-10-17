@@ -4,11 +4,34 @@ This repository contains the testing framework and resources for the WEare web a
 
 
 # Table of Contents
+- [Objective](#objective)
+- [Testing approach](#testing)
 - [Project Structure](#structure)
 - [Repository Structure](#repository)
 - [Step by Step Guide](#step-by-step-guide)
 - [Contributing](#contributing)
+- [Documentation](#documentation)
 - [Notes](#notes)
+
+## [Objective](#objective)
+
+The main purpose of the test process is to verify if the Social Media web application meets defined requirements. This means that the system works to ensure that it functions reliably, securely, and effectively for its users. This involves a range of testing activities to identify and rectify potential issues before the platform is released to a wider audience.
+
+## [Testing approach](#testing)
+
+**Manual Testing**
+
+Manual testing will cover all aspects of the "WEare" application, including user interfaces, navigation, and user scenarios.
+It will encompass testing on different browsers and devices to ensure cross-browser compatibility.
+
+**Postman and Rest Assured**
+
+API testing will be performed on all exposed APIs.
+The testing scope includes testing different API endpoints, request methods, and data validation.
+
+**Selenium**
+
+Testing will include various scenarios such as user registration, login, profile management, and more.
 
 
 ## [Project Structure](#structure)
@@ -34,8 +57,8 @@ Running API Tests
 
 **3. Rest Assured Testing** 
 
-The RestAssured directory contains Java classes for automated testing of RESTful web services.
-The Res Assured tests cover Java classes organized by test suites (e.g., user authentication, data retrieval, etc.).
+The RestAssured directory contains Java classes for automated testing of REST Assured web services.
+The Res Assured tests cover Java classes organized by test suites (e.g., user authentication, login registration, etc.).
 pom.xml: Maven configuration file with dependencies required for the project.
 
 **4. Selenium (UI Testing)**
@@ -46,7 +69,6 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 ## [Repository Structure](#repository)
 
-- Detailed documentation of the project
 - Test Framework which covers Rest Assured and Selenium testing
 - Postman collection, Postman Environments and Reports
 - Additional reports
@@ -71,7 +93,7 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Navigate to the Rest Assured directory in the terminal
 
 
-**4. Steps to Run Selenium UI
+**4. Steps to Run Selenium UI**
 - Ensure you have Maven installed.
 - Navigate to the Selenium directory in the terminal.
 - Choose the desired browser.
@@ -82,5 +104,10 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Vladislav Ganchev
 - Denitsa Petrova
 
-## [Notes](#notes)
+## [Documentation](#documentation)
 
+- [Test Plan](https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing)
+- [Schedule](https://docs.google.com/spreadsheets/d/1-omMXMc-DQ2R_o4HFXL12XjSKpMbJrMLg-gz9B9eyyE/edit?usp=sharing)
+- Bug test sample
+
+## [Notes](#notes)
