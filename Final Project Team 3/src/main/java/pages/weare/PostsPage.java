@@ -171,15 +171,11 @@ public class PostsPage extends WEareBasePage {
         actions.clickElement("postPage.postComment.button");
     }
 
-    public void commentOwnPost() {
-
+    public void editOwnPost() {
         LoginPage loginPage = new LoginPage(actions.getDriver());
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
-
-        //actions.waitForElementClickable("userPage.firstOwnPost.item");
-       // actions.clickElement("userPage.firstOwnPost.item");
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(30,1250)");
@@ -194,6 +190,67 @@ public class PostsPage extends WEareBasePage {
 
         actions.waitForElementClickable("postPage.savePost.button");
         actions.clickElement("postPage.savePost.button");
+    }
 
+    public void likeOwnPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
+
+        actions.waitForElementClickable("postPage.allPostsOfThisUser.button");
+        actions.clickElement("postPage.allPostsOfThisUser.button");
+
+        actions.waitForElementClickable("postsPage.likePost.button");
+        actions.clickElement("postsPage.likePost.button");
+    }
+
+    public void dislikeOwnPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
+
+        actions.waitForElementClickable("postPage.allPostsOfThisUser.button");
+        actions.clickElement("postPage.allPostsOfThisUser.button");
+
+        actions.waitForElementClickable("postsPage.dislikePost.button");
+        actions.clickElement("postsPage.dislikePost.button");
+    }
+
+    public void commentOwnPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
+
+        actions.waitForElementVisible("postPage.commentMessage.field");
+        actions.typeValueInField(faker.lorem().characters(25), "postPage.commentMessage.field");
+
+        actions.waitForElementClickable("postPage.postComment.button");
+        actions.clickElement("postPage.postComment.button");
+
+        WebElement searchBox = driver.findElement(By.xpath("//button[@class='show-comments']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
+
+        //js.executeScript("window.scrollBy(0,-600", "");
+
+        //actions.waitForElementClickable("postPage.showComments.button");
     }
 }
