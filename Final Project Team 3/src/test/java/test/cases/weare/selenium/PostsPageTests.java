@@ -131,6 +131,29 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
+    public void editOwnPost() {
+        PostsPage postsPage = new PostsPage(this.actions.getDriver());
+        postsPage.editOwnPost();
+        this.actions.assertElementPresent("postPage.exploreAllPosts.header");
+    }
+
+    @Test
+    public void likeOwnPost() {
+        PostsPage postsPage = new PostsPage(this.actions.getDriver());
+        postsPage.likeOwnPost();
+        this.actions.waitForElementVisible("postsPage.dislikePost.button", new Object[0]);
+        this.actions.assertElementPresent("postsPage.dislikePost.button");
+    }
+
+    @Test
+    public void dislikeOwnPost() {
+        PostsPage postsPage = new PostsPage(this.actions.getDriver());
+        postsPage.dislikeOwnPost();
+        this.actions.waitForElementVisible("postsPage.likePost.button", new Object[0]);
+        this.actions.assertElementPresent("postsPage.likePost.button");
+    }
+
+    @Test
     public void commentOwnPost() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.commentOwnPost();

@@ -253,4 +253,19 @@ public class PostsPage extends WEareBasePage {
 
         //actions.waitForElementClickable("postPage.showComments.button");
     }
+
+    public void deleteOwnPost() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(30,1250)");
+        actions.waitForElementClickable("userPage.firstOwnPost.item");
+        actions.clickElement("userPage.firstOwnPost.item");
+
+
+    }
 }
