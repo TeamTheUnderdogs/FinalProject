@@ -181,5 +181,12 @@ public class PostsPageTests extends BaseTest {
         actions.assertElementPresent("postPage.deleteComment.item");
 
     }
+
+    @Test
+    public void createPublicPostWithTextAndPicture() {
+        PostsPage postsPage = new PostsPage(actions.getDriver());
+        postsPage.createPublicPostWithTextAndPicture();
+        actions.assertElementPresent("postPage.exploreAllPosts.header");
+    }
 }
 

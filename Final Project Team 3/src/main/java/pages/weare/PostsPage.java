@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+
 import static factories.UserFactory.faker;
 
 public class PostsPage extends WEareBasePage {
@@ -338,5 +340,25 @@ public class PostsPage extends WEareBasePage {
 
         WebElement clickOnSubmitButton = driver.findElement(By.xpath("//input[@value='Submit']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickOnSubmitButton);
+    }
+
+    public void createPublicPostWithTextAndPicture() {
+        LoginPage loginPage = new LoginPage(actions.getDriver());
+        loginPage.loginUser();
+
+        actions.waitForElementVisible("homePage.addNewPost.button");
+        actions.clickElement("homePage.addNewPost.button");
+
+        actions.waitForElementClickable("postPage.dropDown.button");
+        actions.selectFromDropdownMenu("postPage.dropDown.button","Public post");
+
+        actions.waitForElementVisible("postPage.postMessage.field");
+        actions.typeValueInField(faker.lorem().characters(25), "postPage.postMessage.field");
+
+        By fileInputSelector = By.xpath("//input[@id='imagefile']");
+        WebElement fileInput = driver.findElement(fileInputSelector);
+        String filePath = new File("/src/main/java/resources/testUser.jpg").getAbsolutePath();
+        actions.clickElement("postPage.savePost.button");
+
     }
 }
