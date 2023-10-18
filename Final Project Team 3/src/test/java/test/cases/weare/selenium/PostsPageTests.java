@@ -52,7 +52,7 @@ public class PostsPageTests extends BaseTest {
     @Test
 
     public void explorePublicPost (){
-        postsPage.explorePublicPost();
+        postsPage.registered_explorePublicPost();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
 
@@ -82,7 +82,7 @@ public class PostsPageTests extends BaseTest {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
-        postsPage.explorePublicPost();
+        postsPage.registered_explorePublicPost();
         postsPage.readCommentsInPost();
         actions.assertElementPresent("postPage.showNumberOfLikesForComment.element");
     }
@@ -92,7 +92,7 @@ public class PostsPageTests extends BaseTest {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
-        postsPage.explorePublicPost();
+        postsPage.registered_explorePublicPost();
         postsPage.exploreAllPostsFromSameAuthor();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
 
@@ -105,7 +105,7 @@ public class PostsPageTests extends BaseTest {
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
 
-        postsPage.explorePublicPost();
+        postsPage.registered_explorePublicPost();
 
         postsPage.exploreProfileOfThePostAuthor();
         actions.assertElementPresent("profilePage.personalInformation.menu");
@@ -117,7 +117,7 @@ public class PostsPageTests extends BaseTest {
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
 
-        postsPage.explorePublicPost();
+        postsPage.registered_explorePublicPost();
         postsPage.readCommentsInPost();
         postsPage.likeComment();
         actions.waitForElementClickable("postPage.dislikeComment.button");
@@ -131,7 +131,7 @@ public class PostsPageTests extends BaseTest {
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
 
-        postsPage.explorePublicPost();
+        postsPage.registered_explorePublicPost();
         postsPage.readCommentsInPost();
         postsPage.dislikeComment();
         actions.assertElementPresent("postPage.likeComment.button");

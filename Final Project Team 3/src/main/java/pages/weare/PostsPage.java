@@ -57,7 +57,7 @@ public class PostsPage extends WEareBasePage {
 
     }
 
-    public void explorePublicPost() {
+    public void registered_explorePublicPost() {
 
         actions.waitForElementClickable("postsPage.exploreThisPost.button");
         actions.clickElement("postsPage.exploreThisPost.button");
@@ -156,7 +156,7 @@ public class PostsPage extends WEareBasePage {
     public void createCommentWithThousandCharacters() {
         LoginPage loginPage = new LoginPage(actions.getDriver());
         loginPage.loginUser();
-        explorePublicPost();
+        registered_explorePublicPost();
 
         actions.waitForElementVisible("postPage.commentMessage.field");
         actions.typeValueInField(faker.lorem().characters(1000), "postPage.commentMessage.field");
