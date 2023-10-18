@@ -26,8 +26,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void anonymous_browsePublicPostsByCategory() {
-        browsePublicPosts();
-
         WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='name']"));
 
         Select dropdown = new Select(dropdownMenu);
@@ -36,21 +34,16 @@ public class PostsPage extends WEareBasePage {
 
         actions.waitForElementClickable("postsPage.browsePublicPostsByCategoryAsAnonymous.button");
         actions.clickElement("postsPage.browsePublicPostsByCategoryAsAnonymous.button");
-
     }
 
     public void registered_browsePublicPostsByCategory() {
-
-
         WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='name']"));
 //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownMenu);
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,350)", "");
 
-
         Select dropdown = new Select(dropdownMenu);
         actions.waitForElementClickable("postsPage.chooseProfession.dropdown");
         dropdown.selectByVisibleText("Baker");
-
 
         actions.waitForElementClickable("postsPage.browsePostsByCategory.button");
         actions.clickElement("postsPage.browsePostsByCategory.button");
@@ -58,13 +51,11 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void registered_explorePublicPost() {
-
         actions.waitForElementClickable("postsPage.exploreThisPost.button");
         actions.clickElement("postsPage.exploreThisPost.button");
     }
 
     public void registered_likePublicPost() {
-
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
 
@@ -76,7 +67,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void registered_dislikePublicPost() {
-
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
 
@@ -88,7 +78,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void readCommentsInPost() {
-
         actions.waitForElementClickable("postPage.showComments.button");
         actions.clickElement("postPage.showComments.button");
     }
@@ -99,31 +88,21 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void exploreProfileOfThePostAuthor() {
-
-
         actions.waitForElementClickable("profilePage.seeProfile.button");
         actions.clickElement("profilePage.seeProfile.button");
-
     }
 
     public void likeComment() {
-
-
         actions.waitForElementClickable("postPage.likeComment.button");
         actions.clickElement("postPage.likeComment.button");
     }
 
     public void dislikeComment() {
-//        LoginPage loginPage = new LoginPage(actions.getDriver());
-//        loginPage.loginUser();
-//        readCommentsInPost();
-        actions.waitForElementVisible("postPage.dislikeComment");
-        actions.clickElement("postPage.dislikeComment");
+        actions.waitForElementVisible("postPage.dislikeComment.button");
+        actions.clickElement("postPage.dislikeComment.button");
     }
 
     public void createPostWithOnlyText() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
         actions.waitForElementVisible("homePage.addNewPost.button");
         actions.clickElement("homePage.addNewPost.button");
 
@@ -138,8 +117,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void createPostWithThousandCharacters() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
         actions.waitForElementVisible("homePage.addNewPost.button");
         actions.clickElement("homePage.addNewPost.button");
 
@@ -154,10 +131,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void createCommentWithThousandCharacters() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-        registered_explorePublicPost();
-
         actions.waitForElementVisible("postPage.commentMessage.field");
         actions.typeValueInField(faker.lorem().characters(1000), "postPage.commentMessage.field");
 
@@ -166,8 +139,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void editOwnPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -187,8 +158,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void likeOwnPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -205,8 +174,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void dislikeOwnPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -223,9 +190,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void commentOwnPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -242,16 +206,9 @@ public class PostsPage extends WEareBasePage {
 
         WebElement searchBox = driver.findElement(By.xpath("//button[@class='show-comments']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
-
-        //js.executeScript("window.scrollBy(0,-600", "");
-
-        //actions.waitForElementClickable("postPage.showComments.button");
     }
 
     public void deleteOwnPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -274,9 +231,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void editOwnComment() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -310,9 +264,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void deleteOwnComment() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
 
@@ -336,7 +287,6 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void createPublicPostWithTextAndPicture() {
-
         actions.waitForElementVisible("homePage.addNewPost.button");
         actions.clickElement("homePage.addNewPost.button");
 
