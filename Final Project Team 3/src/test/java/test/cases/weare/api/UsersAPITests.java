@@ -6,10 +6,7 @@ import com.weare.testframework.api.models.PersonalModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -24,6 +21,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersAPITests extends BaseAPITest {
     private final UsersAPI api = new UsersAPI();
+
+    private static int postId = -1;
+    private static boolean postCreated = false;
+
+    @AfterAll
+    public static void afterAll() {
+        if (postCreated) {
+            deletePost(postId);
+        }
+        postCreated = false;
+        postId = -1;
+    }
 
     @Test
     @Order(1)
@@ -91,7 +100,12 @@ public class UsersAPITests extends BaseAPITest {
     public void getProfilePostsTest() {
         // Requires authentication
         authenticate();
-        createPostIfNeeded();
+
+        // Create a post for the user
+        if (postId == -1) {
+            postId = createPost();
+            postCreated = true;
+        }
 
         Response response = api.getProfilePosts(Constants.USER.getUserId(), Constants.PAGE);
 

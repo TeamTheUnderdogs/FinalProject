@@ -19,22 +19,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ConnectionsAPITests extends BaseAPITest {
 
-    private ConnectionsAPI api;
+    private ConnectionsAPI api = new ConnectionsAPI();
     private static int requestId = -1;
     private static UserModel anotherUser;
 
-    @BeforeEach
-    public void setUp() {
-        api = new ConnectionsAPI();
+    @BeforeAll
+    public static void beforeAll() {
+        if (anotherUser == null) {
+            authenticate();
+            anotherUser = WeAreAPI.registerNewUser(Constants.ROLE_USER);
+        }
     }
 
     @Test
     @Order(1)
     public void sendConnectionRequestTest() {
-        authenticate();
-
-        anotherUser = WeAreAPI.registerNewUser(Constants.ROLE_USER);
-
         Response response = api.sendConnectionRequest(Constants.USER.getUsername(),
                 Constants.USER.getPassword(),
                 anotherUser.getUserId(),

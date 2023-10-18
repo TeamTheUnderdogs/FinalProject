@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BaseAPITest {
 
     // Authenticates user and ensures cookies are set
-    public void authenticate() {
+    public static void authenticate() {
         if (!WeAreAPI.hasAuthenticateCookies()) {
             WeAreAPI.authenticateAndFetchCookies();
             assertTrue(WeAreAPI.hasAuthenticateCookies());
         }
     }
 
-    public void authenticate(boolean admin) {
+    public static void authenticate(boolean admin) {
         if (admin) {
             if (!WeAreAPI.hasAdminAuthenticateCookies()) {
                 WeAreAPI.authenticateAndFetchCookies(true);
@@ -35,13 +35,7 @@ public class BaseAPITest {
         }
     }
 
-    private static boolean postCreated = false;
-
-    public void createPostIfNeeded() {
-        if (Constants.POST_ID != -1) {
-            return;
-        }
-
+    public int createPost() {
         PostsAPI apiPosts = new PostsAPI();
         String content = faker.lorem().sentence(10);
         String picture = Constants.POST_DEFAULT_PICTURE;
@@ -51,20 +45,16 @@ public class BaseAPITest {
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-        Constants.POST_ID = response.getBody().jsonPath().get("postId");
-        postCreated = true;
+        int postId = response.getBody().jsonPath().get("postId");
+        return postId;
     }
 
-    public void deletePostIfNeeded() {
-        if (postCreated) {
-            PostsAPI apiPosts = new PostsAPI();
-            Response response = apiPosts.deletePost(Constants.POST_ID);
+    public static void deletePost(int postId) {
+        PostsAPI apiPosts = new PostsAPI();
+        Response response = apiPosts.deletePost(postId);
 
-            int statusCode = response.getStatusCode();
-            assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-            Constants.POST_ID = -1;
-        }
-        postCreated = false;
+        int statusCode = response.getStatusCode();
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
     }
 
     public String getRandomSkill() {

@@ -1,13 +1,12 @@
 package test.cases.weare.api;
 
 import com.weare.testframework.api.CommentsAPI;
+import com.weare.testframework.api.PostsAPI;
+import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -20,16 +19,36 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CommentsAPITests extends BaseAPITest {
     private final CommentsAPI api = new CommentsAPI();
+    private static int postId = -1;
+    private static int commentId = -1;
+    private static boolean postCreated = false;
 
+    @BeforeAll
+    public static void beforeAll() {
+        postId = -1;
+        commentId = -1;
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        if (postCreated) {
+            deletePost(postId);
+            postCreated = false;
+            postId = -1;
+        }
+        commentId = -1;
+    }
+
+    @SuppressWarnings("unchecked")
     public void verifyCommentUpdate(String content) {
         Response commentsResponse =
-                api.getCommentsForPost(Constants.POST_ID, true);
+                api.getCommentsForPost(postId, true);
         JsonPath bodyJsonPath = commentsResponse.getBody().jsonPath();
         ArrayList<Object> comments = bodyJsonPath.get();
         boolean commentFound = false;
         for (Object comment: comments) {
             Map<String, Object> commentMap = (Map<String, Object>) comment;
-            if (commentMap.get("commentId").equals(Constants.COMMENT_ID)) {
+            if (commentMap.get("commentId").equals(commentId)) {
                 assertEquals(content, commentMap.get("content"));
                 commentFound = true;
                 break;
@@ -43,10 +62,15 @@ public class CommentsAPITests extends BaseAPITest {
     public void createCommentTest() {
         // Requires authentication
         authenticate();
-        createPostIfNeeded();
+
+        // Create post to comment on
+        if (postId == -1) {
+            postId = createPost();
+            postCreated = true;
+        }
 
         String content = faker.lorem().sentence(5);
-        Response response = api.createComment(content, Constants.POST_ID, Constants.USER.getUserId());
+        Response response = api.createComment(content, postId, Constants.USER.getUserId());
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -57,8 +81,8 @@ public class CommentsAPITests extends BaseAPITest {
         String commentContent = bodyJsonPath.getString("content");
         assertEquals(content, commentContent);
 
-        Constants.COMMENT_ID = bodyJsonPath.get("commentId");
-        System.out.printf("Comment with id %d was created%n%n", Constants.COMMENT_ID);
+        commentId = bodyJsonPath.get("commentId");
+        System.out.printf("Comment with id %d was created%n%n", commentId);
     }
 
     @Test
@@ -81,13 +105,13 @@ public class CommentsAPITests extends BaseAPITest {
         authenticate();
 
         String content = faker.lorem().sentence(5);
-        Response response = api.updateComment(content, Constants.COMMENT_ID);
+        Response response = api.updateComment(content, commentId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode , "Incorrect status code. Expected 200.");
 
-        System.out.printf("Comment with id %d was updated%n%n", Constants.COMMENT_ID);
         verifyCommentUpdate(content);
+        System.out.printf("Comment with id %d was updated%n%n", commentId);
     }
 
     @Test
@@ -97,13 +121,13 @@ public class CommentsAPITests extends BaseAPITest {
         authenticate(true);
 
         String content = faker.lorem().sentence(5);
-        Response response = api.updateComment(content, Constants.COMMENT_ID);
+        Response response = api.updateComment(content, commentId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
-        System.out.printf("Comment with id %d was updated by admin%n%n", Constants.POST_ID);
         verifyCommentUpdate(content);
+        System.out.printf("Comment with id %d was updated by admin%n%n", commentId);
     }
 
     @Test
@@ -112,7 +136,7 @@ public class CommentsAPITests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.likeComment(Constants.COMMENT_ID);
+        Response response = api.likeComment(commentId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -136,7 +160,7 @@ public class CommentsAPITests extends BaseAPITest {
     @Test
     @Order(2)
     public void getCommentsForPostTest() {
-        Response response = api.getCommentsForPost(Constants.POST_ID, true);
+        Response response = api.getCommentsForPost(postId, true);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -152,12 +176,9 @@ public class CommentsAPITests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.deleteComment(Constants.COMMENT_ID);
+        Response response = api.deleteComment(commentId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-        Constants.COMMENT_ID = -1;
-
-        deletePostIfNeeded();
     }
 }

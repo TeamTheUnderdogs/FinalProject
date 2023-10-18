@@ -4,6 +4,7 @@ import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.response.Response;
 
 public class CommentsAPI extends WeAreAPI {
+
     // API: Get comments
     public Response getComments() {
         return getRestAssured()

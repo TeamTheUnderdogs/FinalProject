@@ -5,10 +5,7 @@ import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -22,6 +19,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PostsAPITests extends BaseAPITest {
     private final PostsAPI api = new PostsAPI();
 
+    private static int postId = -1;
+
+    @BeforeAll
+    public static void beforeAll() {
+        postId = -1;
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        postId = -1;
+    }
+
+    @SuppressWarnings("unchecked")
     public void verifyPostUpdate(String content, String picture, boolean isPublic) {
         Response response =
                 api.getPosts(true);
@@ -30,7 +40,7 @@ public class PostsAPITests extends BaseAPITest {
         boolean postFound = false;
         for (Object post: posts) {
             Map<String, Object> postMap = (Map<String, Object>) post;
-            if (postMap.get("postId").equals(Constants.POST_ID)) {
+            if (postMap.get("postId").equals(postId)) {
                 assertEquals(content, postMap.get("content"));
                 assertEquals(picture, postMap.get("picture"));
                 assertEquals(isPublic, postMap.get("public"));
@@ -66,9 +76,9 @@ public class PostsAPITests extends BaseAPITest {
         assertEquals(picture, postPicture);
         assertEquals(isPublic, postPublic);
 
-        Constants.POST_ID = bodyJsonPath.get("postId");
+        postId = bodyJsonPath.get("postId");
 
-        System.out.printf("Post with id %d was created%n%n", Constants.POST_ID);
+        System.out.printf("Post with id %d was created%n%n", postId);
     }
 
     @Test
@@ -94,14 +104,14 @@ public class PostsAPITests extends BaseAPITest {
         String picture = Constants.POST_DEFAULT_PICTURE;
         boolean isPublic = Constants.POST_PUBLIC;
 
-        Response response = api.updatePost(Constants.POST_ID,
+        Response response = api.updatePost(postId,
                 new PostModel(content, picture, isPublic));
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         verifyPostUpdate(content, picture, isPublic);
-        System.out.printf("Post with id %d was updated%n%n", Constants.POST_ID);
+        System.out.printf("Post with id %d was updated%n%n", postId);
     }
 
     @Test
@@ -115,13 +125,13 @@ public class PostsAPITests extends BaseAPITest {
         boolean isPublic = Constants.POST_PUBLIC;
 
         Response response = api.updatePost(true,
-                Constants.POST_ID, new PostModel(content, picture, isPublic));
+                postId, new PostModel(content, picture, isPublic));
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         verifyPostUpdate(content, picture, isPublic);
-        System.out.printf("Post with id %d was updated by admin%n%n", Constants.POST_ID);
+        System.out.printf("Post with id %d was updated by admin%n%n", postId);
     }
 
     @Test
@@ -130,7 +140,7 @@ public class PostsAPITests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.likePost(Constants.POST_ID);
+        Response response = api.likePost(postId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -154,7 +164,7 @@ public class PostsAPITests extends BaseAPITest {
     @Test
     @Order(2)
     public void getCommentsForPostTest() {
-        Response response = api.getCommentsForPost(Constants.POST_ID);
+        Response response = api.getCommentsForPost(postId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
@@ -166,10 +176,9 @@ public class PostsAPITests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.deletePost(Constants.POST_ID);
+        Response response = api.deletePost(postId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-        Constants.POST_ID = -1;
     }
 }

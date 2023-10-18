@@ -19,6 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SkillsAPITests extends BaseAPITest {
     private final SkillsAPI api = new SkillsAPI();
 
+    public static int skillId = -1;
+
+    public static String currentSkill;
+
     @Test
     @Order(1)
     public void createSkillTest() {
@@ -26,7 +30,7 @@ public class SkillsAPITests extends BaseAPITest {
         authenticate();
 
         String skill = getRandomSkill();
-        Constants.SKILL = skill;
+        currentSkill = skill;
         Response response = api.createSkill(Constants.CATEGORY_ALL, skill);
 
         int statusCode = response.getStatusCode();
@@ -40,9 +44,9 @@ public class SkillsAPITests extends BaseAPITest {
         assertEquals(skill, skillSkill);
         assertEquals(Constants.CATEGORY_ALL.getId(), categoryId);
 
-        Constants.SKILL_ID = bodyJsonPath.get("skillId");
+        skillId = bodyJsonPath.get("skillId");
 
-        System.out.printf("Skill with id %d was created%n%n", Constants.SKILL_ID);
+        System.out.printf("Skill with id %d was created%n%n", skillId);
     }
 
     @Test
@@ -61,17 +65,17 @@ public class SkillsAPITests extends BaseAPITest {
     @Test
     @Order(2)
     public void getSkillTest() {
-        Response response = api.getSkill(Constants.SKILL_ID);
+        Response response = api.getSkill(skillId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
         // Response example:
         // {"skillId":116,"skill":"Leadership","category":{"id":100,"name":"All"},"hibernateLazyInitializer":{}}
         JsonPath bodyJsonPath = response.getBody().jsonPath();
-        int skillId = bodyJsonPath.get("skillId");
+        int skillIdActual = bodyJsonPath.get("skillId");
         String skill = bodyJsonPath.get("skill");
-        assertEquals(Constants.SKILL_ID, skillId);
-        assertEquals(Constants.SKILL, skill);
+        assertEquals(skillId, skillIdActual);
+        assertEquals(currentSkill, skill);
     }
 
     @Test
@@ -81,20 +85,19 @@ public class SkillsAPITests extends BaseAPITest {
         authenticate();
 
         String skill = getRandomSkill();
-        Constants.SKILL = skill;
-        Response response = api.updateSkill(Constants.SKILL_ID, skill);
+        currentSkill = skill;
+        Response response = api.updateSkill(skillId, skill);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
-        System.out.printf("Skill with id %d was updated%n%n", Constants.SKILL_ID);
-
         // Verify content is updated
-        Response getSkillResponse = api.getSkill(Constants.SKILL_ID);
+        Response getSkillResponse = api.getSkill(skillId);
         String updatedSkill =
                 getSkillResponse.getBody().jsonPath().get("skill");
-        assertEquals(Constants.SKILL, updatedSkill);
+        assertEquals(currentSkill, updatedSkill);
 
+        System.out.printf("Skill with id %d was updated%n%n", skillId);
     }
 
     @Test
@@ -103,10 +106,10 @@ public class SkillsAPITests extends BaseAPITest {
         // Requires authentication
         authenticate();
 
-        Response response = api.deleteSkill(Constants.SKILL_ID);
+        Response response = api.deleteSkill(skillId);
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-        Constants.SKILL_ID = -1;
+        skillId = -1;
     }
 }

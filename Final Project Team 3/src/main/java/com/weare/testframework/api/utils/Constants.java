@@ -3,9 +3,6 @@ package com.weare.testframework.api.utils;
 import com.weare.testframework.api.models.*;
 
 public class Constants {
-    public static int POST_ID = -1;
-
-    public static int COMMENT_ID = -1;
 
     // User with name Buddy and id 86 was created
     public static final int USERNAME_INDEX = 3;
@@ -20,10 +17,6 @@ public class Constants {
     public static UserModel ADMIN;
 
     public static final CategoryModel CATEGORY_ALL = new CategoryModel(100, "All");
-
-    public static int SKILL_ID = -1;
-
-    public static String SKILL;
 
     public static final PageModel PAGE = new PageModel(0, true, "", "", 10);
 
