@@ -78,7 +78,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void readCommentInPost() {
+    public void userReadCommentInPost() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
@@ -112,7 +112,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void likeComment() {
+    public void userLikeComment() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
@@ -126,7 +126,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void dislikeComment() {
+    public void userDislikeComment() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
@@ -138,7 +138,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void createPostWithOnlyText() {
+    public void userCreatePostWithOnlyText() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.createPostWithOnlyText();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
@@ -146,28 +146,28 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void createPostWithThousandCharacters() {
+    public void userCreatePostWithThousandCharacters() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.createPostWithThousandCharacters();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 
     @Test
-    public void createCommentWithThousandCharacters() {
+    public void userCreateCommentWithThousandCharacters() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.createCommentWithThousandCharacters();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
 
     @Test
-    public void editOwnPost() {
+    public void userEditOwnPost() {
         PostsPage postsPage = new PostsPage(this.actions.getDriver());
         postsPage.editOwnPost();
         this.actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 
     @Test
-    public void likeOwnPost() {
+    public void userLikeOwnPost() {
         PostsPage postsPage = new PostsPage(this.actions.getDriver());
         postsPage.likeOwnPost();
         this.actions.waitForElementVisible("postsPage.dislikePost.button", new Object[0]);
@@ -175,7 +175,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void dislikeOwnPost() {
+    public void userDislikeOwnPost() {
         PostsPage postsPage = new PostsPage(this.actions.getDriver());
         postsPage.dislikeOwnPost();
         this.actions.waitForElementVisible("postsPage.likePost.button", new Object[0]);
@@ -183,21 +183,21 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void commentOwnPost() {
+    public void userCommentOwnPost() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.commentOwnPost();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 
     @Test
-    public void deleteOwnPost() {
+    public void userDeleteOwnPost() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.deleteOwnPost();
         actions.waitForElementVisible("postPage.deletePostVerification.item");
     }
 
     @Test
-    public void editOwnComment() {
+    public void userEditOwnComment() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.editOwnComment();
     }
