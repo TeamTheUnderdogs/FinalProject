@@ -203,7 +203,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void deleteOwnComment() {
+    public void userDeleteOwnComment() {
         PostsPage postsPage = new PostsPage(actions.getDriver());
         postsPage.deleteOwnComment();
         actions.assertElementPresent("postPage.deleteComment.item");
@@ -211,7 +211,7 @@ public class PostsPageTests extends BaseTest {
     }
 
     @Test
-    public void createPublicPostWithTextAndPicture() {
+    public void userCreatePublicPostWithTextAndPicture() {
        loginPage.loginUser();
         postsPage.createPublicPostWithTextAndPicture();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
