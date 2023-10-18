@@ -24,13 +24,6 @@ public class ConnectionsAPI extends WeAreAPI {
                 .response();
     }
 
-    public Response getUserConnectionRequests(int userId, String name) {
-        String url = format("/auth/users/%s/request/", userId);
-        return getRestAssured()
-                .queryParam("name", name)
-                .get(url);
-    }
-
     public Response getUserConnectionRequests(String authUsername, String authPassword, int userId, String name) {
         Cookies authCookies = authenticateAndFetchCookies(authUsername,
                 authPassword);

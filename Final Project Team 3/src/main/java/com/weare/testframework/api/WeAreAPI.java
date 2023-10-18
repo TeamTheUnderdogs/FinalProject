@@ -107,8 +107,8 @@ public class WeAreAPI {
                 .post("authenticate");
 
         Cookies cookies = response.detailedCookies();
-        System.out.println(String.format("The authentication for user: %s, is with status code: %s.",
-                username, response.getStatusCode()));
+        System.out.printf("The authentication for user: %s, is with status code: %s.%n",
+                username, response.getStatusCode());
         // The JSESSIONID cookie is the auth one
         if (cookies.get("JSESSIONID") != null) {
             return cookies;
@@ -152,17 +152,5 @@ public class WeAreAPI {
             }
         }
         return builder.toString();
-    }
-
-    public String getRandomUsername() {
-        return faker.name().firstName();
-    }
-
-    public String getRandomPassword() {
-        return faker.internet().emailAddress();
-    }
-
-    public String getRandomEmail() {
-        return faker.internet().emailAddress();
     }
 }
