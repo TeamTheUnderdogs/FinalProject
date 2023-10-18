@@ -1,8 +1,6 @@
 package test.cases.weare.api;
 
 import com.weare.testframework.api.CommentsAPI;
-import com.weare.testframework.api.PostsAPI;
-import com.weare.testframework.api.models.PostModel;
 import com.weare.testframework.api.utils.Constants;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;

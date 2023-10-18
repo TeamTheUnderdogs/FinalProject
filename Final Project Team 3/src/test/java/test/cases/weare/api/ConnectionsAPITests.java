@@ -1,11 +1,9 @@
 package test.cases.weare.api;
 
 import com.weare.testframework.api.ConnectionsAPI;
-import com.weare.testframework.api.UsersAPI;
 import com.weare.testframework.api.WeAreAPI;
 import com.weare.testframework.api.models.UserModel;
 import com.weare.testframework.api.utils.Constants;
-import io.restassured.http.Cookies;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
