@@ -28,6 +28,7 @@ public class UsersAPITests extends BaseAPITest {
     @AfterAll
     public static void afterAll() {
         if (postCreated) {
+            authenticate();
             deletePost(postId);
         }
         postCreated = false;

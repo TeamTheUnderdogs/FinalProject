@@ -20,21 +20,25 @@ public class CommentsAPITests extends BaseAPITest {
     private static int postId = -1;
     private static int commentId = -1;
     private static boolean postCreated = false;
+    private static String commentContent;
 
     @BeforeAll
     public static void beforeAll() {
         postId = -1;
         commentId = -1;
+        commentContent = "";
     }
 
     @AfterAll
     public static void afterAll() {
         if (postCreated) {
+            authenticate();
             deletePost(postId);
             postCreated = false;
             postId = -1;
         }
         commentId = -1;
+        commentContent = "";
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +82,7 @@ public class CommentsAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         String commentContent = bodyJsonPath.getString("content");
         assertEquals(content, commentContent);
-
+        CommentsAPITests.commentContent = commentContent;
         commentId = bodyJsonPath.get("commentId");
         System.out.printf("Comment with id %d was created%n%n", commentId);
     }
@@ -108,6 +112,7 @@ public class CommentsAPITests extends BaseAPITest {
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode , "Incorrect status code. Expected 200.");
 
+        CommentsAPITests.commentContent = content;
         verifyCommentUpdate(content);
         System.out.printf("Comment with id %d was updated%n%n", commentId);
     }
@@ -124,6 +129,7 @@ public class CommentsAPITests extends BaseAPITest {
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
+        CommentsAPITests.commentContent = content;
         verifyCommentUpdate(content);
         System.out.printf("Comment with id %d was updated by admin%n%n", commentId);
     }
@@ -166,6 +172,22 @@ public class CommentsAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList<Object> comments = bodyJsonPath.get();
         assertTrue(comments.size() > 0);
+    }
+
+    @Test
+    @Order(2)
+    public void getCommentTest() {
+        Response response = api.getComment(commentId);
+
+        int statusCode = response.getStatusCode();
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
+
+        // Response example:
+        // {"commentId":166,"content":"Voluptas aut voluptatem id voluptate nemo ea saepe.","likes":[{"userId":295,"username":"Johana"...
+        JsonPath bodyJsonPath = response.getBody().jsonPath();
+        String commentContent = bodyJsonPath.getString("content");
+        assertEquals(CommentsAPITests.commentContent, commentContent);
+        assertEquals(commentId, (Integer) bodyJsonPath.get("commentId"));
     }
 
     @Test
