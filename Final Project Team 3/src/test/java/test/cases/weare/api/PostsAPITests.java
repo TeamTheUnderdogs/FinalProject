@@ -22,6 +22,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PostsAPITests extends BaseAPITest {
     private final PostsAPI api = new PostsAPI();
 
+    public void verifyPostUpdate(String content, String picture, boolean isPublic) {
+        Response response =
+                api.getPosts(true);
+        JsonPath bodyJsonPath = response.getBody().jsonPath();
+        ArrayList<Object> posts = bodyJsonPath.get();
+        boolean postFound = false;
+        for (Object post: posts) {
+            Map<String, Object> postMap = (Map<String, Object>) post;
+            if (postMap.get("postId").equals(Constants.POST_ID)) {
+                assertEquals(content, postMap.get("content"));
+                assertEquals(picture, postMap.get("picture"));
+                assertEquals(isPublic, postMap.get("public"));
+                postFound = true;
+                break;
+            }
+        }
+        assertTrue(postFound);
+    }
+
     @Test
     @Order(1)
     public void createPostTest() {
@@ -81,7 +100,28 @@ public class PostsAPITests extends BaseAPITest {
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
+        verifyPostUpdate(content, picture, isPublic);
         System.out.printf("Post with id %d was updated%n%n", Constants.POST_ID);
+    }
+
+    @Test
+    @Order(2)
+    public void adminUpdateUserPostTest() {
+        // Requires authentication
+        authenticate(true);
+
+        String content = faker.lorem().sentence(10);
+        String picture = Constants.POST_DEFAULT_PICTURE;
+        boolean isPublic = Constants.POST_PUBLIC;
+
+        Response response = api.updatePost(true,
+                Constants.POST_ID, new PostModel(content, picture, isPublic));
+
+        int statusCode = response.getStatusCode();
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
+
+        verifyPostUpdate(content, picture, isPublic);
+        System.out.printf("Post with id %d was updated by admin%n%n", Constants.POST_ID);
     }
 
     @Test
@@ -118,25 +158,6 @@ public class PostsAPITests extends BaseAPITest {
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-    }
-
-    @Test
-    @Order(2)
-    public void adminUpdateUserPostTest() {
-        // Requires authentication
-        authenticate(true);
-
-        String content = faker.lorem().sentence(10);
-        String picture = Constants.POST_DEFAULT_PICTURE;
-        boolean isPublic = Constants.POST_PUBLIC;
-
-        Response response = api.updatePost(true, Constants.POST_ID
-                , new PostModel(content, picture, isPublic));
-
-        int statusCode = response.getStatusCode();
-        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
-
-        System.out.printf("Post with id %d was updated by admin%n%n", Constants.POST_ID);
     }
 
     @Test
