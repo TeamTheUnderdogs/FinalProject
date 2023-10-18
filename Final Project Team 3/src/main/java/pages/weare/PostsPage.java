@@ -16,19 +16,19 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void browsePublicPosts() {
-       navigateToPage();
-       assertPageNavigated();
+        navigateToPage();
+        assertPageNavigated();
     }
 
-    public void browseAllPublicPosts_registered (){
-actions.waitForElementClickable("postsPage.browseAllPublicPosts.button");
-actions.clickElement("postsPage.browseAllPublicPosts.button");
+    public void browseAllPublicPosts_registered() {
+        actions.waitForElementClickable("postsPage.browseAllPublicPosts.button");
+        actions.clickElement("postsPage.browseAllPublicPosts.button");
     }
 
     public void anonymous_browsePublicPostsByCategory() {
         browsePublicPosts();
 
-        WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='name']"));
+        WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='name']"));
 
         Select dropdown = new Select(dropdownMenu);
         actions.waitForElementClickable("postsPage.chooseProfession.dropdown");
@@ -39,12 +39,12 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
 
     }
 
-    public void registered_browsePublicPostsByCategory () {
+    public void registered_browsePublicPostsByCategory() {
 
 
-        WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='name']"));
+        WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='name']"));
 //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownMenu);
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,350)", "" );
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,350)", "");
 
 
         Select dropdown = new Select(dropdownMenu);
@@ -57,7 +57,7 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
 
     }
 
-    public void explorePublicPost (){
+    public void explorePublicPost() {
 
         actions.waitForElementClickable("postsPage.exploreThisPost.button");
         actions.clickElement("postsPage.exploreThisPost.button");
@@ -92,6 +92,7 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
         actions.waitForElementClickable("postPage.showComments.button");
         actions.clickElement("postPage.showComments.button");
     }
+
     public void exploreAllPostsFromSameAuthor() {
         actions.waitForElementClickable("postPage.allPostsOfThisUser.button");
         actions.clickElement("postPage.allPostsOfThisUser.button");
@@ -127,7 +128,7 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
         actions.clickElement("homePage.addNewPost.button");
 
         actions.waitForElementClickable("postPage.dropDown.button");
-        actions.selectFromDropdownMenu("postPage.dropDown.button","Public post");
+        actions.selectFromDropdownMenu("postPage.dropDown.button", "Public post");
 
         actions.waitForElementVisible("postPage.postMessage.field");
         actions.typeValueInField(faker.lorem().characters(25), "postPage.postMessage.field");
@@ -143,7 +144,7 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
         actions.clickElement("homePage.addNewPost.button");
 
         actions.waitForElementClickable("postPage.dropDown.button");
-        actions.selectFromDropdownMenu("postPage.dropDown.button","Private post");
+        actions.selectFromDropdownMenu("postPage.dropDown.button", "Private post");
 
         actions.waitForElementVisible("postPage.postMessage.field");
         actions.typeValueInField(faker.lorem().characters(1000), "postPage.postMessage.field");
@@ -264,7 +265,7 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
 
         actions.waitForElementClickable("postPage.dropDown.button");
 
-        WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='StringListId']"));
+        WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='StringListId']"));
         Select dropdown = new Select(dropdownMenu);
         dropdown.selectByVisibleText("Delete post");
 
@@ -326,7 +327,7 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
         actions.waitForElementClickable("postPage.deleteComment.button");
         actions.clickElement("postPage.deleteComment.button");
 
-        WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='StringListId']"));
+        WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='StringListId']"));
         Select dropdown = new Select(dropdownMenu);
         dropdown.selectByVisibleText("Delete comment");
 
@@ -335,22 +336,21 @@ actions.clickElement("postsPage.browseAllPublicPosts.button");
     }
 
     public void createPublicPostWithTextAndPicture() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
 
         actions.waitForElementVisible("homePage.addNewPost.button");
         actions.clickElement("homePage.addNewPost.button");
 
         actions.waitForElementClickable("postPage.dropDown.button");
-        actions.selectFromDropdownMenu("postPage.dropDown.button","Public post");
+        actions.selectFromDropdownMenu("postPage.dropDown.button", "Public post");
 
         actions.waitForElementVisible("postPage.postMessage.field");
         actions.typeValueInField(faker.lorem().characters(25), "postPage.postMessage.field");
 
         By fileInputSelector = By.xpath("//input[@id='imagefile']");
         WebElement fileInput = driver.findElement(fileInputSelector);
-        String filePath = new File("/src/main/java/resources/testUser.jpg").getAbsolutePath();
+        String filePath = new File("src/main/java/resources/testUser.jpg").getAbsolutePath();
+        fileInput.sendKeys(filePath);
+        actions.waitForElementClickable("postPage.savePost.button");
         actions.clickElement("postPage.savePost.button");
-
     }
 }

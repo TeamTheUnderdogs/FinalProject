@@ -212,7 +212,7 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void createPublicPostWithTextAndPicture() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+       loginPage.loginUser();
         postsPage.createPublicPostWithTextAndPicture();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }

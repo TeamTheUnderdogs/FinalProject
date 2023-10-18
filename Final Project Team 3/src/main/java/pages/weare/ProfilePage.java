@@ -1,9 +1,14 @@
 package pages.weare;
 
 import com.weare.testframework.Utils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.io.File;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static factories.UserFactory.faker;
@@ -16,22 +21,20 @@ public class ProfilePage extends WEareBasePage {
 
     public void adminEditUserPersonalProfile() {
 
-
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
 
         actions.waitForElementVisible("profilePage.firstName.field");
         actions.clearValueInField("profilePage.firstName.field");
-        actions.typeValueInField("Test Name", "profilePage.firstName.field");
+        actions.typeValueInField(user.getFirstName(), "profilePage.firstName.field");
 
         actions.waitForElementVisible("profilePage.lastName.field");
         actions.clearValueInField("profilePage.lastName.field");
         actions.typeValueInField(user.getLastName(), "profilePage.lastName.field");
 
         actions.waitForElementVisible("profilePage.birthday.field");
-        actions.clearValueInField("profilePage.birthday.field");
-        String birthdayDate = String.valueOf(LocalDate.parse(Utils.generateRandomDate(1920, 2023).toString()));
-        actions.typeValueInField(birthdayDate, "profilePage.birthday.field");
+        WebElement dateInput = driver.findElement(By.xpath("//input[@id='birthDayE']"));
+        dateInput.sendKeys("2002", Keys.TAB, "11", "11");
 
         actions.selectFromDropdownMenu("profilePage.genderSelect.menu", "FEMALE");
 
@@ -79,6 +82,24 @@ public class ProfilePage extends WEareBasePage {
 
         actions.waitForElementClickable("profilePage.updateSkillsAndAvailability.button");
         actions.clickElement("profilePage.updateSkillsAndAvailability.button");
+    }
+    public void AddProfilePicture() {
+
+        actions.waitForElementClickable("profilePage.editProfile.button");
+        actions.clickElement("profilePage.editProfile.button");
+
+        actions.waitForElementClickable("profilePage.picturePrivacy.menu");
+        actions.selectFromDropdownMenu("profilePage.picturePrivacy.menu", "public");
+
+
+        By fileInputSelector = By.xpath("//input[@type='file']");
+        WebElement fileInput = driver.findElement(fileInputSelector);
+        String filePath = new File("src/main/java/resources/testUser.jpg").getAbsolutePath();
+        fileInput.sendKeys(filePath);
+        actions.waitForElementClickable("profilePage.updatePrivacy.button");
+        actions.clickElement("profilePage.updatePrivacy.button");
+
+
     }
 }
 

@@ -16,15 +16,15 @@ public class ProfilePageTests extends BaseTest {
     ProfilePage profilePage = new ProfilePage(actions.getDriver());
 
 
-    @Test
+@Test
 
     public void adminSuccessfullyUpdateUserPersonalProfile_when_LogedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.adminViewAllUsers();
         viewAllUsersPage.adminExploreUserProfile();
         profilePage.adminEditUserPersonalProfile();
-        Assertions.assertEquals(getConfigPropertyByKey("soacial.app.editPersonalProfile.page"), getWebDriver().getCurrentUrl() ,
-                "Page not successfully navigated");
+
+        actions.assertElementPresent("profilePage.UpdateProfessionalProfile.menuTab");
     }
 
    @Test
@@ -41,6 +41,15 @@ public class ProfilePageTests extends BaseTest {
         viewAllUsersPage.adminViewAllUsers();
         viewAllUsersPage.adminExploreUserProfile();
         profilePage.EditSkills();
+        actions.assertElementPresent("profilePage.editProfile.button");
+    }
+
+    @Test
+    public void adminSuccessfullyUpdateProfilePicture_whenLoggedIn() {
+        loginPage.loginAdmin();
+        viewAllUsersPage.adminViewAllUsers();
+        viewAllUsersPage.adminExploreUserProfile();
+        profilePage.AddProfilePicture();
         actions.assertElementPresent("profilePage.editProfile.button");
     }
 }
