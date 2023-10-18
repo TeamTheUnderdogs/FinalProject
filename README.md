@@ -9,13 +9,14 @@ This repository contains the testing framework and resources for the WEare web a
 - [Project Structure](#structure)
 - [Repository Structure](#repository)
 - [Step by Step Guide](#step-by-step-guide)
+- [Tools, Languages and Framework] (#tools-languages-framework)
 - [Contributing](#contributing)
 - [Documentation](#documentation)
 - [Notes](#notes)
 
 ## [Objective](#objective)
 
-The main purpose of the test process is to verify if the Social Media web application meets defined requirements. This means that the system works to ensure that it functions reliably, securely, and effectively for its users. This involves a range of testing activities to identify and rectify potential issues before the platform is released to a wider audience.
+The main purpose of the test process is to verify if the Social Media web application meets defined requirements. This means that the web app works to ensure that it functions reliably, securely, and effectively for its users. This involves a range of testing activities to identify and rectify potential issues before the platform is released to a wider audience.
 
 ## [Testing approach](#testing)
 
@@ -98,11 +99,22 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - Navigate to the Selenium directory in the terminal.
 - Choose the desired browser.
 
+## [Tools, Languages and Framework](#tools-languages-framework)
+
+- JIRA as tracking and project tool
+- XRAY to organize test cases, execute them, and generate detailed reports on test coverage and results
+- Java 11 as the programming language used
+- Maven to build and automate the project
+- jUnit as testing framework
+- IntelliJ
+- SQL
+- 
+
 
 ## [Contributing](#contributing)
-- Elena Zlateva
-- Vladislav Ganchev
-- Denitsa Petrova
+- [Elena Zlateva Github](https://github.com/ElenaZlatevaNikolova) 
+- [Vladislav Ganchev Github](https://github.com/vladislavganchev)
+- [Denitsa Petrova Github](https://github.com/DenitsaN)
 
 ## [Documentation](#documentation)
 
