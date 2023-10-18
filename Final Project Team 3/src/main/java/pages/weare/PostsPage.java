@@ -63,7 +63,7 @@ public class PostsPage extends WEareBasePage {
         actions.clickElement("postsPage.exploreThisPost.button");
     }
 
-    public void likePublicPost() {
+    public void registered_likePublicPost() {
 
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
@@ -75,7 +75,7 @@ public class PostsPage extends WEareBasePage {
         actions.clickElement("postsPage.likePost.button");
     }
 
-    public void dislikePublicPost() {
+    public void registered_dislikePublicPost() {
 
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");

@@ -61,7 +61,7 @@ public class PostsPageTests extends BaseTest {
 
         loginPage.loginUser();
 
-        postsPage.likePublicPost();
+        postsPage.registered_likePublicPost();
         actions.assertElementPresent("postsPage.dislikePost.button");
         actions.assertElementAttribute ("postsPage.dislikePost.button",
                 "value", "Dislike");
@@ -72,7 +72,7 @@ public class PostsPageTests extends BaseTest {
     public void userDislikePublicPost() {
        loginPage.loginUser();
 
-        postsPage.dislikePublicPost();
+        postsPage.registered_dislikePublicPost();
         actions.assertElementPresent("postsPage.likePost.button");
         actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
     }
