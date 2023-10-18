@@ -51,7 +51,7 @@ public class PostsPageTests extends BaseTest {
 
     @Test
 
-    public void explorePublicPost (){
+    public void explorePublicPost_when_Logged (){
         postsPage.registered_explorePublicPost();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
