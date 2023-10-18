@@ -13,8 +13,7 @@ public class RegistrationPage extends WEareBasePage {
         super(driver, "social.app.registrationPage");
     }
 
-    User user = createUser();
-    Admin admin = createAdmin();
+
 
 
     public void registerUser () {

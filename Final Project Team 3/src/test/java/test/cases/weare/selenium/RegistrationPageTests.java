@@ -1,6 +1,6 @@
 package test.cases.weare.selenium;
 
-import com.weare.testframework.UserActions;
+
 import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.RegistrationPage;
@@ -15,10 +15,10 @@ public class RegistrationPageTests extends BaseTest {
 
 
         registrationPage.registerUser();
-        UserActions userActions = new UserActions();
-        userActions.assertElementPresent("registrationPage.updateYouProfile.button");
+
+        actions.assertElementPresent("registrationPage.updateYouProfile.button");
         LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.logoutUser();
+
     }
 
     @Test

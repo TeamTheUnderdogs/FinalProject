@@ -3,6 +3,9 @@ package pages.weare;
 import com.weare.testframework.Utils;
 import org.openqa.selenium.WebDriver;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import static factories.UserFactory.faker;
 
 public class ProfilePage extends WEareBasePage {
@@ -27,7 +30,7 @@ public class ProfilePage extends WEareBasePage {
 
         actions.waitForElementVisible("profilePage.birthday.field");
         actions.clearValueInField("profilePage.birthday.field");
-        String birthdayDate = Utils.formatBirthdayDate(faker.date().birthday());
+        String birthdayDate = String.valueOf(LocalDate.parse(Utils.generateRandomDate(1920, 2023).toString()));
         actions.typeValueInField(birthdayDate, "profilePage.birthday.field");
 
         actions.selectFromDropdownMenu("profilePage.genderSelect.menu", "FEMALE");
@@ -49,8 +52,6 @@ public class ProfilePage extends WEareBasePage {
     public void adminEditUserProfessionalProfile() {
 
 
-
-
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
 
@@ -65,18 +66,19 @@ public class ProfilePage extends WEareBasePage {
     public void EditSkills() {
 
 
-       ViewAllUsersPage viewAllUsersPage= new ViewAllUsersPage(actions.getDriver());
-       viewAllUsersPage.adminExploreUserProfile();
-
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
 
-        actions.waitForElementVisible("profilePage.professionSelect.menu");
-        actions.selectFromDropdownMenu("profilePage.professionSelect.menu", "Baker");
+        actions.waitForElementVisible("profilePage.addSkill.field");
+        actions.clearValueInField("profilePage.addSkill.field");
+        actions.typeValueInField(user.getIntroduction(),"profilePage.addSkill.field");
 
+        actions.waitForElementVisible("profilePage.weeklyAvailability.field");
+        actions.clearValueInField("profilePage.weeklyAvailability.field");
+        actions.typeValueInField("4","profilePage.weeklyAvailability.field");
 
-        actions.waitForElementClickable("profilePage.updateProfession.button");
-        actions.clickElement("profilePage.updateProfession.button");
+        actions.waitForElementClickable("profilePage.updateSkillsAndAvailability.button");
+        actions.clickElement("profilePage.updateSkillsAndAvailability.button");
     }
 }
 

@@ -12,6 +12,7 @@ import static com.weare.testframework.Utils.*;
 public class PostsPageTests extends BaseTest {
 
     PostsPage postsPage = new PostsPage(actions.getDriver());
+    LoginPage loginPage = new LoginPage(actions.getDriver());
 
 
     @Test
@@ -57,7 +58,9 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void userLikePublicPost() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+
+        loginPage.loginUser();
+
         postsPage.likePublicPost();
         actions.assertElementPresent("postsPage.dislikePost.button");
         actions.assertElementAttribute ("postsPage.dislikePost.button",
@@ -68,7 +71,7 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void userDislikePublicPost() {
        loginPage.loginUser();
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+
         postsPage.dislikePublicPost();
         actions.assertElementPresent("postsPage.likePost.button");
         actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
@@ -76,37 +79,62 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void readCommentInPost() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+        loginPage.loginUser();
+        postsPage.browsePublicPosts();
+        postsPage.browseAllPublicPosts_registered();
+        postsPage.explorePublicPost();
         postsPage.readCommentsInPost();
-        actions.assertElementPresent("postPage.showNumberOfLikes.element");
+        actions.assertElementPresent("postPage.showNumberOfLikesForComment.element");
     }
 
     @Test
-    public void exploreAllPostsFromSomeAuthor() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
-        postsPage.exploreAllPostsFromSomeAuthor();
+    public void exploreAllPostsFromSameAuthor() {
+        loginPage.loginUser();
+        postsPage.browsePublicPosts();
+        postsPage.browseAllPublicPosts_registered();
+        postsPage.explorePublicPost();
+        postsPage.exploreAllPostsFromSameAuthor();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
+
+
     }
 
     @Test
     public void exploreProfileOfThePostAuthor() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+        loginPage.loginUser();
+        postsPage.browsePublicPosts();
+        postsPage.browseAllPublicPosts_registered();
+
+        postsPage.explorePublicPost();
+
         postsPage.exploreProfileOfThePostAuthor();
         actions.assertElementPresent("profilePage.personalInformation.menu");
     }
 
     @Test
     public void likeComment() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+        loginPage.loginUser();
+        postsPage.browsePublicPosts();
+        postsPage.browseAllPublicPosts_registered();
+
+        postsPage.explorePublicPost();
+        postsPage.readCommentsInPost();
         postsPage.likeComment();
-        actions.assertElementPresent("postPage.dislikeComment");
+        actions.waitForElementClickable("postPage.dislikeComment.button");
+        actions.assertElementPresent("postPage.dislikeComment.button");
+        postsPage.dislikeComment();
     }
 
     @Test
     public void dislikeComment() {
-        PostsPage postsPage = new PostsPage(actions.getDriver());
+        loginPage.loginUser();
+        postsPage.browsePublicPosts();
+        postsPage.browseAllPublicPosts_registered();
+
+        postsPage.explorePublicPost();
+        postsPage.readCommentsInPost();
         postsPage.dislikeComment();
-        actions.assertElementPresent("postPage.likeComment");
+        actions.assertElementPresent("postPage.likeComment.button");
     }
 
     @Test

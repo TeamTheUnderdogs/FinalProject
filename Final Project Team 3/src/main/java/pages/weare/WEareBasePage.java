@@ -13,7 +13,8 @@ import static factories.UserFactory.createUser;
 
 public class WEareBasePage extends BasePage {
 
-User user = new User();
+User user = createUser();
+Admin  admin = createAdmin();
 
     public WEareBasePage(WebDriver driver, String pageUrlKey) {
         super(driver, pageUrlKey);

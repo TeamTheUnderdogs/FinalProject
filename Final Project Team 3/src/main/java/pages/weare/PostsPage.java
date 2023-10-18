@@ -1,8 +1,5 @@
 package pages.weare;
 
-import Models.User;
-import factories.UserFactory;
-import groovy.util.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +20,11 @@ public class PostsPage extends WEareBasePage {
        assertPageNavigated();
     }
 
+    public void browseAllPublicPosts_registered (){
+actions.waitForElementClickable("postsPage.browseAllPublicPosts.button");
+actions.clickElement("postsPage.browseAllPublicPosts.button");
+    }
+
     public void anonymous_browsePublicPostsByCategory() {
         browsePublicPosts();
 
@@ -38,9 +40,7 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void registered_browsePublicPostsByCategory () {
-       LoginPage loginPage =new LoginPage(actions.getDriver());
-       loginPage.loginUser();
-       browsePublicPosts();
+
 
         WebElement dropdownMenu= driver.findElement(By.xpath("//select[@id='name']"));
 //        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dropdownMenu);
@@ -58,14 +58,13 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void explorePublicPost (){
-        browsePublicPosts();
+
         actions.waitForElementClickable("postsPage.exploreThisPost.button");
         actions.clickElement("postsPage.exploreThisPost.button");
     }
 
     public void likePublicPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
+
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
 
@@ -89,41 +88,34 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void readCommentsInPost() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-        explorePublicPost();
+
         actions.waitForElementClickable("postPage.showComments.button");
         actions.clickElement("postPage.showComments.button");
     }
-    public void exploreAllPostsFromSomeAuthor() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-        explorePublicPost();
+    public void exploreAllPostsFromSameAuthor() {
         actions.waitForElementClickable("postPage.allPostsOfThisUser.button");
         actions.clickElement("postPage.allPostsOfThisUser.button");
     }
 
     public void exploreProfileOfThePostAuthor() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-        explorePublicPost();
+
+
         actions.waitForElementClickable("profilePage.seeProfile.button");
         actions.clickElement("profilePage.seeProfile.button");
 
     }
 
     public void likeComment() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-        readCommentsInPost();
-        actions.waitForElementClickable("postPage.likeComment");
-        actions.clickElement("postPage.likeComment");
+
+
+        actions.waitForElementClickable("postPage.likeComment.button");
+        actions.clickElement("postPage.likeComment.button");
     }
 
     public void dislikeComment() {
-        LoginPage loginPage = new LoginPage(actions.getDriver());
-        loginPage.loginUser();
-        readCommentsInPost();
+//        LoginPage loginPage = new LoginPage(actions.getDriver());
+//        loginPage.loginUser();
+//        readCommentsInPost();
         actions.waitForElementVisible("postPage.dislikeComment");
         actions.clickElement("postPage.dislikeComment");
     }

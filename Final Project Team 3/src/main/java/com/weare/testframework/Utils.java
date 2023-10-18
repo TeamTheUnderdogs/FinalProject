@@ -5,8 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 public class Utils {
 
@@ -34,8 +36,13 @@ public class Utils {
         return value != null ? value : key;
     }
 
-    public static String formatBirthdayDate (Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-        return formatter.format(date);
+    public static LocalDate generateRandomDate(int startYear, int endYear) {
+        Random random = new Random();
+
+        int year = startYear + random.nextInt(endYear - startYear + 1);
+        int month = 1 + random.nextInt(12);
+        int day = 1 + random.nextInt(28);
+
+        return LocalDate.of(year, month, day);
     }
 }
