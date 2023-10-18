@@ -34,4 +34,8 @@ public class Constants {
     public static final String POST_DEFAULT_PICTURE = "";
 
     public static final boolean POST_PUBLIC = true;
+
+    public static final String APPROVE_REQUEST_MESSAGE = "approved request of";
+    public static final String SEND_REQUEST_MESSAGE = "send friend request to";
+
 }

@@ -79,4 +79,9 @@ public class JSONRequests {
             "  \"picturePrivacy\": %b,\n" +
             "  \"sex\": \"%s\"\n" +
             "}";
+
+    public static final String CONNECTION_REQUEST_BODY = "{\n" +
+            "  \"id\": \"%d\",\n" +
+            "  \"username\": \"%s\"\n" +
+            "}";
 }

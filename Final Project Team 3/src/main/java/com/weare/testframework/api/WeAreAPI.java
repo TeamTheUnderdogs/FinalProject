@@ -32,6 +32,16 @@ public class WeAreAPI {
     }
 
     protected RequestSpecification getRestAssured(boolean authenticateAdmin) {
+        if (authenticateAdmin && adminAuthenticateCookies != null) {
+            return getRestAssured(adminAuthenticateCookies);
+        }
+        if (!authenticateAdmin && authenticateCookies != null) {
+            return getRestAssured(authenticateCookies);
+        }
+        return getRestAssured(null);
+    }
+
+    protected RequestSpecification getRestAssured(Cookies cookies) {
         String baseUrl = getConfigPropertyByKey("social.api.apiUrl");
         RequestSpecification requestSpecification = RestAssured
                 .given()
@@ -39,11 +49,8 @@ public class WeAreAPI {
                 .log().all()
                 .baseUri(baseUrl);
 
-        if (authenticateAdmin && adminAuthenticateCookies != null) {
-            requestSpecification.cookies(adminAuthenticateCookies);
-        }
-        if (!authenticateAdmin && authenticateCookies != null) {
-            requestSpecification.cookies(authenticateCookies);
+        if (cookies != null) {
+            requestSpecification.cookies(cookies);
         }
         return requestSpecification;
     }
@@ -78,9 +85,19 @@ public class WeAreAPI {
         }
 
         // Authorize to get cookies
+        Cookies cookies = authenticateAndFetchCookies(userModel.getUsername(), userModel.getPassword());
+        if (cookies != null) {
+            if (authenticateAdmin) {
+                adminAuthenticateCookies = cookies;
+            } else {
+                authenticateCookies = cookies;
+            }
+        }
+    }
+
+    public static Cookies authenticateAndFetchCookies(String username, String password) {
+        // Authorize to get cookies
         RestAssured.baseURI = getConfigPropertyByKey("social.api.baseUrl");
-        String username = userModel.getUsername();
-        String password = userModel.getPassword();
 
         Response response = RestAssured.given()
                 .contentType("multipart/form-data")
@@ -90,16 +107,13 @@ public class WeAreAPI {
                 .post("authenticate");
 
         Cookies cookies = response.detailedCookies();
+        System.out.println(String.format("The authentication for user: %s, is with status code: %s.",
+                username, response.getStatusCode()));
         // The JSESSIONID cookie is the auth one
         if (cookies.get("JSESSIONID") != null) {
-            if (authenticateAdmin) {
-                adminAuthenticateCookies = cookies;
-            } else {
-                authenticateCookies = cookies;
-            }
+            return cookies;
         }
-        int statusCodeAuthentication = response.getStatusCode();
-        System.out.println("The status code is:" + statusCodeAuthentication);
+        return null;
     }
 
     public static UserModel registerNewUser(String userRole) {
