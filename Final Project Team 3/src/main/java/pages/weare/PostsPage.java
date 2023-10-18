@@ -248,8 +248,8 @@ public class PostsPage extends WEareBasePage {
         String fakeMessage = faker.lorem().characters(25);
         actions.typeValueInField(fakeMessage, "postPage.commentMessage.field");
 
-        actions.waitForElementClickable("postPage.editPost.button");
-        actions.clickElement("postPage.editPost.button");
+        actions.waitForElementClickable("postPage.editComment.button");
+        actions.clickElement("postPage.editComment.button");
 
         // After editing, retrieve the edited comment's text from the webpage
         WebElement commentParagraph = driver.findElement(By.xpath("//div[@class='comment-body']/p"));
