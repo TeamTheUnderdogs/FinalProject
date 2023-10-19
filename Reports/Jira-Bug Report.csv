@@ -1,0 +1,325 @@
+﻿Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Description,Environment,Watchers,Watchers Id,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Inward issue link (Defect),Inward issue link (Defect),Inward issue link (Defect),Inward issue link (Defect),Inward issue link (Relates),Inward issue link (Relates),Attachment,Custom field (Actual end),Custom field (Actual start),Custom field (Atlas project key),Custom field (Atlas project status),Custom field (Begin Date),Custom field (Change reason),Custom field (Change risk),Custom field (Change type),Custom field (Compass),Custom field (Development),Custom field (End Date),Custom field (Impact),Custom field (Issue color),Custom field (Locked forms),Custom field (Open forms),Custom field (Rank),Custom field (Request Type),Custom field (Revision),Custom field (Severity),Sprint,Sprint,Sprint,Sprint,Sprint,Sprint,Sprint,Custom field (Start date),Custom field (Story point estimate),Custom field (Submitted forms),Custom field (Target end),Custom field (Target start),Custom field (Team),Custom field (Total forms),Custom field ([CHART] Date of First Response),Status Category
+Cannot search by Name and Email,T3FP-264,10270,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,11/Oct/23 12:47 PM,18/Oct/23 12:28 AM,18/Oct/23 12:31 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Verify the Search functionality is available|-|The Search functionality is displayed|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-108,T3FP-261,,,,,,,,,,,,,,,,,,,,,0|i001gn:,,,S1 - Critical,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,,,To Do
+There is no option to search by Email.,T3FP-263,10269,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,11/Oct/23 12:46 PM,18/Oct/23 12:28 AM,18/Oct/23 12:27 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Verify the Search functionality is available.|-|The search functionality is displayed.|-|
+|Populate the field name parameter with valid email.|[vladiTest@yahoo.com|mailto:vladiTest@yahoo.com]|The field name is populated|-|
+|Click on Search button.|-|The button is clicked. The result is presented.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-107,T3FP-261,,,,,,,,,,,,,,,,,,,,,0|i001gf:,,,S1 - Critical,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,,,To Do
+Cannot search by two parameters(Category and Name),T3FP-262,10268,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,11/Oct/23 12:44 PM,18/Oct/23 12:28 AM,18/Oct/23 12:28 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on search by profession field in the search bar|-|The search by profession field is selected|-|
+|Insert profession in the field|Accountant|The profession field is fulfil|-|
+|Click on name search field in the search bar|-|The name search field use selected|-|
+|Insert name|null null|The field is fulfil|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-261,T3FP-31,T3FP-136,,,,,,,,,,,,,,,,,,,,0|i001g7:,,,S2 - Major,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,,,To Do
+The admin cannot see the private posts.,T3FP-258,10264,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 10:32 PM,18/Oct/23 12:28 AM,18/Oct/23 12:28 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on Latest Posts button in the header menu|-|The button is clicked, the administrator is redirected to a page with list of posts|-|
+|Click on the Explore This Post button under the first private post of a user the administrator has no connection with|-|The post is open|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-159,T3FP-257,T3FP-160,T3FP-162,,,,,,,,,,,,,,,,,,,0|i001ev:,,,S2 - Major,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,,To Do
+The comment can be created with empty body.,T3FP-255,10261,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 6:57 PM,18/Oct/23 12:29 AM,18/Oct/23 12:28 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on ""Sign in"" button.|-|The ""Sign in"" page is loaded.|-|
+|Populate username field.|vladiTest|The username field is populated.|-|
+|Populate password field.|Test1234\!|The password field is populated.|-|
+|Click on ""Login"" button|-|The login is completed successfully.|-|
+|Navigate to the Header menu and select ""Latest posts"" button.|-|The Posts page is loaded.|-|
+|Scroll down to the public posts, and choose one|-|The public post is visible.|-|
+|Click on ""Explore this post"" button|-|The post is loaded.|-|
+|Leave the Message box empty.|-|The message box is empty.|-|
+|Click ""Post Comment"" button.|-|Error appears that the text cannot be empty.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-250,T3FP-181,,,,,,,,,,,,,,,,,,,,,0|i001dr:,,,S3 - Moderate,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,To Do
+The Post length cannot be 1000 symbols.,T3FP-254,10260,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 6:55 PM,18/Oct/23 12:29 AM,18/Oct/23 12:29 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on ""Sign in"" button.|-|The ""Sign in"" page is loaded.|-|
+|Populate username field.|vladiTest|The username field is populated.|-|
+|Populate password field.|Test1234\!|The password field is populated.|-|
+|Click on ""Login"" button|-|The login is completed successfully.|-|
+|Navigate to the Header menu and select ""Add New post"" button.|-|The create new post page is loaded.|-|
+|Navigate to the Post visibility and select ""Public post""|-|The post visibility is set to ""Public post""|-|
+|Proceed to the message box and compose a message with a length of 1000 characters.|Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksg|The message box is populated.|-|
+|Click on ""Save post"" button|-|The post is created.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-249,T3FP-176,,,,,,,,,,,,,,,,,,,,,0|i001dj:,,,S3 - Moderate,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,To Do
+The Post comment size cannot be 1000 symbols. ,T3FP-253,10259,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 6:49 PM,18/Oct/23 12:29 AM,18/Oct/23 12:29 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on ""Sign in"" button.|-|The ""Sign in"" page is loaded.|-|
+|Populate username field.|vladiTest|The username field is populated.|-|
+|Populate password field.|Test1234\!|The password field is populated.|-|
+|Click on ""Login"" button|-|The login is completed successfully.|-|
+|Navigate to the Header menu and select ""Latest posts"" button.|-|The Posts page is loaded.|-|
+|Scroll down to the public posts, and choose one|-|The public post is visible.|-|
+|Click on ""Explore this post"" button|-|The post is loaded.|-|
+|Scroll down to the message box and insert a text with a length of 1000 characters.|But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? On the other hand, we denounc|The message box is populated.|-|
+|Click ""Post Comment"" button.|-|The post is created successfully.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-179,T3FP-249,,,,,,,,,,,,,,,,,,,,,0|i001db:,,,S3 - Moderate,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,To Do
+The comment can be created with empty body.,T3FP-252,10258,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 6:46 PM,18/Oct/23 12:29 AM,18/Oct/23 12:29 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on ""Sign in"" button.|-|The ""Sign in"" page is loaded.|-|
+|Populate username field.|vladiTest|The username field is populated.|-|
+|Populate password field.|Test1234\!|The password field is populated.|-|
+|Click on ""Login"" button|-|The login is completed successfully.|-|
+|Navigate to the Header menu and select ""Add New post"" button.|-|The create new post page is loaded.|-|
+|Navigate to the Post visibility and select ""Public post""|-|The post visibility is set to ""Public post""|-|
+|Leave the message box empty.|-|The message box is empty.|-|
+|Click on ""Save post"" button|-|Error appears that the message box cannot be empty.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-178,T3FP-249,,,,,,,,,,,,,,,,,,,,,0|i001d3:,,,S3 - Moderate,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,,To Do
+There is no option to delete a user profile.,T3FP-248,10254,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 6:31 PM,18/Oct/23 12:29 AM,18/Oct/23 12:29 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on Go To Admin zone button in the header menu|-|The button is clicked, page Users Controller opens|-|
+|Click button View Users in the header menu|-|Page with the profiles of all registered users is open|-|
+|Click on See Profile button of the first user in the list|-|The button is clicked, the fill profile page is open|-|
+|Search for a Delete Profile button and click it|-|The button is clicked, the profile is deleted|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-139,T3FP-246,,,,,,,,,,,,,,,,,,,,,0|i001bj:,,,S1 - Critical,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,To Do
+"Upon updating, personal profile's birthday field shifts one day earlier than the entered date.",T3FP-247,10253,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,10/Oct/23 12:54 PM,18/Oct/23 12:30 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on ""Sign in"" button.|-|The ""Sign in"" page is loaded.|-|
+|Populate username field.|vladiTest|The username field is populated.|-|
+|Populate password field.|Test1234\!|The password field is populated.|-|
+|Click on ""Login"" button|-|The login is completed successfully.|-|
+|Navigate to the header menu, and click on ""Personal Profile"" button.|-|Personal profile page is loaded.|-|
+|Click on ""edit Profile"" button|-|The ""edit Profile"" page is loaded|-|
+|Populate First Name field|Vladislav|The Personal Profile details are populated.|-|
+|Populate Last Name field.|Ganchev|The Last Name field is populated.|-|
+|Populate the Birth field.|01/01/1990|The Birth field is populated.|-|
+|Click ""Update My Profile"" button|-|The Personal profile is updated.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-125,T3FP-245,,,,,,,,,,,,,,,,,,,,,0|i001bb:,,,S4 - Low,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,,To Do
+User can register with 30-character username despite 20-character limit.,T3FP-228,10234,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,09/Oct/23 6:46 PM,18/Oct/23 12:30 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on button Register on the top right on the header.|-|The anonymous user successfully is redirected to Register section.|-|
+|Type username with 30 characters.|TestAccountForWearePrasdsaderw|Тhe username is entered successfully.|-|
+|Type valid email.|testEmailAbv@gmail.com|The valid email is entered successfully.|-|
+|Type valid password.|TestPass123\!|The valid password is entered successfully.|-|
+|Type confirm valid password.|TestPass123\!|The valid password is entered successfully.|-|
+|Choose a profession from the drop down menu.|Accountant|A profession is chosen successfully from the drop down menu.|-|
+|Click on button Register.|-|The user should not be able to log in.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-109,T3FP-214,,,,,,,,,,,,,,,,,,,,,0|i0017r:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+User registration with 31-character username returns whitelabel page instead of exception popup.,T3FP-227,10233,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,09/Oct/23 6:42 PM,18/Oct/23 12:24 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on button Register on the top right on the header.|-|The anonymous user successfully is redirected to Register section.|-|
+|Type username with 31 characters.|TestAccountForWearePrasdsaderwa|Тhe username is entered successfully.|-|
+|Type valid email.|testEmailAbv@gmail.com|The valid email is entered successfully.|-|
+|Type valid password.|TestPass123\!|The valid password is entered successfully.|-|
+|Type confirm valid password.|TestPass123\!|The valid password is entered successfully.|-|
+|Choose a profession from the drop down menu.|Accountant|A profession is chosen successfully from the drop down menu.|-|
+|Click on button Register.|-|The user should not be able to log in.|-|",,Vladislav Ganchev,712020:f4464b7e-507f-4752-9c8a-f1b8163a1021,,,,,,,,,T3FP-214,T3FP-110,,,,,,,,,,,,,,,,,,,,,0|i0017j:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+User Registered with 100 symbols password,T3FP-226,10232,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 6:22 PM,18/Oct/23 12:24 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username.|teststss|The field is populated.|-|
+|Populate the email field with valid email.|teststss@abv.bg|The field is populated.|-|
+|Populate the Password field with a password which contains 100 characters, and no capital letter and special symbols.|hgffhgfhgfhgfhgfhgfhffhgfhgfhgfhgfhgfhgfhgfhgfhghgfhgfhgfhgfdfsxfdsfdsfdsfdsfdsfdsfdsfdsdfsfdsfdsasg|The field is populated.|-|
+|Populate the field Validate Password with the same password which contains 100 characters, and no capital letter and special symbols.|hgffhgfhgfhgfhgfhgfhffhgfhgfhgfhgfhgfhgfhgfhgfhghgfhgfhgfhgfdfsxfdsfdsfdsfdsfdsfdsfdsfdsdfsfdsfdsasg|The field is populated.|-|
+|Choose a professional category from the dropdown menu.|-|The chosen category is displayed.|-|
+|Click the button Register.|-|The button is clicked, the user is not redirected. An error is shown.|-|
+Actual result: The user is registered successfully","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-51,T3FP-214,,,,,09/Oct/23 6:22 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Successfull Registration.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10015,,,,,,,,,,,,,,,,0|i0017b:,,,S1 - Critical,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+User registered with shorter password than the requirements,T3FP-225,10231,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 6:15 PM,18/Oct/23 12:24 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username.|test|The field is populated.|-|
+|Populate the email field with valid email.|testem@abv.bg|The field is populated.|-|
+|Populate the Password field with a password which contains 6 characters and no capital letter and special symbols|abcdef|The field is populated.|-|
+|Populate the Confirm Password field with a password which contains 6 characters and no capital letter and special symbols|abcdef|The field is populated.|-|
+|Choose a professional category from the dropdown menu.|Actor|The chosen category is displayed.|-|
+|Click the button Register|-|The button is clicked, the pop-up with an error(password does not cover the requirements) should appear|-|
+Actual result: The user is registered successfully ","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-214,T3FP-49,,,,,09/Oct/23 6:15 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Successfull Registration.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10014,,,,,,,,,,,,,,,,0|i00173:,,,S1 - Critical,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+User registered with 21 Symbols Username with Allowed Max 20 Symbols,T3FP-224,10230,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 5:59 PM,18/Oct/23 12:24 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on button Register on the top right on the header.|-|The anonymous user successfully is redirected to Register section.|-|
+|Type username with 21 characters.|TestAccountForWearePr|Тhe username is entered successfully.|-|
+|Type valid email.|testEmailAbv@gmail.com|The valid email is entered successfully.|-|
+|Type valid password.|TestPass123\!|The valid password is entered successfully.|-|
+|Type confirm valid password.|TestPass123\!|The valid password is entered successfully.|-|
+|Choose a profession from the drop down menu.|Accountant|A profession is chosen successfully from the drop down menu.|-|
+|Click on button Register.|-|Error message for invalid username should appear|-|
+Actual Result: The user is successfully registered","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-44,T3FP-214,,,,,09/Oct/23 5:59 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Successfull Registration.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10013,,,,,,,,,,,,,,,,0|i0016v:,,,S1 - Critical,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+User successfully registered with email present in the system ,T3FP-222,10228,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 5:17 PM,18/Oct/23 12:30 AM,18/Oct/23 12:30 AM,,,0,"||*Action*||*Data*||*Expected Result*||*Actual Result*||
+|Click on ""Registration"" button|-|The registration page is loaded|-|
+|Insert username|ivanIvanov|The username is fulfil|-|
+|Insert email|vladiTest@gmail.com|The email address is fulfil|-|
+|Insert password|123456|The password field is fulfil|-|
+|Insert confirm password|123456|The confirm password field is fulfil|-|
+|Click on ""Registration"" button|-|Pop-up message with an error appear|-|
+
+Actual result: The user is registered and redirected to a Welcome page with prompt for profile update","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-214,T3FP-35,,,,,09/Oct/23 5:17 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Welcome Page.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10012,,,,,,,,,,,,,,,,0|i0016f:,,,S1 - Critical,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+Lack of Error Message for Invalid Username,T3FP-221,10227,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 5:09 PM,18/Oct/23 12:24 AM,18/Oct/23 12:30 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click on ""Registration"" button|-|The registration page is loaded|-|
+|Insert username|a|The username field is fulfil|-|
+|Insert email address|aaa123@yahoo.com|The email address is fulfil|-|
+|Insert password|Pass1234\!|The password is fulfil|-|
+|Insert confirm password|Pass1234\!|The confirm password field is fulfil|-|
+|Click Register Button|-|The button is clicked, error message for invalid username appears|-|
+Actual result: Whitelabel Error Page is open","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-214,T3FP-34,,,T3FP-34,T3FP-11,09/Oct/23 5:08 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;White label error page.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10011,,,,,,,,,,,,,,,,0|i00167:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+Registers admin with email already present in the system,T3FP-220,10226,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 4:41 PM,18/Oct/23 12:24 AM,18/Oct/23 12:31 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username, containing ""admin"".|Admind|The field is populated.|-|
+|Populate the email field with an email which is already present in the system.|[+adminb@admin.com+|mailto:adminb@admin.com]|The field is populated.|-|
+|Populate the Password field with valid password which contains the word ""admin"" in it.|admin223*|The field is populated.|-|
+|Populate the field Validate Password with the same valid password which contains the word ""admin"" in it.|admin223*|The field is populated.|-|
+|Choose a professional category from the drop-down menu.|Accountant|The chosen category is displayed.|-|
+|Click the button Register.|-|The button is clicked, error message for email already present in the system appears|-|
+Actual result: The user is registered and can log into the system, just doesn't have administrative privileges ","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-90,T3FP-214,,,T3FP-11,T3FP-90,09/Oct/23 4:41 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Registered with existing email.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10010,,,,,,,,,,,,,,,,0|i0015z:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+"Administrator not successfully registered. Logs in, but button Go To Admin Zone missing",T3FP-219,10225,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 4:08 PM,18/Oct/23 12:24 AM,18/Oct/23 12:31 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username, containing ""admin"".|ADMINrandom|The field is populated.|-|
+|Populate the email field with the email name and email domain both containing that don’t contain the word ""admin"".|[+stanislava.petrova@gmail.com+|mailto:stanislava.petrova@gmail.com]|The field is populated.|-|
+|Populate the Password field with a password that doesn’t include the word ""admin"" in it.|GoodMorning74*|The field is populated.|-|
+|Populate the field Validate Password with the same the password that doesn’t contain the word ""admin"" in it.|GoodMorning74*|The field is populated.|-|
+|Choose a professional category from the dropdown menu.|Accountant|The chosen category is displayed.|-|
+|Click the button Register.|-|The button is clicked, the user is redirected to a page with a prompt for profile update.|-|
+|Click the Sign in button|-|The button is clicked, sign in page opens|-|
+|Populate the username field with the username used for registration|ADMINrandom|The field is populated|-|
+|Populate the password filed with the password used for registration|GoodMorning74*|The field is populated|-|
+|Click the Sign in button|-|The button is clicked, the user is redirected to the Homepage|-|
+|Click on Go to the Admin Zone button.|-|An administrative part of the application opens.|-|
+Actual result: Admin button is not present in the header menu","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,,,,,T3FP-11,,09/Oct/23 4:07 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Admin Button Missing.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10009,,,,,,,,,,,,,,,,0|i0015r:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+Can not register admin with username AdminIvan. The username field doesn't distinguish between small and capital letters,T3FP-218,10224,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 4:03 PM,18/Oct/23 12:31 AM,18/Oct/23 12:31 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username, containing ""admin"".|AdminIvan|The field is populated.|-|
+|Populate the email field with the email name and email domain which don’t include the word ""admin""|[+gosho@gmail.com+|mailto:gosho@gmail.com]|The field is populated.|-|
+|Populate the Password field with valid password which includes a word ""admin""|AdminPesho123-|The field is populated.|-|
+|Populate the field Validate Password with the same valid password that includes a word ""admin""|AdminPesho123-|The field is populated.|-|
+|Choose a professional category from the dropdown menu.|Accountant|The chosen category is displayed.|-|
+|Click the button Register.|-|The button is clicked, the user is redirected to a page with a prompt for profile update.|-|","Test Environment 
+
+Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-214,T3FP-86,,,T3FP-11,,09/Oct/23 3:54 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Username Already Exists.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10008,,,,,,,,,,,,,,,,0|i0015j:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+"Administrator not successfully registered. Logs in, but button Go To Admin Zone missing",T3FP-217,10223,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 3:39 PM,18/Oct/23 12:24 AM,18/Oct/23 12:31 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username, containing ""admin"".|Adminc|The field is populated.|-|
+|Populate the email field with the email name containing ""admin"" and add different domain than ""admin"".|admin@mail.bg|The field is populated.|-|
+|Populate the Password field with valid password.|adminAdmin1^|The field is populated.|-|
+|Populate the field Validate Password with the same valid password.|adminAdmin1^|The field is populated.|-|
+|Choose a professional category from the dropdown menu.|Accountant|The chosen category is displayed.|-|
+|Click the button Register.|-|The button is clicked, the user is redirected to a page with a prompt for profile update.|-|
+|Click the Sign in button|-|The button is clicked, sign in page opens|-|
+|Populate the username field with the username used for registration|Adminc|The field is populated|-|
+|Populate the password filed with the password used for registration|adminAdmin1^|The field is populated|-|
+|Click the Sign in button|-|The button is clicked, the user is redirected to the Homepage|-|
+|Click on Go to the Admin Zone button.|-|An administrative part of the application opens.|-|","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-214,T3FP-78,,,T3FP-11,,09/Oct/23 3:39 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Admin Button Missing.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10007,,,,,,,,,,,,,,,,0|i0015b:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
+"Administrator not successfully registered. Logs in, but button Go To Admin Zone missing",T3FP-216,10222,Bug,To Do,T3FP,Team 3 Final Project,software,Denitsa Petrova,712020:21df8c04-575e-4e32-9d76-25e3f5be97b1,,Medium,,,,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,09/Oct/23 3:33 PM,18/Oct/23 12:24 AM,18/Oct/23 12:31 AM,,,0,"||Action||Data||Expected Result||Actual Result||
+|Click the Register button.|-|Registration page is open.|-|
+|Populate the username field with valid username, containing ""admin"".|Adminb|The field is populated.|-|
+|Populate the email field with email containing ""admin"".|[+adminb@admin.com+|mailto:adminb@admin.com]|The field is populated.|-|
+|Populate the Password field with a password which doesn’t contain a word ""admin"".|randomPassword123+|The field is populated.|-|
+|Populate the Confirm Password field with the same password which doesn’t contain a word ""admin"".|randomPassword123+|The field is populated.|-|
+|Choose a professional category from the dropdown menu.|Accountant|The chosen category is displayed.|-|
+|Click the button Register.|-|The button is clicked, the user is redirected to a page with a prompt for profile update.|-|
+|Click the Sign in button|-|The button is clicked, sign in page opens|-|
+|Populate the username field with the username used for registration|Adminb|The field is populated|-|
+|Populate the password filed with the password used for registration|randomPassword123+|The field is populated|-|
+|Click the Sign in button|-|The button is clicked, the user is redirected to the Homepage|-|
+|Click on Go to the Admin Zone button.|-|An administrative part of the application opens.|-|","Hardware
+•	Processor: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz   1.69 GHz
+•	Installed RAM: 16.0 GB (15.7 GB usable)
+•	System type: 64-bit operating system, x64-based processor\
+
+Browser
+•	Firefox Browser - 118.0.1 (64-bit)
+
+OS
+•	Edition	Windows 10 Home
+•	Version	22H2
+•	OS build	19045.3448
+•	Experience	Windows Feature Experience Pack 1000.19044.1000.0
+",Elena Zlateva-NIkolova,712020:7cf877e1-a58e-46e9-873a-d028eb18ada3,,,,,,,,,T3FP-214,T3FP-77,,,T3FP-11,,09/Oct/23 3:32 PM;712020:7cf877e1-a58e-46e9-873a-d028eb18ada3;Admin Button Missing.jpg;https://final-project-team-3.atlassian.net/rest/api/3/attachment/content/10006,,,,,,,,,,,,,,,,0|i00153:,,,S2 - Major,T3FP Sprint 1,T3FP Sprint 2,T3FP Sprint 3,T3FP Sprint 4,T3FP Sprint 5,T3FP Sprint 6,T3FP Sprint 7,,,,,,,,,To Do
