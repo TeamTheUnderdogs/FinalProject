@@ -7,7 +7,7 @@ import pages.weare.LoginPage;
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 import static com.weare.testframework.Utils.getWebDriver;
 
-public class LoginPageTests extends BaseTest {
+public class LoginTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage(actions.getDriver());
 

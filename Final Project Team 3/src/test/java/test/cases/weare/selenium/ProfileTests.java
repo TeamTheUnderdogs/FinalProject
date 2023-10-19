@@ -5,7 +5,7 @@ import pages.weare.LoginPage;
 import pages.weare.ProfilePage;
 import pages.weare.ViewAllUsersPage;
 
-public class ProfilePageTests extends BaseTest {
+public class ProfileTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage(actions.getDriver());
     ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
@@ -75,11 +75,10 @@ public class ProfilePageTests extends BaseTest {
     }
 
     @Test
-    public void UserSuccessfullyUpdatePersonalProfile_when_LogedIn() {
-        loginPage.loginUser();
+    public void UserSuccessfullyUpdatePersonalProfile_when_LoggedIn() {
+        loginPage.loginUserThree();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
-
         profilePage.EditUserPersonalProfile();
         actions.assertElementPresent("profilePage.UpdateProfessionalProfile.menuTab");
     }

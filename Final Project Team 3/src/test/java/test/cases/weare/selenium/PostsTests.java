@@ -9,7 +9,7 @@ import static com.weare.testframework.Utils.getConfigPropertyByKey;
 import static com.weare.testframework.Utils.getWebDriver;
 
 
-public class PostsPageTests extends BaseTest {
+public class PostsTests extends BaseTest {
 
     PostsPage postsPage = new PostsPage(actions.getDriver());
     LoginPage loginPage = new LoginPage(actions.getDriver());

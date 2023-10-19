@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.RegistrationPage;
 
-public class RegistrationPageTests extends BaseTest {
+public class RegistrationTests extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage(actions.getDriver());
 

@@ -42,6 +42,22 @@ public class LoginPage extends WEareBasePage {
         actions.waitForElementClickable("loginPage.login.button");
         actions.clickElement("loginPage.login.button");}
 
+    public void loginUserThree() {
+        String username = getConfigPropertyByKey("social.app.users.userThree.username");
+        String password = getConfigPropertyByKey("social.app.users.userThree.password");
+
+        navigateToPage();
+        assertPageNavigated();
+
+        actions.waitForElementVisible("loginPage.username.field");
+        actions.typeValueInField(username,"loginPage.username.field");
+
+        actions.waitForElementVisible("loginPage.password.field");
+        actions.typeValueInField(password,"loginPage.password.field");
+
+        actions.waitForElementClickable("loginPage.login.button");
+        actions.clickElement("loginPage.login.button");}
+
 
     public void loginAdmin() {
         String username = getConfigPropertyByKey("social.app.users.admin.username");
