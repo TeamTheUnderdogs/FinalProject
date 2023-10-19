@@ -23,7 +23,7 @@ public class ViewAllUsersTests extends BaseTest {
     }
 
     @Test
-    public void adminSuccessfullyViewUserProfile() {
+    public void adminSuccessfullyViewUserProfile_when_LoggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
         viewAllUsersPage.adminExploreUserProfile();

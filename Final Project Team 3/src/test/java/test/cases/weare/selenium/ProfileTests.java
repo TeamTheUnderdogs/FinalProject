@@ -14,7 +14,7 @@ public class ProfileTests extends BaseTest {
 
     @Test
 
-    public void adminSuccessfullyUpdateUserPersonalProfile_when_LogedIn() {
+    public void adminSuccessfullyUpdateUserPersonalProfile_when_LoggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.adminViewAllUsers();
         viewAllUsersPage.adminExploreUserProfile();
@@ -52,7 +52,7 @@ public class ProfileTests extends BaseTest {
 
     @Test
 
-    public void adminSuccessfullyDisableUserProfile() {
+    public void adminSuccessfullyDisableUserProfile_when_LoggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
         viewAllUsersPage.adminExploreUserProfile();
@@ -63,7 +63,7 @@ public class ProfileTests extends BaseTest {
     }
 
     @Test
-    public void adminSuccessfullyEnableUserProfile() {
+    public void adminSuccessfullyEnableUserProfile_when_LoggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
         viewAllUsersPage.adminExploreUserProfile();

@@ -25,7 +25,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void logoutUser_Successfully() {
+    public void logoutUser_when_logoutButtonClicked() {
         loginPage.logoutUser();
 
         Assertions.assertEquals(getConfigPropertyByKey("social.app.logoutPage"),
@@ -33,7 +33,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void logoutAdmin_Successfully() {
+    public void logoutAdmin_when_logoutButtonClicked() {
         loginPage.logoutAdmin();
 
         Assertions.assertEquals(getConfigPropertyByKey("social.app.logoutPage"),

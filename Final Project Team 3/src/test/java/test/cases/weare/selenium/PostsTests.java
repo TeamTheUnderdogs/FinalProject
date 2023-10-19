@@ -33,7 +33,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void browsePublicPostsByCategory_when_Logged() {
+    public void browsePublicPostsByCategory_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.registered_browsePublicPostsByCategory();
@@ -47,7 +47,7 @@ public class PostsTests extends BaseTest {
 
     @Test
 
-    public void explorePublicPost_when_Logged() {
+    public void explorePublicPost_when_LoggedIn() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
@@ -56,7 +56,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userLikePublicPost() {
+    public void userLikePublicPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
@@ -66,7 +66,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userDislikePublicPost() {
+    public void userDislikePublicPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
@@ -79,7 +79,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void AdminSuccessfullyEditUserPublicPost() {
+    public void AdminSuccessfullyEditUserPublicPost_when_LoggedIn() {
         loginPage.loginAdmin();
         postsPage.browseAllPublicPosts_registered();
         postsPage.registered_explorePublicPost();
@@ -89,7 +89,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void AdminSuccessfullyDeleteUserPublicPost() {
+    public void AdminSuccessfullyDeleteUserPublicPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         loginPage.loginAdmin();
@@ -102,7 +102,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userReadCommentInPost() {
+    public void userReadCommentInPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
@@ -112,7 +112,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void exploreAllPostsFromSameAuthor() {
+    public void userExploreAllPostsFromSameAuthor_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
@@ -122,7 +122,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void exploreProfileOfThePostAuthor() {
+    public void userExploreProfileOfThePostAuthor_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
@@ -132,7 +132,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userLikeComment() {
+    public void userLikeComment_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
@@ -151,7 +151,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userDislikeComment() {
+    public void userDislikeCommentByAnotherUser_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
@@ -168,7 +168,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userCreatePostWithOnlyText() {
+    public void userCreatePostWithOnlyText_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
@@ -176,14 +176,14 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userCreatePostWithThousandCharacters() {
+    public void userCreatePostWithThousandCharacters_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithThousandCharacters();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 
     @Test
-    public void userCreateCommentWithThousandCharacters() {
+    public void userCreateCommentWithThousandCharacters_when_LoggedIn() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
@@ -193,14 +193,14 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userEditOwnPost() {
+    public void userEditOwnPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.editOwnPost();
         this.actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 
     @Test
-    public void userLikeOwnPost() {
+    public void userLikeOwnPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
@@ -211,7 +211,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userDislikeOwnPost() {
+    public void userDislikeOwnPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
@@ -222,21 +222,21 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userCommentOwnPost() {
+    public void userCommentOwnPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.commentOwnPost();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 
     @Test
-    public void userDeleteOwnPost() {
+    public void userDeleteOwnPost_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.deleteOwnPost();
         actions.waitForElementVisible("postPage.deletePostVerification.item");
     }
 
     @Test
-    public void userEditOwnComment() {
+    public void userEditOwnComment_when_LoggedIn() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
@@ -248,7 +248,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userDeleteOwnComment() {
+    public void userDeleteOwnComment_when_LoggedIn() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
@@ -261,7 +261,7 @@ public class PostsTests extends BaseTest {
     }
 
     @Test
-    public void userCreatePublicPostWithTextAndPicture() {
+    public void userCreatePublicPostWithTextAndPicture_when_LoggedIn() {
         loginPage.loginUser();
         postsPage.createPublicPostWithTextAndPicture();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
