@@ -85,11 +85,26 @@ public class PostsPage extends WEareBasePage {
         actions.clickElement("postPage.editPost.button");
         actions.waitForElementVisible("postPage.postMessage.field");
         actions.typeValueInField("This post has been edite by an administrator", "postPage.postMessage.field");
+        actions.waitForElementClickable("postPage.privacy.menu");
+        actions.selectFromDropdownMenu("postPage.privacy.menu", "Public post");
 
         actions.waitForElementClickable("postPage.savePost.button");
         actions.clickElement("postPage.savePost.button");
 
 
+    }
+
+    public void adminDeletePublicPost() {
+
+        actions.waitForElementClickable("postPage.deletePost.button");
+        actions.clickElement("postPage.deletePost.button");
+
+        actions.waitForElementClickable("postPage.delete.dropdown");
+
+        actions.selectFromDropdownMenu("postPage.delete.dropdown", "Delete post");
+
+        actions.waitForElementClickable("postPage.submit.button");
+        actions.clickElement("postPage.submit.button");
     }
 
     public void readCommentsInPost() {

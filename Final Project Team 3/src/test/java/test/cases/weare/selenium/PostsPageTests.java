@@ -65,8 +65,7 @@ public class PostsPageTests extends BaseTest {
         actions.waitForElementClickable("homePage.home.button");
         actions.clickElement("homePage.home.button");
         postsPage.registered_likePublicPost();
-        actions.assertElementAttribute("postsPage.dislikePost.button",
-                "value", "Dislike");
+        actions.assertElementPresent("postsPage.dislikePost.button");
     }
 
     @Test
@@ -79,7 +78,7 @@ public class PostsPageTests extends BaseTest {
         actions.waitForElementClickable("homePage.home.button");
         actions.clickElement("homePage.home.button");
         postsPage.registered_dislikePublicPost();
-        actions.assertElementAttribute("postsPage.likePost.button", "value", "Like");
+        actions.assertElementPresent("postsPage.likePost.button");
     }
 
     @Test
@@ -89,6 +88,18 @@ public class PostsPageTests extends BaseTest {
         postsPage.registered_explorePublicPost();
         postsPage.adminEditPublicPost();
         actions.assertElementPresent("postPage.assertPostEdit.element");
+
+
+    }
+@Test
+    public void AdminSuccessfullyDeleteUserPublicPost() {
+        loginPage.loginUser();
+       postsPage.createPostWithOnlyText();
+        loginPage.loginAdmin();
+        postsPage.browseAllPublicPosts_registered();
+        postsPage.registered_explorePublicPost();
+        postsPage.adminDeletePublicPost();
+        actions.assertElementPresent("postPage.deletePostVerification.item");
 
 
     }

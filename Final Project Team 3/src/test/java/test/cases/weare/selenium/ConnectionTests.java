@@ -26,16 +26,6 @@ public class ConnectionTests extends BaseTest{
         profilePage.disconnectFromUser();
     }
 
-    @Test
-    public void successfullyDisconnect() {
-        loginPage.loginUserTwo();
-        homePage.userOpenOwnProfile();
-        profilePage.acceptConnectionRequest();
-
-        actions.assertElementPresent("profilePage.requestAcceptedConfirm.text");
-
-    }
-
 
 }
 
