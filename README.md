@@ -92,16 +92,19 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 **3. Steps to Run Rest Assured Tests:** 
 
--
-- Running REST Assured Web Service Tests
-- Ensure you have Maven installed
-- Navigate to the Rest Assured directory in the terminal
+- For a general report refer to the generated in the Reports folder in this repository
+- If you'd like to run the tests and review them manually: 
+   - Ensure you have Maven installed
+   - Navigate to the Rest Assured directory in the terminal
 
 
 **4. Steps to Run Selenium UI**
-- Ensure you have Maven installed.
-- Navigate to the Selenium directory in the terminal.
-- Choose the desired browser.
+
+- For a general report, refer to the Reports generated in the Reports folder in this repository
+- If you'd like to run and review the tests manually:
+   - Ensure you have Maven installed.
+   - Navigate to the Selenium directory in the terminal.
+   - Choose the desired browser.
 
 ## [Tools, Languages and Framework](#tools-languages-framework)
 
