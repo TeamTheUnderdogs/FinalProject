@@ -197,7 +197,7 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void userCreatePublicPostWithTextAndPicture() {
-       loginPage.loginUser();
+        loginPage.loginUser();
         postsPage.createPublicPostWithTextAndPicture();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }

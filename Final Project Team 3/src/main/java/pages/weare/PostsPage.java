@@ -239,8 +239,8 @@ public class PostsPage extends WEareBasePage {
         actions.waitForElementClickable("userPage.firstOwnPost.item");
         actions.clickElement("userPage.firstOwnPost.item");
 
-        WebElement searchBox = driver.findElement(By.xpath("//button[@class='show-comments']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
+        WebElement clickShowCommentsButton = driver.findElement(By.xpath("//button[@class='show-comments']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickShowCommentsButton);
 
         actions.waitForElementClickable("postPage.editComment.button");
         actions.clickElement("postPage.editComment.button");
@@ -248,8 +248,11 @@ public class PostsPage extends WEareBasePage {
         String fakeMessage = faker.lorem().characters(25);
         actions.typeValueInField(fakeMessage, "postPage.commentMessage.field");
 
-        actions.waitForElementClickable("postPage.editComment.button");
-        actions.clickElement("postPage.editComment.button");
+        WebElement clickEditComment = driver.findElement(By.xpath("//input[@type='submit' and @value='Edit Comment' and @class='btn py-3 px-4 btn-primary']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickEditComment);
+
+        //actions.waitForElementClickable("postPage.editComment.button");
+        //actions.clickElement("postPage.editComment.button");
 
         // After editing, retrieve the edited comment's text from the webpage
         WebElement commentParagraph = driver.findElement(By.xpath("//div[@class='comment-body']/p"));
