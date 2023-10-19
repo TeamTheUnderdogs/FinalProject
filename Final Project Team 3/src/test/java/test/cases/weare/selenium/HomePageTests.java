@@ -15,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HomePageTests extends BaseTest {
 
-
+HomePage homePage = new HomePage(actions.getDriver());
+LoginPage loginPage = new LoginPage(actions.getDriver());
     @Test
     public void anonymousSeesLoginButton_when_onHomepage() {
 
@@ -30,18 +31,32 @@ public class HomePageTests extends BaseTest {
 
 
 @Test
-    public void searchUserByCategory_as_AnonymousUser(){
+    public void searchUserByCategory_as_Anonymous(){
 
-homepage = new HomePage(actions.getDriver());
-homepage.searchUserByCategory();
+    homePage.searchUserByCategory();
     Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"), getWebDriver().getCurrentUrl() ,
             "Page not successfully navigated");
 
     Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"),
             getWebDriver().getCurrentUrl() , "Page not successfully navigated");
-
-
-
 }
+    @Test
+    public void searchUserByCategory_as_User(){
+        loginPage.loginUser();
+        homePage.searchUserByCategory();
+        Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"), getWebDriver().getCurrentUrl() ,
+                "Page not successfully navigated");
 
+        Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"),
+                getWebDriver().getCurrentUrl() , "Page not successfully navigated");
+    }
+    @Test
+    public void searchUserByName_as_Anonymous(){
+
+        homePage.searchUserByName("Darina");
+        Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"), getWebDriver().getCurrentUrl() ,
+                "Page not successfully navigated");
+
+
+    }
 }

@@ -13,6 +13,8 @@ public class ProfilePage extends WEareBasePage {
     }
 
 
+
+
     public void EditUserPersonalProfile() {
 
         actions.waitForElementClickable("profilePage.editProfile.button");
@@ -101,6 +103,34 @@ public class ProfilePage extends WEareBasePage {
     public void adminEnableProfile(){
         actions.waitForElementClickable("userPage.enableProfile.button");
         actions.clickElement("userPage.enableProfile.button");
+    }
+
+    public void sendConnectionRequest () {
+        actions.waitForElementClickable("searchPage.seeFirstProfile");
+        actions.clickElement("searchPage.seeFirstProfile");
+
+        actions.waitForElementClickable("profilePage.connect.button");
+        actions.clickElement("profilePage.connect.button");
+
+    }
+    public void acceptConnectionRequest () {
+        actions.waitForElementClickable("profilePage.newRequestsButton");
+        actions.clickElement("profilePage.newRequestsButton");
+
+        actions.waitForElementClickable("profilePage.approveRequest");
+        actions.clickElement("profilePage.approveRequest");
+
+    }
+
+    public void disconnectFromUser(){
+        actions.waitForElementClickable("searchPage.seeFirstProfile");
+        actions.clickElement("searchPage.seeFirstProfile");
+
+        actions.waitForElementClickable("profilePage.disconnect.button");
+        actions.clickElement("profilePage.disconnect.button");
+
+        actions.assertElementPresent("profilePage.connect.button");
+
     }
 }
 
