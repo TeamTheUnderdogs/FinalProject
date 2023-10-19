@@ -28,7 +28,6 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void browsePublicPostsByCategory_when_Anonymous() {
         postsPage.browsePublicPosts();
-        ;
         postsPage.anonymous_browsePublicPostsByCategory();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.postsByCategoryPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
@@ -88,7 +87,6 @@ public class PostsPageTests extends BaseTest {
         postsPage.registered_explorePublicPost();
         postsPage.adminEditPublicPost();
         actions.assertElementPresent("postPage.assertPostEdit.element");
-
 
     }
 @Test
@@ -240,22 +238,33 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void userEditOwnComment() {
         loginPage.loginUser();
+        actions.waitForElementClickable("homePage.latestPosts.button");
+        actions.clickElement("homePage.latestPosts.button");
+        postsPage.registered_explorePublicPost();
+        postsPage.createCommentWithThousandCharacters();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.editOwnComment();
     }
 
     @Test
     public void userDeleteOwnComment() {
         loginPage.loginUser();
+        actions.waitForElementClickable("homePage.latestPosts.button");
+        actions.clickElement("homePage.latestPosts.button");
+        postsPage.registered_explorePublicPost();
+        postsPage.createCommentWithThousandCharacters();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.deleteOwnComment();
         actions.assertElementPresent("postPage.deleteComment.item");
-
     }
 
     @Test
     public void userCreatePublicPostWithTextAndPicture() {
        loginPage.loginUser();
-        postsPage.createPublicPostWithTextAndPicture();
-        actions.assertElementPresent("postPage.exploreAllPosts.header");
+       postsPage.createPublicPostWithTextAndPicture();
+       actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 }
 

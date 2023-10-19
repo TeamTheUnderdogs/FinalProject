@@ -30,7 +30,6 @@ public class PostsPage extends WEareBasePage {
 
     public void anonymous_browsePublicPostsByCategory() {
         WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='name']"));
-
         Select dropdown = new Select(dropdownMenu);
         actions.waitForElementClickable("postsPage.chooseProfession.dropdown");
         dropdown.selectByVisibleText("Baker");
@@ -126,7 +125,6 @@ public class PostsPage extends WEareBasePage {
     public void likeComment() {
        // actions.waitForElementClickable("postPage.likeComment.button");
        // actions.clickElement("postPage.likeComment.button");
-
         WebElement likeComment = driver.findElement(By.xpath("//input[@value='Like']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", likeComment);
     }
@@ -134,6 +132,7 @@ public class PostsPage extends WEareBasePage {
     public void dislikeComment() {
         actions.waitForElementVisible("postPage.dislikeComment.button");
         actions.clickElement("postPage.dislikeComment.button");
+        actions.waitForElementClickable("postPage.likeComment.button");
     }
 
     public void createPostWithOnlyText() {
