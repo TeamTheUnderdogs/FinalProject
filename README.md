@@ -50,7 +50,7 @@ The Manual testing cover test plans, test cases, and related documentation per p
 
 ### 2. Postman (API Testing) ###  
 
-The Postman directory contains the collection and environment files used for API testing.
+The Postman directory contains the collection and environment files used for API testing. The tools used for generating report is Newman. Please refer to the Reports folder in this directory. 
 
 - WEare_API_Collection.json: Postman collection file with a set of requests for testing the WEare application APIs.
 - WEare_API_Environment.json: Postman environment file with environment variables and configurations for different testing environments (e.g., development, staging, production).
@@ -92,6 +92,7 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 **3. Steps to Run Rest Assured Tests:** 
 
+-
 - Running REST Assured Web Service Tests
 - Ensure you have Maven installed
 - Navigate to the Rest Assured directory in the terminal
@@ -111,6 +112,7 @@ pom.xml: Maven configuration file with dependencies required for the project.
 - [jUnit](https://junit.org/junit5/) as testing framework
 - [IntelliJ](https://www.jetbrains.com/idea/) as IDE
 - [SQL Database](https://www.freemysqlhosting.net/) as main database
+- [Newman](https://github.com/postmanlabs/newman) as tool to generate Postman Report
   
 
 ## [Contributing](#contributing)
@@ -123,9 +125,8 @@ pom.xml: Maven configuration file with dependencies required for the project.
 
 - [Test Plan](https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing)
 - [Schedule](https://docs.google.com/spreadsheets/d/1-omMXMc-DQ2R_o4HFXL12XjSKpMbJrMLg-gz9B9eyyE/edit?usp=sharing)
-- Bug test sample
-
-For detailed information and additional documentation, refer to Test Plan](https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing).
 
 
-## [Notes](#notes)
+For detailed information and additional documentation, refer to [Test Plan](https://drive.google.com/file/d/1oaedFnsmgLDLy7daQjimDlIxz8AA_KEk/view?usp=sharing).
+
+
