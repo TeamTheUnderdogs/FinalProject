@@ -62,7 +62,7 @@ The RestAssured directory contains Java classes for automated testing of REST As
 The Res Assured tests cover Java classes organized by test suites (e.g., user authentication, login registration, etc.).
 pom.xml: Maven configuration file with dependencies required for the project.
 
-### 4. Selenium (UI Testing)###
+### 4. Selenium (UI Testing)
 
 The Selenium directory contains test scripts for UI testing of the WEare web application.
 Contains Java classes for different test scenarios (e.g., login, registration, search functionality, etc.).
