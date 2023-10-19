@@ -26,6 +26,23 @@ public class LoginPage extends WEareBasePage {
         actions.waitForElementClickable("loginPage.login.button");
         actions.clickElement("loginPage.login.button");}
 
+    public void loginUserTwo() {
+        String username = getConfigPropertyByKey("social.app.users.userTwo.username");
+        String password = getConfigPropertyByKey("social.app.users.userTwo.password");
+
+        navigateToPage();
+        assertPageNavigated();
+
+        actions.waitForElementVisible("loginPage.username.field");
+        actions.typeValueInField(username,"loginPage.username.field");
+
+        actions.waitForElementVisible("loginPage.password.field");
+        actions.typeValueInField(password,"loginPage.password.field");
+
+        actions.waitForElementClickable("loginPage.login.button");
+        actions.clickElement("loginPage.login.button");}
+
+
     public void loginAdmin() {
         String username = getConfigPropertyByKey("social.app.users.admin.username");
         String password = getConfigPropertyByKey("social.app.users.admin.password");
@@ -54,5 +71,12 @@ public class LoginPage extends WEareBasePage {
         actions.waitForElementClickable("homePage.logout.button");
         actions.clickElement("homePage.logout.button");}
 
+    public void clickLogoutButton() {
+        actions.waitForElementClickable("homePage.logout.button");
+        actions.clickElement("homePage.logout.button");
     }
+
+
+}
+
 

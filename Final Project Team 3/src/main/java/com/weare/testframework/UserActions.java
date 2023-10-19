@@ -99,6 +99,7 @@ public class UserActions {
     }
 
     public void assertElementPresent(String locator) {
+
         Assertions.assertNotNull(driver.findElement(By.xpath(Utils.getUIMappingByKey(locator))),
                 format("Element with %s doesn't present.", locator));
     }
