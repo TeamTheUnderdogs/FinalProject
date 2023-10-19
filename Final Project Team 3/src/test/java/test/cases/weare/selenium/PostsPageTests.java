@@ -1,9 +1,7 @@
 package test.cases.weare.selenium;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
 import pages.weare.LoginPage;
 import pages.weare.PostsPage;
 
@@ -37,7 +35,7 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void browsePublicPostsByCategory_when_Logged() {
         loginPage.loginUser();
-       postsPage.browsePublicPosts();
+        postsPage.browsePublicPosts();
         postsPage.registered_browsePublicPostsByCategory();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.postsByCategoryPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
@@ -49,7 +47,7 @@ public class PostsPageTests extends BaseTest {
 
     @Test
 
-    public void explorePublicPost_when_Logged (){
+    public void explorePublicPost_when_Logged() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
@@ -89,10 +87,11 @@ public class PostsPageTests extends BaseTest {
         actions.assertElementPresent("postPage.assertPostEdit.element");
 
     }
-@Test
+
+    @Test
     public void AdminSuccessfullyDeleteUserPublicPost() {
         loginPage.loginUser();
-       postsPage.createPostWithOnlyText();
+        postsPage.createPostWithOnlyText();
         loginPage.loginAdmin();
         postsPage.browseAllPublicPosts_registered();
         postsPage.registered_explorePublicPost();
@@ -131,6 +130,7 @@ public class PostsPageTests extends BaseTest {
         postsPage.exploreProfileOfThePostAuthor();
         actions.assertElementPresent("profilePage.personalInformation.menu");
     }
+
     @Test
     public void userLikeComment() {
         loginPage.loginUser();
@@ -262,9 +262,9 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void userCreatePublicPostWithTextAndPicture() {
-       loginPage.loginUser();
-       postsPage.createPublicPostWithTextAndPicture();
-       actions.assertElementPresent("postPage.exploreAllPosts.header");
+        loginPage.loginUser();
+        postsPage.createPublicPostWithTextAndPicture();
+        actions.assertElementPresent("postPage.exploreAllPosts.header");
     }
 }
 

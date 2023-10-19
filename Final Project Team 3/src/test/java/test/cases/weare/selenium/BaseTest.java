@@ -2,14 +2,10 @@ package test.cases.weare.selenium;
 
 import Models.Admin;
 import Models.User;
-import com.weare.testframework.Driver;
+import com.weare.testframework.UserActions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.weare.*;
-
-import com.weare.testframework.UserActions;
 
 public class BaseTest {
 

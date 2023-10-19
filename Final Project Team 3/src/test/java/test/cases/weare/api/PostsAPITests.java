@@ -38,7 +38,7 @@ public class PostsAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList<Object> posts = bodyJsonPath.get();
         boolean postFound = false;
-        for (Object post: posts) {
+        for (Object post : posts) {
             Map<String, Object> postMap = (Map<String, Object>) post;
             if (postMap.get("postId").equals(postId)) {
                 assertEquals(content, postMap.get("content"));
@@ -150,9 +150,9 @@ public class PostsAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList<Object> likes = bodyJsonPath.get("likes");
         boolean likedByUser = false;
-        for (Object like: likes) {
+        for (Object like : likes) {
             Map<String, Object> likeMap = (Map<String, Object>) like;
-            String username = (String)likeMap.get("username");
+            String username = (String) likeMap.get("username");
             if (username.equals(Constants.USER.getUsername())) {
                 likedByUser = true;
                 break;

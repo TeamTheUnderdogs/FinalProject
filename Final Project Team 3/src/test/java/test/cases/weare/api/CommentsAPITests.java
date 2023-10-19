@@ -48,7 +48,7 @@ public class CommentsAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = commentsResponse.getBody().jsonPath();
         ArrayList<Object> comments = bodyJsonPath.get();
         boolean commentFound = false;
-        for (Object comment: comments) {
+        for (Object comment : comments) {
             Map<String, Object> commentMap = (Map<String, Object>) comment;
             if (commentMap.get("commentId").equals(commentId)) {
                 assertEquals(content, commentMap.get("content"));
@@ -110,7 +110,7 @@ public class CommentsAPITests extends BaseAPITest {
         Response response = api.updateComment(content, commentId);
 
         int statusCode = response.getStatusCode();
-        assertEquals(SC_OK, statusCode , "Incorrect status code. Expected 200.");
+        assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");
 
         CommentsAPITests.commentContent = content;
         verifyCommentUpdate(content);
@@ -150,9 +150,9 @@ public class CommentsAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList<Object> likes = bodyJsonPath.get("likes");
         boolean likedByUser = false;
-        for (Object like: likes) {
+        for (Object like : likes) {
             Map<String, Object> likeMap = (Map<String, Object>) like;
-            String username = (String)likeMap.get("username");
+            String username = (String) likeMap.get("username");
             if (username.equals(Constants.USER.getUsername())) {
                 likedByUser = true;
                 break;

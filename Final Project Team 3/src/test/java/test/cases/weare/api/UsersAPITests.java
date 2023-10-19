@@ -16,7 +16,8 @@ import java.util.Date;
 
 import static com.weare.testframework.api.WeAreAPI.faker;
 import static org.apache.http.HttpStatus.SC_OK;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersAPITests extends BaseAPITest {
@@ -126,7 +127,7 @@ public class UsersAPITests extends BaseAPITest {
 
         String skill1 = getRandomSkill();
         String skill2 = getRandomSkill();
-        String[] skills = new String[] { getRandomSkill(), getRandomSkill() };
+        String[] skills = new String[]{getRandomSkill(), getRandomSkill()};
         ExpertiseModel model = new ExpertiseModel(Constants.AVAILABILITY,
                 Constants.CATEGORY_ALL,
                 Constants.USER.getUserId(),

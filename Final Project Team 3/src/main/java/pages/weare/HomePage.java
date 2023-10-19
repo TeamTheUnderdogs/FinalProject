@@ -1,6 +1,9 @@
 package pages.weare;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+
+import static com.weare.testframework.Utils.getWebDriver;
 
 public class HomePage extends WEareBasePage {
 
@@ -21,7 +24,8 @@ public class HomePage extends WEareBasePage {
 }
     public void searchUserByName (String name) {
 
-        navigateToPage();
+
+       navigateToPage();
         assertPageNavigated();
 
         actions.waitForElementVisible("homePage.searchUsersByName.field");
@@ -30,7 +34,7 @@ public class HomePage extends WEareBasePage {
         actions.waitForElementClickable("homePage.searchUsers.button");
         actions.clickElement("homePage.searchUsers.button");
 
-    }
+          }
     public void userOpenOwnProfile(){
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");

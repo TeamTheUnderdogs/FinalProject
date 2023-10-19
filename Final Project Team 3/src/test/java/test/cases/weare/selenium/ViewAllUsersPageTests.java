@@ -10,19 +10,20 @@ import static com.weare.testframework.Utils.getWebDriver;
 
 public class ViewAllUsersPageTests extends BaseTest {
 
-LoginPage loginPage = new LoginPage(actions.getDriver());
-ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
+    LoginPage loginPage = new LoginPage(actions.getDriver());
+    ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
 
     @Test
 
-    public void adminSuccessfullyViewAllUsers_when_loggedIn(){
+    public void adminSuccessfullyViewAllUsers_when_loggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.viewAllUsersPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
     }
+
     @Test
-    public void adminSuccessfullyViewUserProfile(){
+    public void adminSuccessfullyViewUserProfile() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
         viewAllUsersPage.adminExploreUserProfile();

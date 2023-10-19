@@ -78,7 +78,7 @@ public class ConnectionsAPITests extends BaseAPITest {
     @Order(3)
     public void approveTest() {
         Response response = api.approveConnectionRequest(anotherUser.getUsername(),
-            anotherUser.getPassword(), anotherUser.getUserId(), requestId, anotherUser.getUsername());
+                anotherUser.getPassword(), anotherUser.getUserId(), requestId, anotherUser.getUsername());
 
         int statusCode = response.getStatusCode();
         assertEquals(SC_OK, statusCode, "Incorrect status code. Expected 200.");

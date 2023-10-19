@@ -5,11 +5,12 @@ import pages.weare.HomePage;
 import pages.weare.LoginPage;
 import pages.weare.ProfilePage;
 
-public class ConnectionTests extends BaseTest{
+public class ConnectionTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage(actions.getDriver());
-   HomePage homePage = new HomePage(actions.getDriver());
-   ProfilePage profilePage = new ProfilePage(actions.getDriver());
+    HomePage homePage = new HomePage(actions.getDriver());
+    ProfilePage profilePage = new ProfilePage(actions.getDriver());
+
     @Test
     public void successfullyCreateConnection_between_twoUsers() {
         loginPage.loginUser();
@@ -22,6 +23,7 @@ public class ConnectionTests extends BaseTest{
         profilePage.acceptConnectionRequest();
 
         actions.assertElementPresent("profilePage.requestAcceptedConfirm.text");
+
         homePage.searchUserByName("Doychin");
         profilePage.disconnectFromUser();
     }
