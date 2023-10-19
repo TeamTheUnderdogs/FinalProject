@@ -1,13 +1,9 @@
 package test.cases.weare.selenium;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.ProfilePage;
 import pages.weare.ViewAllUsersPage;
-
-import static com.weare.testframework.Utils.getConfigPropertyByKey;
-import static com.weare.testframework.Utils.getWebDriver;
 
 public class ProfilePageTests extends BaseTest {
 
@@ -22,7 +18,7 @@ public class ProfilePageTests extends BaseTest {
         loginPage.loginAdmin();
         viewAllUsersPage.adminViewAllUsers();
         viewAllUsersPage.adminExploreUserProfile();
-        profilePage.adminEditUserPersonalProfile();
+        profilePage.EditUserPersonalProfile();
 
         actions.assertElementPresent("profilePage.UpdateProfessionalProfile.menuTab");
     }
@@ -32,7 +28,7 @@ public class ProfilePageTests extends BaseTest {
        loginPage.loginAdmin();
        viewAllUsersPage.adminViewAllUsers();
        viewAllUsersPage.adminExploreUserProfile();
-        profilePage.adminEditUserProfessionalProfile();
+        profilePage.EditUserProfessionalProfile();
         actions.assertElementPresent("profile.page.assertProfessionChanged.element");
     }
     @Test
@@ -49,6 +45,64 @@ public class ProfilePageTests extends BaseTest {
         loginPage.loginAdmin();
         viewAllUsersPage.adminViewAllUsers();
         viewAllUsersPage.adminExploreUserProfile();
+        profilePage.AddProfilePicture();
+        actions.assertElementPresent("profilePage.editProfile.button");
+    }
+
+    @Test
+
+    public void adminSuccessfullyDisableUserProfile () {
+        loginPage.loginAdmin();
+        viewAllUsersPage.navigateToPage();
+        viewAllUsersPage.adminExploreUserProfile();
+        profilePage.adminDisableProfile();
+        actions.assertElementPresent("userPage.enableProfile.button");
+        profilePage.adminEnableProfile();
+
+    }
+@Test
+    public void adminSuccessfullyEnableUserProfile () {
+        loginPage.loginAdmin();
+        viewAllUsersPage.navigateToPage();
+        viewAllUsersPage.adminExploreUserProfile();
+        profilePage.adminDisableProfile();
+        profilePage.adminEnableProfile();
+
+        actions.assertElementPresent("userPage.disableProfile.button");
+
+    }
+    @Test
+    public void UserSuccessfullyUpdatePersonalProfile_when_LogedIn() {
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
+        profilePage.EditUserPersonalProfile();
+        actions.assertElementPresent("profilePage.UpdateProfessionalProfile.menuTab");
+    }
+    @Test
+    public void UserSuccessfullyUpdateProfessionalProfile_when_LoggedIn(){
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+        profilePage.EditUserProfessionalProfile();
+        actions.assertElementPresent("profile.page.assertProfessionChanged.element");
+    }
+    @Test
+    public void UserSuccessfullyUpdateSkillsAndAvailability_when_LoggedIn(){
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+        profilePage.EditSkills();
+
+        actions.assertElementPresent("profilePage.editProfile.button");
+    }
+    @Test
+    public void UserSuccessfullyUpdateProfilePicture_whenLoggedIn() {
+        loginPage.loginUser();
+        actions.waitForElementClickable("homePage.personalProfile.button");
+        actions.clickElement("homePage.personalProfile.button");
+
         profilePage.AddProfilePicture();
         actions.assertElementPresent("profilePage.editProfile.button");
     }

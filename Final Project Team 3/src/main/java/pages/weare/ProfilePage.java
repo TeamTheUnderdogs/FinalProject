@@ -1,17 +1,11 @@
 package pages.weare;
 
-import com.weare.testframework.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
-import static factories.UserFactory.faker;
 
 public class ProfilePage extends WEareBasePage {
     public ProfilePage(WebDriver driver) {
@@ -19,7 +13,7 @@ public class ProfilePage extends WEareBasePage {
     }
 
 
-    public void adminEditUserPersonalProfile() {
+    public void EditUserPersonalProfile() {
 
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
@@ -46,14 +40,13 @@ public class ProfilePage extends WEareBasePage {
         actions.clearValueInField("profilePage.introduction.field");
         actions.typeValueInField(user.getIntroduction(), "profilePage.introduction.field");
 
-        actions.selectFromDropdownMenu("profilePage.citySelect.menu", "Plovdiv");
+        actions.selectFromDropdownMenu("profilePage.citySelect.menu", "Sofia");
 
         actions.waitForElementClickable("profilePage.updatePersonalProfile.button");
         actions.clickElement("profilePage.updatePersonalProfile.button");
     }
 
-    public void adminEditUserProfessionalProfile() {
-
+    public void EditUserProfessionalProfile() {
 
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
@@ -68,13 +61,12 @@ public class ProfilePage extends WEareBasePage {
 
     public void EditSkills() {
 
-
         actions.waitForElementClickable("profilePage.editProfile.button");
         actions.clickElement("profilePage.editProfile.button");
 
         actions.waitForElementVisible("profilePage.addSkill.field");
         actions.clearValueInField("profilePage.addSkill.field");
-        actions.typeValueInField(user.getIntroduction(),"profilePage.addSkill.field");
+        actions.typeValueInField(user.getSkill(),"profilePage.addSkill.field");
 
         actions.waitForElementVisible("profilePage.weeklyAvailability.field");
         actions.clearValueInField("profilePage.weeklyAvailability.field");
@@ -100,6 +92,15 @@ public class ProfilePage extends WEareBasePage {
         actions.clickElement("profilePage.updatePrivacy.button");
 
 
+    }
+    public void adminDisableProfile(){
+        actions.waitForElementClickable("userPage.disableProfile.button");
+        actions.clickElement("userPage.disableProfile.button");
+    }
+
+    public void adminEnableProfile(){
+        actions.waitForElementClickable("userPage.enableProfile.button");
+        actions.clickElement("userPage.enableProfile.button");
     }
 }
 

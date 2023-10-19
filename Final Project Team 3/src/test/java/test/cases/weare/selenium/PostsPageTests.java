@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.PostsPage;
 
-import static com.weare.testframework.Utils.*;
+import static com.weare.testframework.Utils.getConfigPropertyByKey;
+import static com.weare.testframework.Utils.getWebDriver;
 
 
 public class PostsPageTests extends BaseTest {
@@ -25,7 +26,8 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void browsePublicPostsByCategory_when_Anonymous() {
-        postsPage.browsePublicPosts();;
+        postsPage.browsePublicPosts();
+        ;
         postsPage.anonymous_browsePublicPostsByCategory();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.postsByCategoryPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
@@ -39,7 +41,10 @@ public class PostsPageTests extends BaseTest {
         postsPage.registered_browsePublicPostsByCategory();
         Assertions.assertEquals(getConfigPropertyByKey("social.app.postsByCategoryPage"), getWebDriver().getCurrentUrl(),
                 "Page not successfully navigated");
+
         actions.assertElementPresent("postsPage.assertSearchByCategory.element");
+
+
     }
 
     @Test
@@ -56,15 +61,26 @@ public class PostsPageTests extends BaseTest {
     public void userLikePublicPost() {
         loginPage.loginUser();
         postsPage.registered_likePublicPost();
-        actions.assertElementAttribute ("postsPage.dislikePost.button",
+        actions.assertElementAttribute("postsPage.dislikePost.button",
                 "value", "Dislike");
     }
 
     @Test
     public void userDislikePublicPost() {
-       loginPage.loginUser();
+        loginPage.loginUser();
         postsPage.registered_dislikePublicPost();
-        actions.assertElementAttribute ("postsPage.likePost.button", "value", "Like");
+        actions.assertElementAttribute("postsPage.likePost.button", "value", "Like");
+    }
+
+    @Test
+    public void AdminSuccessfullyEditUserPublicPost() {
+        loginPage.loginAdmin();
+        postsPage.browseAllPublicPosts_registered();
+        postsPage.registered_explorePublicPost();
+        postsPage.adminEditPublicPost();
+        actions.assertElementPresent("postPage.assertPostEdit.element");
+
+
     }
 
     @Test
@@ -107,6 +123,7 @@ public class PostsPageTests extends BaseTest {
         postsPage.likeComment();
         actions.waitForElementClickable("postPage.dislikeComment.button");
         actions.assertElementPresent("postPage.dislikeComment.button");
+        postsPage.dislikeComment();
     }
 
     @Test
@@ -125,6 +142,7 @@ public class PostsPageTests extends BaseTest {
         loginPage.loginUser();
         postsPage.createPostWithOnlyText();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
+
     }
 
     @Test
@@ -139,7 +157,8 @@ public class PostsPageTests extends BaseTest {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
-        postsPage.registered_explorePublicPost();;
+        postsPage.registered_explorePublicPost();
+        ;
         postsPage.createCommentWithThousandCharacters();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
@@ -155,7 +174,7 @@ public class PostsPageTests extends BaseTest {
     public void userLikeOwnPost() {
         loginPage.loginUser();
         postsPage.likeOwnPost();
-        this.actions.waitForElementVisible("postsPage.dislikePost.button", new Object[0]);
+        this.actions.waitForElementVisible("postsPage.dislikePost.button");
         this.actions.assertElementPresent("postsPage.dislikePost.button");
     }
 
@@ -163,7 +182,7 @@ public class PostsPageTests extends BaseTest {
     public void userDislikeOwnPost() {
         loginPage.loginUser();
         postsPage.dislikeOwnPost();
-        this.actions.waitForElementVisible("postsPage.likePost.button", new Object[0]);
+        this.actions.waitForElementVisible("postsPage.likePost.button");
         this.actions.assertElementPresent("postsPage.likePost.button");
     }
 
@@ -197,7 +216,7 @@ public class PostsPageTests extends BaseTest {
 
     @Test
     public void userCreatePublicPostWithTextAndPicture() {
-        loginPage.loginUser();
+       loginPage.loginUser();
         postsPage.createPublicPostWithTextAndPicture();
         actions.assertElementPresent("postPage.exploreAllPosts.header");
     }

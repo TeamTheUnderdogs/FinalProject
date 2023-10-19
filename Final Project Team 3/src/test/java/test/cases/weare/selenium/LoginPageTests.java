@@ -15,7 +15,6 @@ LoginPage loginPage = new LoginPage(actions.getDriver());
     @Test
 
     public void loginUser_when_validCredentialsProvided () {
-        loginPage= new LoginPage (actions.getDriver());
         loginPage.loginUser();
         actions.assertElementPresent("homePage.logout.button");
     }

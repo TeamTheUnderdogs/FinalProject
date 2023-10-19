@@ -21,6 +21,9 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void browseAllPublicPosts_registered() {
+
+        actions.waitForElementClickable("homePage.latestPosts.button");
+        actions.clickElement("homePage.latestPosts.button");
         actions.waitForElementClickable("postsPage.browseAllPublicPosts.button");
         actions.clickElement("postsPage.browseAllPublicPosts.button");
     }
@@ -75,6 +78,18 @@ public class PostsPage extends WEareBasePage {
 
         actions.waitForElementClickable("postsPage.dislikePost.button");
         actions.clickElement("postsPage.dislikePost.button");
+    }
+
+    public void adminEditPublicPost() {
+        actions.waitForElementClickable("postPage.editPost.button");
+        actions.clickElement("postPage.editPost.button");
+        actions.waitForElementVisible("postPage.postMessage.field");
+        actions.typeValueInField("This post has been edite by an administrator", "postPage.postMessage.field");
+
+        actions.waitForElementClickable("postPage.savePost.button");
+        actions.clickElement("postPage.savePost.button");
+
+
     }
 
     public void readCommentsInPost() {

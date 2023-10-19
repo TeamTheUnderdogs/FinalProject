@@ -22,11 +22,13 @@ ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
                 "Page not successfully navigated");
     }
     @Test
-    public void adminSuccessfullyViewUserProfile_when_loggedIn(){
+    public void adminSuccessfullyViewUserProfile(){
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
         viewAllUsersPage.adminExploreUserProfile();
 
         actions.assertElementPresent("userPage.disableProfile.button");
     }
+
+
 }
