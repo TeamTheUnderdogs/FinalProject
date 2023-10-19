@@ -93,8 +93,9 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void readCommentsInPost() {
-        actions.waitForElementClickable("postPage.showComments.button");
-        actions.clickElement("postPage.showComments.button");
+        //actions.waitForElementClickable("postPage.showComments.button");
+        WebElement showCommentsButton = driver.findElement(By.xpath("//button[@class='show-comments']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", showCommentsButton);
     }
 
     public void exploreAllPostsFromSameAuthor() {
@@ -108,8 +109,11 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void likeComment() {
-        actions.waitForElementClickable("postPage.likeComment.button");
-        actions.clickElement("postPage.likeComment.button");
+       // actions.waitForElementClickable("postPage.likeComment.button");
+       // actions.clickElement("postPage.likeComment.button");
+
+        WebElement likeComment = driver.findElement(By.xpath("//input[@value='Like']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", likeComment);
     }
 
     public void dislikeComment() {
@@ -219,8 +223,8 @@ public class PostsPage extends WEareBasePage {
         actions.waitForElementClickable("postPage.postComment.button");
         actions.clickElement("postPage.postComment.button");
 
-        WebElement searchBox = driver.findElement(By.xpath("//button[@class='show-comments']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBox);
+        WebElement showCommentsButton = driver.findElement(By.xpath("//button[@class='show-comments']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", showCommentsButton);
     }
 
     public void deleteOwnPost() {
@@ -260,6 +264,7 @@ public class PostsPage extends WEareBasePage {
         actions.waitForElementClickable("postPage.editComment.button");
         actions.clickElement("postPage.editComment.button");
 
+        actions.waitForElementPresent("postPage.commentMessage.field");
         String fakeMessage = faker.lorem().characters(25);
         actions.typeValueInField(fakeMessage, "postPage.commentMessage.field");
 

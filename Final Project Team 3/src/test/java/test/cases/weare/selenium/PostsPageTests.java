@@ -1,6 +1,7 @@
 package test.cases.weare.selenium;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import pages.weare.LoginPage;
@@ -60,6 +61,9 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void userLikePublicPost() {
         loginPage.loginUser();
+        postsPage.createPostWithOnlyText();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.registered_likePublicPost();
         actions.assertElementAttribute("postsPage.dislikePost.button",
                 "value", "Dislike");
@@ -68,6 +72,12 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void userDislikePublicPost() {
         loginPage.loginUser();
+        postsPage.createPostWithOnlyText();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
+        postsPage.registered_likePublicPost();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.registered_dislikePublicPost();
         actions.assertElementAttribute("postsPage.likePost.button", "value", "Like");
     }
@@ -112,27 +122,38 @@ public class PostsPageTests extends BaseTest {
         postsPage.exploreProfileOfThePostAuthor();
         actions.assertElementPresent("profilePage.personalInformation.menu");
     }
-
     @Test
     public void userLikeComment() {
         loginPage.loginUser();
+        postsPage.createPostWithOnlyText();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
         postsPage.registered_explorePublicPost();
         postsPage.readCommentsInPost();
+        postsPage.createCommentWithThousandCharacters();
+        postsPage.readCommentsInPost();
+        postsPage.likeComment();
+        postsPage.dislikeComment();
         postsPage.likeComment();
         actions.waitForElementClickable("postPage.dislikeComment.button");
         actions.assertElementPresent("postPage.dislikeComment.button");
-        postsPage.dislikeComment();
     }
 
     @Test
     public void userDislikeComment() {
         loginPage.loginUser();
+        postsPage.createPostWithOnlyText();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.browsePublicPosts();
         postsPage.browseAllPublicPosts_registered();
         postsPage.registered_explorePublicPost();
         postsPage.readCommentsInPost();
+        postsPage.createCommentWithThousandCharacters();
+        postsPage.readCommentsInPost();
+        postsPage.likeComment();
         postsPage.dislikeComment();
         actions.assertElementPresent("postPage.likeComment.button");
     }
@@ -158,7 +179,6 @@ public class PostsPageTests extends BaseTest {
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
         postsPage.registered_explorePublicPost();
-        ;
         postsPage.createCommentWithThousandCharacters();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
@@ -173,6 +193,9 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void userLikeOwnPost() {
         loginPage.loginUser();
+        postsPage.createPostWithOnlyText();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.likeOwnPost();
         this.actions.waitForElementVisible("postsPage.dislikePost.button");
         this.actions.assertElementPresent("postsPage.dislikePost.button");
@@ -181,6 +204,9 @@ public class PostsPageTests extends BaseTest {
     @Test
     public void userDislikeOwnPost() {
         loginPage.loginUser();
+        postsPage.createPostWithOnlyText();
+        actions.waitForElementClickable("homePage.home.button");
+        actions.clickElement("homePage.home.button");
         postsPage.dislikeOwnPost();
         this.actions.waitForElementVisible("postsPage.likePost.button");
         this.actions.assertElementPresent("postsPage.likePost.button");
