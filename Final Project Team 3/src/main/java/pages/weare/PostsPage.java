@@ -123,8 +123,8 @@ public class PostsPage extends WEareBasePage {
     }
 
     public void likeComment() {
-       // actions.waitForElementClickable("postPage.likeComment.button");
-       // actions.clickElement("postPage.likeComment.button");
+        // actions.waitForElementClickable("postPage.likeComment.button");
+        // actions.clickElement("postPage.likeComment.button");
         WebElement likeComment = driver.findElement(By.xpath("//input[@value='Like']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", likeComment);
     }

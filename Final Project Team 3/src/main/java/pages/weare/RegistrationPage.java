@@ -13,9 +13,6 @@ public class RegistrationPage extends WEareBasePage {
         super(driver, "social.app.registrationPage");
     }
 
-
-
-
     public void registerUser () {
 
         actions.waitForElementClickable("homePage.register.button");
@@ -32,7 +29,6 @@ public class RegistrationPage extends WEareBasePage {
 
         actions.waitForElementVisible("registrationPage.confirmPassword.field");
         actions.typeValueInField(user.getPassword(),"registrationPage.confirmPassword.field");
-
 
         actions.clickElement("registrationPage.register.button");
     }
@@ -78,8 +74,5 @@ public class RegistrationPage extends WEareBasePage {
         actions.waitForElementClickable("viewAllUsersPage.viewFirstProfile.button");
         actions.clickElement("viewAllUsersPage.viewFirstProfile.button");
 
-
     }
-
-
 }

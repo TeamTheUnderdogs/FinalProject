@@ -1,9 +1,6 @@
 package pages.weare;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
-
-import static com.weare.testframework.Utils.getWebDriver;
 
 public class HomePage extends WEareBasePage {
 
@@ -13,19 +10,18 @@ public class HomePage extends WEareBasePage {
     }
 
 
- public void searchUserByCategory () {
+    public void searchUserByCategory() {
 
-    actions.waitForElementVisible("homePage.searchUsersByCategory.field");
-    actions.typeValueInField("baker", "homePage.searchUsersByCategory.field");
+        actions.waitForElementVisible("homePage.searchUsersByCategory.field");
+        actions.typeValueInField("baker", "homePage.searchUsersByCategory.field");
 
-    actions.waitForElementClickable("homePage.searchUsers.button");
-    actions.clickElement("homePage.searchUsers.button");
+        actions.waitForElementClickable("homePage.searchUsers.button");
+        actions.clickElement("homePage.searchUsers.button");
+    }
 
-}
-    public void searchUserByName (String name) {
+    public void searchUserByName(String name) {
 
-
-       navigateToPage();
+        navigateToPage();
         assertPageNavigated();
 
         actions.waitForElementVisible("homePage.searchUsersByName.field");
@@ -33,14 +29,14 @@ public class HomePage extends WEareBasePage {
 
         actions.waitForElementClickable("homePage.searchUsers.button");
         actions.clickElement("homePage.searchUsers.button");
+    }
 
-          }
-    public void userOpenOwnProfile(){
+    public void userOpenOwnProfile() {
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
     }
 
-    public void clickHomeButton(){
+    public void clickHomeButton() {
 
         actions.waitForElementClickable("homePage.home.button");
         actions.clickElement("homePage.home.button");

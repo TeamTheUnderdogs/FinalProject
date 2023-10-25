@@ -1,4 +1,5 @@
 package Models;
+
 import com.github.javafaker.Lorem;
 
 import java.util.Date;
@@ -9,38 +10,31 @@ public class User {
     private String username;
     private String email;
     private String password;
-
     private String firstName;
-
     private String lastName;
-
     private String birthday;
     private String introduction;
-
     private String skill;
-
-
 
 
     public String getUsername() {
         return username;
     }
 
-       public String getEmail() {
+    public void setUsername(String username) {
+        this.username = faker.name().firstName();
+    }
+
+    public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public void setUsername(String username) {
-        this.username = faker.name().firstName() ;
-    }
-
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setPassword(String password) {

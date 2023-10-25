@@ -15,16 +15,13 @@ public class HomePageTests extends BaseTest {
 
     @Test
     public void anonymousSeesLoginButton_when_onHomepage() {
-
         actions.assertElementPresent("homePage.login.button");
     }
 
     @Test
     public void anonymousSeesRegisterButton_when_onHomepage() {
-
         actions.assertElementPresent("homePage.register.button");
     }
-
 
     @Test
     public void searchUserByCategory_as_Anonymous() {
@@ -47,6 +44,4 @@ public class HomePageTests extends BaseTest {
         Assertions.assertEquals(getConfigPropertyByKey("social.app.searchUsers.page"),
                 getWebDriver().getCurrentUrl(), "Page not successfully navigated");
     }
-
-
 }

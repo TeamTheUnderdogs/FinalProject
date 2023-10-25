@@ -1,5 +1,6 @@
 package com.weare.testframework.api;
 
+import com.weare.testframework.api.models.UserModel;
 import com.weare.testframework.api.utils.JSONRequests;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;

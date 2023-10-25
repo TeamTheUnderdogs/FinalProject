@@ -14,7 +14,6 @@ public class ViewAllUsersTests extends BaseTest {
     ViewAllUsersPage viewAllUsersPage = new ViewAllUsersPage(actions.getDriver());
 
     @Test
-
     public void adminSuccessfullyViewAllUsers_when_loggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
@@ -30,6 +29,4 @@ public class ViewAllUsersTests extends BaseTest {
 
         actions.assertElementPresent("userPage.disableProfile.button");
     }
-
-
 }

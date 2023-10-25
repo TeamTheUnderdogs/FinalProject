@@ -75,6 +75,8 @@ public class UsersAPITests extends BaseAPITest {
         JsonPath bodyJsonPath = response.getBody().jsonPath();
         ArrayList<Object> users = bodyJsonPath.get();
         assertTrue(users.size() > 0);
+        System.out.println((response.getBody().prettyPrint()));
+
     }
 
     @Test

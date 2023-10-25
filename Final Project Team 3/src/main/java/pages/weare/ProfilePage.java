@@ -13,8 +13,6 @@ public class ProfilePage extends WEareBasePage {
     }
 
 
-
-
     public void EditUserPersonalProfile() {
 
         actions.waitForElementClickable("profilePage.editProfile.button");
@@ -56,7 +54,6 @@ public class ProfilePage extends WEareBasePage {
         actions.waitForElementVisible("profilePage.professionSelect.menu");
         actions.selectFromDropdownMenu("profilePage.professionSelect.menu", "Baker");
 
-
         actions.waitForElementClickable("profilePage.updateProfession.button");
         actions.clickElement("profilePage.updateProfession.button");
     }
@@ -68,15 +65,16 @@ public class ProfilePage extends WEareBasePage {
 
         actions.waitForElementVisible("profilePage.addSkill.field");
         actions.clearValueInField("profilePage.addSkill.field");
-        actions.typeValueInField(user.getSkill(),"profilePage.addSkill.field");
+        actions.typeValueInField(user.getSkill(), "profilePage.addSkill.field");
 
         actions.waitForElementVisible("profilePage.weeklyAvailability.field");
         actions.clearValueInField("profilePage.weeklyAvailability.field");
-        actions.typeValueInField("4","profilePage.weeklyAvailability.field");
+        actions.typeValueInField("4", "profilePage.weeklyAvailability.field");
 
         actions.waitForElementClickable("profilePage.updateSkillsAndAvailability.button");
         actions.clickElement("profilePage.updateSkillsAndAvailability.button");
     }
+
     public void AddProfilePicture() {
 
         actions.waitForElementClickable("profilePage.editProfile.button");
@@ -85,27 +83,25 @@ public class ProfilePage extends WEareBasePage {
         actions.waitForElementClickable("profilePage.picturePrivacy.menu");
         actions.selectFromDropdownMenu("profilePage.picturePrivacy.menu", "public");
 
-
         By fileInputSelector = By.xpath("//input[@type='file']");
         WebElement fileInput = driver.findElement(fileInputSelector);
         String filePath = new File("src/main/java/resources/testUser.jpg").getAbsolutePath();
         fileInput.sendKeys(filePath);
         actions.waitForElementClickable("profilePage.updatePrivacy.button");
         actions.clickElement("profilePage.updatePrivacy.button");
-
-
     }
-    public void adminDisableProfile(){
+
+    public void adminDisableProfile() {
         actions.waitForElementClickable("userPage.disableProfile.button");
         actions.clickElement("userPage.disableProfile.button");
     }
 
-    public void adminEnableProfile(){
+    public void adminEnableProfile() {
         actions.waitForElementClickable("userPage.enableProfile.button");
         actions.clickElement("userPage.enableProfile.button");
     }
 
-    public void sendConnectionRequest () {
+    public void sendConnectionRequest() {
         actions.waitForElementClickable("searchPage.seeFirstProfile");
         actions.clickElement("searchPage.seeFirstProfile");
 
@@ -113,7 +109,8 @@ public class ProfilePage extends WEareBasePage {
         actions.clickElement("profilePage.connect.button");
 
     }
-    public void acceptConnectionRequest () {
+
+    public void acceptConnectionRequest() {
         actions.waitForElementClickable("profilePage.newRequestsButton");
         actions.clickElement("profilePage.newRequestsButton");
 
@@ -122,7 +119,7 @@ public class ProfilePage extends WEareBasePage {
 
     }
 
-    public void disconnectFromUser(){
+    public void disconnectFromUser() {
         actions.waitForElementClickable("searchPage.seeFirstProfile");
         actions.clickElement("searchPage.seeFirstProfile");
 
@@ -130,7 +127,6 @@ public class ProfilePage extends WEareBasePage {
         actions.clickElement("profilePage.disconnect.button");
 
         actions.assertElementPresent("profilePage.connect.button");
-
     }
 }
 

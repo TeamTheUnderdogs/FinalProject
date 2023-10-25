@@ -8,25 +8,16 @@ public class ViewAllUsersPage extends WEareBasePage {
         super(driver, "social.app.viewAllUsersPage");
     }
 
-
     ViewAllUsersPage viewAllUsersPage;
 
     public void adminViewAllUsers() {
-
         navigateToPage();
         assertPageNavigated();
     }
 
     public void adminExploreUserProfile() {
 
-
         actions.waitForElementClickable("viewAllUsersPage.viewFirstProfile.button");
         actions.clickElement("viewAllUsersPage.viewFirstProfile.button");
     }
-
-
-
-
-
-
 }

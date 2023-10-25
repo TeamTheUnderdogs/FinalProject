@@ -11,27 +11,25 @@ public class Admin {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = "admin" + faker.name().firstName();
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setUsername(String username) {
-        this.username = "admin"+faker.name().firstName();
-    }
-
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
 }
