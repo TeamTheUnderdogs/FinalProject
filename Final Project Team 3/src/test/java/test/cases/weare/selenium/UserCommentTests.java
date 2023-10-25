@@ -1,4 +1,5 @@
 package test.cases.weare.selenium;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.PostPage;
@@ -9,9 +10,13 @@ public class UserCommentTests extends BaseTest {
     LoginPage loginPage = new LoginPage(actions.getDriver());
     PostPage postPage = new PostPage(actions.getDriver());
 
+    @BeforeEach
+    public void loginUser() {
+        loginPage.loginUser();
+    }
+
     @Test
     public void userReadCommentInPost_when_LoggedIn() {
-        loginPage.loginUser();
         postsPage.browsePublicPosts();
         postsPage.registered_browseAllPublicPosts();
         postPage.registered_explorePublicPost();
@@ -20,7 +25,6 @@ public class UserCommentTests extends BaseTest {
     }
     @Test
     public void userLikeCommentByAnotherUser_when_LoggedIn() {
-        loginPage.loginUser();
         postPage.registered_createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
         actions.clickElement("homePage.home.button");
@@ -38,7 +42,6 @@ public class UserCommentTests extends BaseTest {
     }
     @Test
     public void userDislikeCommentByAnotherUser_when_LoggedIn() {
-        loginPage.loginUser();
         postPage.registered_createPostWithOnlyText();
         actions.waitForElementClickable("homePage.home.button");
         actions.clickElement("homePage.home.button");
@@ -54,7 +57,6 @@ public class UserCommentTests extends BaseTest {
     }
     @Test
     public void userCreateCommentWithThousandCharacters_when_LoggedIn() {
-        loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
         postPage.registered_explorePublicPost();
@@ -63,7 +65,6 @@ public class UserCommentTests extends BaseTest {
     }
     @Test
     public void userEditOwnComment_when_LoggedIn() {
-        loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
         postPage.registered_explorePublicPost();
@@ -74,7 +75,6 @@ public class UserCommentTests extends BaseTest {
     }
     @Test
     public void userDeleteOwnComment_when_LoggedIn() {
-        loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
         actions.clickElement("homePage.latestPosts.button");
         postPage.registered_explorePublicPost();
