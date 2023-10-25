@@ -1,21 +1,14 @@
 package models;
-
 import static factories.UserFactory.faker;
-
 public class User {
     private String username;
     private String email;
     private String password;
-
     private String firstName;
-
     private String lastName;
-
     private String birthday;
     private String introduction;
-
     private String skill;
-
 
     public String getUsername() {
         return username;
@@ -32,7 +25,6 @@ public class User {
     public void setUsername(String username) {
         this.username = faker.name().firstName();
     }
-
 
     public void setEmail(String email) {
         this.email = email;

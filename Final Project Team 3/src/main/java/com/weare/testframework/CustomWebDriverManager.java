@@ -1,5 +1,4 @@
 package com.weare.testframework;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -7,9 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
-
 public class CustomWebDriverManager {
-
     public enum CustomWebDriverManagerEnum {
         INSTANCE;
         private WebDriver driver = setupBrowser();
@@ -30,9 +27,7 @@ public class CustomWebDriverManager {
 
         private WebDriver setupBrowser() {
             String browserType = getConfigPropertyByKey("config.browserType");
-
             WebDriver driver;
-
             switch (browserType) {
                 case "chrome":
                     driver = new ChromeDriver();
@@ -49,7 +44,6 @@ public class CustomWebDriverManager {
                 default:
                     throw new RuntimeException("Browser type in config does not match any known values:" + browserType);
             }
-
             driver.manage().window().maximize();
             this.driver = driver;
             return driver;

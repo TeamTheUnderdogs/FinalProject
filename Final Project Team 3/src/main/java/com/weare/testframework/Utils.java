@@ -1,13 +1,10 @@
 package com.weare.testframework;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Properties;
-
 public class Utils {
-
     private static final Properties uiMappings = PropertiesManager.PropertiesManagerEnum.INSTANCE.getUiMappings();
     private static final Properties configProperties = PropertiesManager.PropertiesManagerEnum.INSTANCE.getConfigProperties();
     public static final Logger LOGGER = LogManager.getRootLogger();
@@ -31,5 +28,4 @@ public class Utils {
         String value = configProperties.getProperty(key);
         return value != null ? value : key;
     }
-
 }

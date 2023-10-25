@@ -1,12 +1,9 @@
 package com.weare.testframework.pages;
-
 import com.weare.testframework.UserActions;
 import com.weare.testframework.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
-
 public abstract class BasePage {
-
     protected String url;
     protected WebDriver driver;
     public UserActions actions;
@@ -28,7 +25,6 @@ public abstract class BasePage {
 
     public void assertPageNavigated() {
         String currentUrl = driver.getCurrentUrl();
-        Assertions.assertTrue(currentUrl.contains(url),
-                "Landed URL is not as expected. Actual URL: " + currentUrl + ". Expected URL: " + url);
+        Assertions.assertTrue(currentUrl.contains(url), "Landed URL is not as expected. Actual URL: " + currentUrl + ". Expected URL: " + url);
     }
 }

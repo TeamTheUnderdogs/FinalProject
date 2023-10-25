@@ -1,12 +1,10 @@
 package test.cases.weare.selenium;
-
 import org.junit.jupiter.api.Test;
 import pages.weare.HomePage;
 import pages.weare.LoginPage;
 import pages.weare.ProfilePage;
 
 public class ConnectionTests extends BaseTest {
-
     LoginPage loginPage = new LoginPage(actions.getDriver());
     HomePage homePage = new HomePage(actions.getDriver());
     ProfilePage profilePage = new ProfilePage(actions.getDriver());
@@ -21,14 +19,10 @@ public class ConnectionTests extends BaseTest {
         loginPage.loginUserTwo();
         homePage.userOpenOwnProfile();
         profilePage.acceptConnectionRequest();
-
         actions.assertElementPresent("profilePage.requestAcceptedConfirm.text");
-
         homePage.searchUserByName("Doychin");
         profilePage.disconnectFromUser();
     }
-
-
 }
 
 

@@ -1,5 +1,4 @@
 package com.weare.testframework;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +11,7 @@ import java.util.Set;
 
 import static com.weare.testframework.Utils.LOGGER;
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
-
 public class Driver implements WebDriver {
-
     private final WebDriver webDriver;
     private final WebDriverWait webDriverWait;
 
