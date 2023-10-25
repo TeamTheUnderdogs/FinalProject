@@ -97,6 +97,8 @@ public class LoginPage extends WEareBasePage {
         actions.waitForElementClickable("homePage.logout.button");
         actions.clickElement("homePage.logout.button");
     }
+
+
 }
 
 

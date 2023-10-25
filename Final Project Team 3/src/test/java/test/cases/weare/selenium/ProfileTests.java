@@ -13,14 +13,15 @@ public class ProfileTests extends BaseTest {
 
 
     @Test
+
     public void adminSuccessfullyUpdateUserPersonalProfile_when_LoggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.adminViewAllUsers();
         viewAllUsersPage.adminExploreUserProfile();
         profilePage.EditUserPersonalProfile();
+
         actions.assertElementPresent("profilePage.UpdateProfessionalProfile.menuTab");
     }
-
 
     @Test
     public void adminSuccessfullyUpdateUserProfessionalProfile_when_LoggedIn() {
@@ -31,7 +32,6 @@ public class ProfileTests extends BaseTest {
         actions.assertElementPresent("profile.page.assertProfessionChanged.element");
     }
 
-
     @Test
     public void adminSuccessfullyUpdateSkillsAndAvailability_when_LoggedIn() {
         loginPage.loginAdmin();
@@ -40,7 +40,6 @@ public class ProfileTests extends BaseTest {
         profilePage.EditSkills();
         actions.assertElementPresent("profilePage.editProfile.button");
     }
-
 
     @Test
     public void adminSuccessfullyUpdateProfilePicture_whenLoggedIn() {
@@ -51,8 +50,8 @@ public class ProfileTests extends BaseTest {
         actions.assertElementPresent("profilePage.editProfile.button");
     }
 
-
     @Test
+
     public void adminSuccessfullyDisableUserProfile_when_LoggedIn() {
         loginPage.loginAdmin();
         viewAllUsersPage.navigateToPage();
@@ -60,8 +59,8 @@ public class ProfileTests extends BaseTest {
         profilePage.adminDisableProfile();
         actions.assertElementPresent("userPage.enableProfile.button");
         profilePage.adminEnableProfile();
-    }
 
+    }
 
     @Test
     public void adminSuccessfullyEnableUserProfile_when_LoggedIn() {
@@ -70,9 +69,10 @@ public class ProfileTests extends BaseTest {
         viewAllUsersPage.adminExploreUserProfile();
         profilePage.adminDisableProfile();
         profilePage.adminEnableProfile();
-        actions.assertElementPresent("userPage.disableProfile.button");
-    }
 
+        actions.assertElementPresent("userPage.disableProfile.button");
+
+    }
 
     @Test
     public void UserSuccessfullyUpdatePersonalProfile_when_LoggedIn() {
@@ -83,7 +83,6 @@ public class ProfileTests extends BaseTest {
         actions.assertElementPresent("profilePage.UpdateProfessionalProfile.menuTab");
     }
 
-
     @Test
     public void UserSuccessfullyUpdateProfessionalProfile_when_LoggedIn() {
         loginPage.loginUser();
@@ -93,16 +92,15 @@ public class ProfileTests extends BaseTest {
         actions.assertElementPresent("profile.page.assertProfessionChanged.element");
     }
 
-
     @Test
     public void UserSuccessfullyUpdateSkillsAndAvailability_when_LoggedIn() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.personalProfile.button");
         actions.clickElement("homePage.personalProfile.button");
         profilePage.EditSkills();
+
         actions.assertElementPresent("profilePage.editProfile.button");
     }
-
 
     @Test
     public void UserSuccessfullyUpdateProfilePicture_whenLoggedIn() {

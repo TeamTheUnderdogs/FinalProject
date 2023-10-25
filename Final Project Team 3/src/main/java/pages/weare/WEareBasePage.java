@@ -1,8 +1,8 @@
 package pages.weare;
 
-import Models.Admin;
-import Models.User;
 import com.weare.testframework.pages.BasePage;
+import models.Admin;
+import models.User;
 import org.openqa.selenium.WebDriver;
 
 import static factories.AdminFactory.createAdmin;
@@ -16,5 +16,7 @@ public class WEareBasePage extends BasePage {
     public WEareBasePage(WebDriver driver, String pageUrlKey) {
         super(driver, pageUrlKey);
     }
+
+
 }
 

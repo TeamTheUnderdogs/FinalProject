@@ -17,9 +17,11 @@ public class HomePage extends WEareBasePage {
 
         actions.waitForElementClickable("homePage.searchUsers.button");
         actions.clickElement("homePage.searchUsers.button");
+
     }
 
     public void searchUserByName(String name) {
+
 
         navigateToPage();
         assertPageNavigated();
@@ -29,6 +31,7 @@ public class HomePage extends WEareBasePage {
 
         actions.waitForElementClickable("homePage.searchUsers.button");
         actions.clickElement("homePage.searchUsers.button");
+
     }
 
     public void userOpenOwnProfile() {

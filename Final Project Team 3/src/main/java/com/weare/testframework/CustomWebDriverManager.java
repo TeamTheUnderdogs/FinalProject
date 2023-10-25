@@ -6,7 +6,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-
 import static com.weare.testframework.Utils.getConfigPropertyByKey;
 
 public class CustomWebDriverManager {

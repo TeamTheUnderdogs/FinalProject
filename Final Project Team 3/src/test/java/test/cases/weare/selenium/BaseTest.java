@@ -8,6 +8,7 @@ public class BaseTest {
 
     UserActions actions = new UserActions();
 
+
     @BeforeAll
     public static void setUp() {
         UserActions.loadBrowser("social.app.homePage");

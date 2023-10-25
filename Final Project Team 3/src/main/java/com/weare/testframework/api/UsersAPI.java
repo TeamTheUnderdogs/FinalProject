@@ -10,15 +10,15 @@ import io.restassured.response.Response;
 public class UsersAPI extends WeAreAPI {
     // API: Get users
     public Response getUsers(PageModel model) {
-            String body = String.format(JSONRequests.PAGE_BODY,
-                    model.getIndex(),
-                    model.getNext(),
-                    model.getSearchParam1(),
-                    model.getSearchParam2(),
-                    model.getSize());
-            return getRestAssured()
-                    .body(body)
-                    .post("users");
+        String body = String.format(JSONRequests.PAGE_BODY,
+                model.getIndex(),
+                model.getNext(),
+                model.getSearchParam1(),
+                model.getSearchParam2(),
+                model.getSize());
+        return getRestAssured()
+                .body(body)
+                .post("users");
     }
 
     // API: Register a new user

@@ -27,6 +27,8 @@ public class ConnectionTests extends BaseTest {
         homePage.searchUserByName("Doychin");
         profilePage.disconnectFromUser();
     }
+
+
 }
 
 

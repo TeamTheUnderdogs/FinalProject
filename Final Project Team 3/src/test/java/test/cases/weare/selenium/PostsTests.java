@@ -1,6 +1,7 @@
 package test.cases.weare.selenium;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.weare.LoginPage;
 import pages.weare.PostsPage;
@@ -13,6 +14,7 @@ public class PostsTests extends BaseTest {
 
     PostsPage postsPage = new PostsPage(actions.getDriver());
     LoginPage loginPage = new LoginPage(actions.getDriver());
+
 
     @Test
     public void browsePublicPosts_when_Anonymous() {
@@ -40,10 +42,13 @@ public class PostsTests extends BaseTest {
                 "Page not successfully navigated");
 
         actions.assertElementPresent("postsPage.assertSearchByCategory.element");
+
+
     }
 
-
     @Test
+    @Tag("Login Admin")
+
     public void explorePublicPost_when_LoggedIn() {
         loginPage.loginUser();
         actions.waitForElementClickable("homePage.latestPosts.button");
@@ -51,7 +56,6 @@ public class PostsTests extends BaseTest {
         postsPage.registered_explorePublicPost();
         actions.assertElementPresent("explorePostPage.explorePost.sign");
     }
-
 
     @Test
     public void userLikePublicPost_when_LoggedIn() {
@@ -62,7 +66,6 @@ public class PostsTests extends BaseTest {
         postsPage.registered_likePublicPost();
         actions.assertElementPresent("postsPage.dislikePost.button");
     }
-
 
     @Test
     public void userDislikePublicPost_when_LoggedIn() {
@@ -77,7 +80,6 @@ public class PostsTests extends BaseTest {
         actions.assertElementPresent("postsPage.likePost.button");
     }
 
-
     @Test
     public void AdminSuccessfullyEditUserPublicPost_when_LoggedIn() {
         loginPage.loginAdmin();
@@ -85,8 +87,8 @@ public class PostsTests extends BaseTest {
         postsPage.registered_explorePublicPost();
         postsPage.adminEditPublicPost();
         actions.assertElementPresent("postPage.assertPostEdit.element");
-    }
 
+    }
 
     @Test
     public void AdminSuccessfullyDeleteUserPublicPost_when_LoggedIn() {
@@ -97,6 +99,8 @@ public class PostsTests extends BaseTest {
         postsPage.registered_explorePublicPost();
         postsPage.adminDeletePublicPost();
         actions.assertElementPresent("postPage.deletePostVerification.item");
+
+
     }
 
     @Test

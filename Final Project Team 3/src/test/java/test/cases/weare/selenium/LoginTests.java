@@ -12,6 +12,7 @@ public class LoginTests extends BaseTest {
     LoginPage loginPage = new LoginPage(actions.getDriver());
 
     @Test
+
     public void loginUser_when_validCredentialsProvided() {
         loginPage.loginUser();
         actions.assertElementPresent("homePage.logout.button");
@@ -38,4 +39,6 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(getConfigPropertyByKey("social.app.logoutPage"),
                 getWebDriver().getCurrentUrl(), "Page not successfully navigated");
     }
+
+
 }

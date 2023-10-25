@@ -1,7 +1,7 @@
 package factories;
-
-import Models.Admin;
 import com.github.javafaker.Faker;
+import models.Admin;
+
 
 public class AdminFactory {
     public static final Faker faker = new Faker();
@@ -13,6 +13,8 @@ public class AdminFactory {
         admin.setEmail(faker.internet().safeEmailAddress());
         admin.setPassword(faker.internet().password(8, 20, true, true, true));
 
+
         return admin;
+
     }
 }

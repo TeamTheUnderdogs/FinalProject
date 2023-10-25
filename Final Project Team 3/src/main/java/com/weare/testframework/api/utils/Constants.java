@@ -1,6 +1,9 @@
 package com.weare.testframework.api.utils;
 
-import com.weare.testframework.api.models.*;
+import com.weare.testframework.api.models.CategoryModel;
+import com.weare.testframework.api.models.LocationModel;
+import com.weare.testframework.api.models.PageModel;
+import com.weare.testframework.api.models.UserModel;
 
 public class Constants {
 

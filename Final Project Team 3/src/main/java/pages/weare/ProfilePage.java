@@ -54,6 +54,7 @@ public class ProfilePage extends WEareBasePage {
         actions.waitForElementVisible("profilePage.professionSelect.menu");
         actions.selectFromDropdownMenu("profilePage.professionSelect.menu", "Baker");
 
+
         actions.waitForElementClickable("profilePage.updateProfession.button");
         actions.clickElement("profilePage.updateProfession.button");
     }
@@ -83,12 +84,15 @@ public class ProfilePage extends WEareBasePage {
         actions.waitForElementClickable("profilePage.picturePrivacy.menu");
         actions.selectFromDropdownMenu("profilePage.picturePrivacy.menu", "public");
 
+
         By fileInputSelector = By.xpath("//input[@type='file']");
         WebElement fileInput = driver.findElement(fileInputSelector);
         String filePath = new File("src/main/java/resources/testUser.jpg").getAbsolutePath();
         fileInput.sendKeys(filePath);
         actions.waitForElementClickable("profilePage.updatePrivacy.button");
         actions.clickElement("profilePage.updatePrivacy.button");
+
+
     }
 
     public void adminDisableProfile() {
@@ -127,6 +131,7 @@ public class ProfilePage extends WEareBasePage {
         actions.clickElement("profilePage.disconnect.button");
 
         actions.assertElementPresent("profilePage.connect.button");
+
     }
 }
 

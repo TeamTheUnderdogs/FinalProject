@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 import static java.lang.String.format;
@@ -105,15 +106,14 @@ public class UserActions {
     }
 
     public void assertElementAttribute(String locator, String attributeName, String attributeExpectedValue) {
-                String xpath = getLocatorValueByKey(locator);
+        String xpath = getLocatorValueByKey(locator);
         WebElement element = driver.findElement(By.xpath(xpath));
         String attributeText = element.getAttribute(attributeName);
 
         Assertions.assertEquals(element.getAttribute(attributeName), attributeExpectedValue,
                 (format("Value of attribute %s doesn't match. Expected value: %s\n Actual value: %s",
-                        attributeName, attributeExpectedValue,attributeText)));
+                        attributeName, attributeExpectedValue, attributeText)));
     }
-
 
 
     private String getLocatorValueByKey(String locator) {
@@ -154,6 +154,14 @@ public class UserActions {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         } catch (Exception exception) {
             Assertions.fail("Element with locator: '" + xpath + "' was not found.");
+        }
+    }
+
+    public void waitFor(long timeOutMilliseconds) {
+        try {
+            Thread.sleep(timeOutMilliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
