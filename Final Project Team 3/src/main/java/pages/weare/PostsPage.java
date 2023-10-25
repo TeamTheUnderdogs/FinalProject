@@ -315,6 +315,7 @@ public class PostsPage extends WEareBasePage {
         actions.waitForElementClickable("postPage.deleteComment.button");
         actions.clickElement("postPage.deleteComment.button");
 
+        actions.waitForElementClickable("postPage.dropDown.button");
         WebElement dropdownMenu = driver.findElement(By.xpath("//select[@id='StringListId']"));
         Select dropdown = new Select(dropdownMenu);
         dropdown.selectByVisibleText("Delete comment");
