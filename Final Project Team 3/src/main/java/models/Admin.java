@@ -1,5 +1,7 @@
 package models;
+
 import static factories.UserFactory.faker;
+
 public class Admin {
     private String username;
     private String email;
@@ -21,6 +23,7 @@ public class Admin {
         this.username = "admin" + faker.name().firstName();
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -28,4 +31,6 @@ public class Admin {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

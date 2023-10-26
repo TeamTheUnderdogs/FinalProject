@@ -21,6 +21,7 @@ public class UserCommentTests extends BaseTest {
         postsPage.registered_browseAllPublicPosts();
         postPage.registered_explorePublicPost();
         postPage.registered_readCommentsInPost();
+        actions.waitForElementPresent("postPage.showNumberOfLikesForComment.element");
         actions.assertElementPresent("postPage.showNumberOfLikesForComment.element");
     }
     @Test

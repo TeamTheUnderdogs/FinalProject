@@ -145,14 +145,16 @@ public class PostPage extends WEareBasePage {
     public void registered_likeComment() {
         WebElement likeComment = driver.findElement(By.xpath("//input[@value='Like']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", likeComment);
+        actions.waitForElementClickable("postPage.dislikeComment.button");
     }
     public void registered_dislikeComment() {
-        actions.waitForElementVisible("postPage.dislikeComment.button");
-        actions.clickElement("postPage.dislikeComment.button");
+        WebElement disLikeComment = driver.findElement(By.xpath("//input[@value='Dislike']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", disLikeComment);
+        //actions.waitForElementVisible("postPage.dislikeComment.button");
+        //actions.clickElement("postPage.dislikeComment.button");
         actions.waitForElementClickable("postPage.likeComment.button");
     }
     public void registered_createCommentWithThousandCharacters() {
-        actions.waitForElementVisible("postPage.commentMessage.field");
         actions.typeValueInField(faker.lorem().characters(1000), "postPage.commentMessage.field");
         actions.waitForElementClickable("postPage.postComment.button");
         actions.clickElement("postPage.postComment.button");
@@ -170,6 +172,7 @@ public class PostPage extends WEareBasePage {
         actions.clickElement("postPage.editComment.button");
         actions.waitForElementPresent("postPage.commentMessage.field");
         String fakeMessage = faker.lorem().characters(25);
+        actions.waitForElementVisible("postPage.commentMessage.field");
         actions.typeValueInField(fakeMessage, "postPage.commentMessage.field");
         WebElement clickEditComment = driver.findElement(By.xpath("//input[@type='submit' and @value='Edit Comment' and @class='btn py-3 px-4 btn-primary']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickEditComment);
